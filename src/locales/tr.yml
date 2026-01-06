@@ -171,6 +171,8 @@ languageLevels:
 translation:
   sameLanguage: Kaynak ve hedef diller farklı olmalıdır
   autoModeSameLanguage: Algılanan dil '$1' hedef dille aynı
+shortcutKeySelector:
+  placeholder: Kısayol kaydetmek için tuşlara basın
 subtitles:
   state:
     idle: Hazır

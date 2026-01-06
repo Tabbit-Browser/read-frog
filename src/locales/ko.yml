@@ -171,6 +171,8 @@ languageLevels:
 translation:
   sameLanguage: 원본 언어와 대상 언어는 달라야 합니다
   autoModeSameLanguage: 감지된 언어 '$1'은(는) 대상 언어와 같습니다
+shortcutKeySelector:
+  placeholder: 키를 눌러 단축키 기록
 subtitles:
   state:
     idle: 준비 완료

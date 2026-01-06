@@ -1,5 +1,4 @@
 import type { Config } from '@/types/config/config'
-import type { ProviderConfig } from '@/types/config/provider'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { parseBatchResult } from '@/entrypoints/background/translation-queues'
@@ -43,23 +42,11 @@ const sampleLangConfig: Config['language'] = {
   level: 'beginner',
 }
 
-const sampleProviderConfig: ProviderConfig = {
-  id: 'test-provider',
-  name: 'Test Provider',
-  provider: 'openai',
-  enabled: true,
-  apiKey: 'test-key',
-  models: {
-    read: { model: 'gpt-4o-mini', isCustomModel: false, customModel: null },
-    translate: { model: 'gpt-4o-mini', isCustomModel: false, customModel: null },
-  },
-}
-
 interface TranslateBatchData {
   text: string
   langConfig: Config['language']
-  providerConfig: ProviderConfig
   hash: string
+  scheduleAt: number
 }
 
 const baseBatchConfig = {
@@ -91,23 +78,24 @@ function createBatchQueue(
     maxRetries: options?.maxRetries,
     enableFallbackToIndividual: options?.enableFallbackToIndividual,
     getBatchKey: (data) => {
-      return `${data.langConfig.sourceCode}-${data.langConfig.targetCode}-${data.providerConfig.id}`
+      return `${data.langConfig.sourceCode}-${data.langConfig.targetCode}`
     },
     getCharacters: (data) => {
       return data.text.length
     },
     executeBatch: async (dataList) => {
-      const { langConfig, providerConfig } = dataList[0]
+      const { langConfig } = dataList[0]
       const texts = dataList.map(d => d.text)
       const batchText = texts.join(`\n\n${BATCH_SEPARATOR}\n\n`)
       const hash = Sha256Hex(...dataList.map(d => d.hash))
+      const earliestScheduleAt = Math.min(...dataList.map(d => d.scheduleAt))
 
       const batchThunk = async (): Promise<string[]> => {
-        const result = await executeTranslate(batchText, langConfig, providerConfig, { isBatch: true })
+        const result = await executeTranslate(batchText, langConfig, { isBatch: true })
         return parseBatchResult(result)
       }
 
-      return requestQueue.enqueue(batchThunk, Date.now(), hash)
+      return requestQueue.enqueue(batchThunk, earliestScheduleAt, hash)
     },
     executeIndividual: options?.executeIndividual,
     onError: options?.onError,
@@ -130,8 +118,8 @@ describe('batchQueue – core functionality', () => {
     const promise = batchQueue.enqueue({
       text: 'Hello',
       langConfig: sampleLangConfig,
-      providerConfig: sampleProviderConfig,
       hash: 'hash1',
+      scheduleAt: Date.now(),
     })
 
     vi.advanceTimersByTime(baseBatchConfig.batchDelay)
@@ -153,19 +141,19 @@ describe('batchQueue – batching logic', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
       batchQueue.enqueue({
         text: 'Text 3',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash3',
       }),
     ]
@@ -191,13 +179,13 @@ describe('batchQueue – batching logic', () => {
       batchQueue.enqueue({
         text: 'A',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'B',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }), // Should trigger flush
     ]
@@ -227,13 +215,13 @@ describe('batchQueue – batching logic', () => {
     const promise1 = batchQueue.enqueue({
       text: 'Hi',
       langConfig: sampleLangConfig,
-      providerConfig: sampleProviderConfig,
+      scheduleAt: Date.now(),
       hash: 'hash1',
     })
     const promise2 = batchQueue.enqueue({
       text: 'Very long text exceeding limit',
       langConfig: sampleLangConfig,
-      providerConfig: sampleProviderConfig,
+      scheduleAt: Date.now(),
       hash: 'hash2',
     })
 
@@ -264,13 +252,13 @@ describe('batchQueue – batching logic', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: config1,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: config2,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]
@@ -297,7 +285,7 @@ describe('batchQueue – timing control', () => {
     const promise = batchQueue.enqueue({
       text: 'Test',
       langConfig: sampleLangConfig,
-      providerConfig: sampleProviderConfig,
+      scheduleAt: Date.now(),
       hash: 'hash1',
     })
 
@@ -329,13 +317,13 @@ describe('batchQueue – error handling', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]
@@ -360,13 +348,13 @@ describe('batchQueue – error handling', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]
@@ -401,13 +389,13 @@ describe('batchQueue – error handling', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]
@@ -443,7 +431,7 @@ describe('batchQueue – error handling', () => {
     const promise = batchQueue.enqueue({
       text: 'Test',
       langConfig: sampleLangConfig,
-      providerConfig: sampleProviderConfig,
+      scheduleAt: Date.now(),
       hash: 'hash1',
     })
 
@@ -473,7 +461,7 @@ describe('batchQueue – error handling', () => {
       maxRetries: 2,
       enableFallbackToIndividual: true,
       executeIndividual: async (data) => {
-        const result = await executeTranslate(data.text, data.langConfig, data.providerConfig)
+        const result = await executeTranslate(data.text, data.langConfig, { isBatch: false })
         return result
       },
     })
@@ -482,13 +470,13 @@ describe('batchQueue – error handling', () => {
       batchQueue.enqueue({
         text: 'Text1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]
@@ -527,7 +515,7 @@ describe('batchQueue – error handling', () => {
       maxRetries: 3,
       enableFallbackToIndividual: true,
       executeIndividual: async (data) => {
-        const result = await executeTranslate(data.text, data.langConfig, data.providerConfig)
+        const result = await executeTranslate(data.text, data.langConfig, { isBatch: false })
         return result
       },
     })
@@ -536,13 +524,13 @@ describe('batchQueue – error handling', () => {
       batchQueue.enqueue({
         text: 'Text1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]
@@ -572,13 +560,13 @@ describe('batchQueue – error handling', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ].map(p => p.catch(err => err))
@@ -615,7 +603,7 @@ describe('batchQueue – error handling', () => {
     const promise = batchQueue.enqueue({
       text: 'Test',
       langConfig: sampleLangConfig,
-      providerConfig: sampleProviderConfig,
+      scheduleAt: Date.now(),
       hash: 'hash1',
     }).catch(err => err)
 
@@ -645,13 +633,13 @@ describe('batchQueue – configuration', () => {
       batchQueue.enqueue({
         text: 'Text 1',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash1',
       }),
       batchQueue.enqueue({
         text: 'Text 2',
         langConfig: sampleLangConfig,
-        providerConfig: sampleProviderConfig,
+        scheduleAt: Date.now(),
         hash: 'hash2',
       }),
     ]

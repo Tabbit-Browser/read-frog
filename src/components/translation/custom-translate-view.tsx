@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { streamCustomTranslate } from '@/utils/host/translate/custom-stream'
 
 interface CustomTranslateViewProps {
@@ -18,6 +18,12 @@ export function CustomTranslateView({
   const [translatedText, setTranslatedText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const onFinishRef = useRef(onFinish)
+
+  // Keep the ref updated with the latest onFinish callback
+  useEffect(() => {
+    onFinishRef.current = onFinish
+  }, [onFinish])
 
   useEffect(() => {
     let isMounted = true
@@ -47,7 +53,7 @@ export function CustomTranslateView({
         }
 
         if (isMounted) {
-          onFinish?.(fullText)
+          onFinishRef.current?.(fullText)
         }
       }
       catch (err) {

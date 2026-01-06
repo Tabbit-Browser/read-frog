@@ -171,6 +171,8 @@ languageLevels:
 translation:
   sameLanguage: 源語言和目標語言必須不同
   autoModeSameLanguage: 檢測到的語言 '$1' 與目標語言相同
+shortcutKeySelector:
+  placeholder: 按下按鍵以錄製快捷鍵
 subtitles:
   state:
     idle: 就緒

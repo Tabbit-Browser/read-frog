@@ -169,6 +169,8 @@ languageLevels:
 translation:
   sameLanguage: Source and target languages must be different
   autoModeSameLanguage: Detected language '$1' is the same as target language
+shortcutKeySelector:
+  placeholder: Press keys to record shortcut
 subtitles:
   state:
     idle: Ready

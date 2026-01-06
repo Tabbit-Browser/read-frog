@@ -171,6 +171,8 @@ languageLevels:
 translation:
   sameLanguage: Ngôn ngữ nguồn và đích phải khác nhau
   autoModeSameLanguage: Ngôn ngữ phát hiện '$1' giống với ngôn ngữ đích
+shortcutKeySelector:
+  placeholder: Nhấn phím để ghi phím tắt
 subtitles:
   state:
     idle: Sẵn sàng

@@ -171,6 +171,8 @@ languageLevels:
 translation:
   sameLanguage: Исходный и целевой языки должны различаться
   autoModeSameLanguage: Обнаруженный язык '$1' совпадает с целевым языком
+shortcutKeySelector:
+  placeholder: Нажмите клавиши для записи сочетания клавиш
 subtitles:
   state:
     idle: Готово

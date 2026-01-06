@@ -171,6 +171,8 @@ languageLevels:
 translation:
   sameLanguage: ソース言語とターゲット言語は異なる必要があります
   autoModeSameLanguage: 検出された言語 '$1' はターゲット言語と同じです
+shortcutKeySelector:
+  placeholder: キーを押してショートカットを記録
 subtitles:
   state:
     idle: 準備完了

@@ -15,12 +15,9 @@ import {
   LANG_CODE_TO_LOCALE_NAME,
   langCodeISO6393Schema,
 } from '@/utils/constants/definitions'
-import { LLMStatusIndicator } from '../../../../components/llm-status-indicator'
 import { ConfigCard } from '../../components/config-card'
 
 export function AutoTranslateLanguages() {
-  const hasLLMProvider = true
-
   return (
     <div className="py-6 flex flex-col gap-y-4">
       <ConfigCard
@@ -28,7 +25,6 @@ export function AutoTranslateLanguages() {
         description={(
           <>
             {i18n.t('options.translation.autoTranslateLanguages.description')}
-            <LLMStatusIndicator hasLLMProvider={hasLLMProvider} />
           </>
         )}
         className="py-0"
