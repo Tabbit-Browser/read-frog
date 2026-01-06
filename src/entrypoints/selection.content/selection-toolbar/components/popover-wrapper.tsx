@@ -112,7 +112,7 @@ export function PopoverWrapper({ title, icon, children, onClose, isVisible, setI
         <div
           className={`absolute top-0 left-1/2 transform -translate-x-1/2 p-1 transition-all duration-200 ${isDragging ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
           style={{
-            color: isDragging ? 'var(--read-frog-primary)' : undefined,
+            color: isDragging ? 'var(--tab-translation-primary)' : undefined,
           }}
         >
           <Icon icon="tabler:grip-horizontal" className="size-4" />

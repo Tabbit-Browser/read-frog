@@ -65,7 +65,7 @@ export function ensurePresetStyles(root: StyleRoot): void {
     root.adoptedStyleSheets = [...root.adoptedStyleSheets, getPresetStyleSheet()]
   }
   else {
-    injectStyleElement(root, 'read-frog-preset-styles', FULL_PRESET_CSS)
+    injectStyleElement(root, 'tab-translation-preset-styles', FULL_PRESET_CSS)
   }
 }
 
@@ -95,7 +95,7 @@ export async function ensureCustomCSS(root: StyleRoot, cssText: string): Promise
     await sheet.replace(cssText)
   }
   else {
-    injectStyleElement(root, 'read-frog-custom-styles', cssText)
+    injectStyleElement(root, 'tab-translation-custom-styles', cssText)
   }
 
   if (root instanceof Document) {

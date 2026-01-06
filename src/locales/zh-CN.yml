@@ -1,7 +1,6 @@
-name: 陪读蛙
-extName: 陪读蛙 - 开源沉浸式翻译
-extDescription: 陪读蛙是一款开放源代码的浏览器插件，旨在帮助您从任何网站深入学习语言。
-uninstallSurveyUrl: https://tally.so/r/3E9XDL
+name: Tab翻译
+extName: Tab翻译 - 沉浸式翻译
+extDescription: Tab翻译是一款浏览器插件，旨在帮助您从任何网站深入学习语言。
 contextMenu:
   translate: 翻译
   showOriginal: 显示原文
@@ -9,148 +8,21 @@ popup:
   autoLang: 自动检测
   sourceLang: 来源语言
   targetLang: 目标语言
-  read: 阅读文章
   translate: 翻译
   showOriginal: 显示原文
-  enabledFloatingButton: 启用悬浮按钮
   enabledSelectionToolbar: 启用选择工具栏
   alwaysTranslate: 总是翻译这个网站
   options: 选项
   hover: 鼠标悬停
   translateParagraph: 来翻译段落
-  discord:
-    tooltip: 加入 Discord 与开发者交流，抢先体验新功能
-  blog:
-    notification: 陪读蛙更新动态
-  aiSmartContext: AI 智能上下文
-  aiSmartContextDescription: 结合网页上下文提升翻译效果。需要配置 LLM 翻译服务商。
-  more:
-    title: 更多
-    joinDiscord: 加入 Discord
-    joinWechat: 加入微信群
-    starGithub: Github 加星
-    rateUs: 好评支持
-    ebook: 第三方电子书阅读器
-    tutorial: 使用教程
 options:
   sidebar:
     settings: 设置
-    product: 产品
-  setAPIKeyWarning:
-    please: 请在
-    page: 页设置 API Key
-  betaExperience:
-    title: Beta 体验
-    description: 启用实验性功能和早期访问新功能。这些功能可能不稳定或不完整。
-    enabled: 启用 Beta 体验
-  apiProviders:
-    title: API 提供商
-    description: 配置用于翻译和阅读功能的 API 提供商。我们内置了 20 多个 API 提供商，并且支持任何 OpenAI 兼容的 API 提供商。
-    promotion:
-      ai302:
-        description: 点击右方链接注册 302.AI 可以获得 1 美元 API 额度
-        action: 注册获取免费 API Key
-        addProvider: 添加 302.AI 配置
-    addProvider: 添加提供商
-    badges:
-      translate: 翻译
-      read: 阅读
-    dialog:
-      title: 添加新提供商
-      groups:
-        builtInProviders:
-          title: 内置 LLM 提供商
-          description: 内置的大语言模型提供商，无需填写大部分配置比如 Base URL
-        openaiCompatibleProviders:
-          title: OpenAI 兼容自定义提供商
-          description: 如果找不到你想要的 AI 提供商，请选择 Custom Provider 来配置任何 OpenAI 接口兼容的提供商，比如智谱
-        pureTranslationProviders:
-          title: 纯翻译提供商
-          description: 专注于翻译功能的提供商，没有大语言模型能力
-    form:
-      fields:
-        name: 名称
-        description: 描述
-        apiKey: API Key
-        baseURL: Base URL
-        optional: 可选
-      delete: 删除
-      atLeastOneProvider: 至少需要一个阅读提供商和一个翻译提供商。
-      duplicateProviderName: '重复的提供商名称 "$1"'
-      defaultProvider:
-        translate: 设为默认翻译提供商
-        read: 设为默认阅读提供商
-      models:
-        read:
-          title: 阅读模型
-          customTitle: 自定义阅读模型
-          placeholder: 选择一个模型
-        translate:
-          title: 翻译模型
-          customTitle: 自定义翻译模型
-          placeholder: 选择一个模型
-        fetchModels: 获取可用模型
-        fetchError: 获取模型失败
-        clickToRetry: 点击重试
-        noModels: 没有可用的模型
-        selectModel: 选择模型
-        apiKeyRequired: 请先添加 API 密钥
-      advancedOptions: 高级选项
-      temperature: 温度
-      temperatureHint: 控制响应的随机性。较低的值（0）更确定性，较高的值更具创造性。范围因提供商而异。留空则使用提供商默认值。
-      providerOptions: 提供商选项
-      providerOptionsHint: 用于非标准 API 功能（如思考/推理模式）的提供商特定选项。详情请参阅 Vercel AI SDK 文档或您的提供商官方文档。
-      providerOptionsDocsLink: 查看提供商文档
-      invalidJson: JSON 格式无效
-    providers:
-      description:
-        openai: 提供 GPT-4o 等模型
-        deepseek: 推荐在中国使用
-        openrouter: 多个 LLM 提供商的统一接口，按使用量付费
-        ollama: 在本地机器上运行大语言模型，确保完全隐私
-        google: 具有先进推理能力的谷歌旗舰 AI 模型
-        anthropic: 以安全性和推理能力著称的 Claude 模型
-        xai: 马斯克的 AI 公司，提供具有实时数据访问能力的 Grok 模型
-        siliconflow: 面向中国和国际模型的高性能推理平台
-        tensdaq: 革命性竞价 AI MaaS 平台，价格由市场供需决定，告别高成本固定定价
-        ai302: 提供最新、全面的模型和按量付费 API
-        openaiCompatible: OpenAI API 兼容的第三方
-        deeplx: 非官方 DeepL API
-        bedrock: 面向企业级基础模型的 AWS 托管服务
-        groq: 专注于超高速 LLM 推理速度的专用硬件
-        deepinfra: 面向热门开源模型的经济高效云推理
-        mistral: 专注于高效多语言模型的欧洲 AI 公司
-        togetherai: 用于运行和微调开源模型的协作平台
-        cohere: 具有强大多语言和 RAG 能力的企业级 AI
-        fireworks: 面向开源模型的生产就绪推理平台
-        cerebras: 超快速 AI 推理，适合快速翻译和文本分析
-        replicate: 访问多样化开源模型，适合专业翻译任务
-        perplexity: 实时知识增强 AI，提供语境化翻译和阅读辅助
-        vercel: 针对网页内容翻译和分析优化的 AI 模型
-        volcengine: 字节跳动旗下云平台，提供豆包系列大模型
-        minimax: MiniMax AI平台，提供先进的MiniMax-M2系列大模型
-    apiKey:
-      showAPIKey: 显示 API Key
-    howToConfigure: 如何配置?
-    testConnection:
-      button: 测试连接
-      testing: 测试中...
   general:
     title: 通用
-    readConfig:
-      title: 阅读配置
-      description: 适用于所有高级 AI 功能，如深度文章解释和关键词提取。
-      provider: 提供商
-      model:
-        title: 模型
-        enterCustomModel: 输入自定义模型名称
     translationConfig:
       title: 翻译配置
       description: 仅用于网页内的翻译，如双语段落翻译。
-      provider: 提供商
-      model:
-        title: 模型
-        enterCustomModel: 输入自定义模型名称
       translateRange:
         title: 翻译范围
         range:
@@ -168,33 +40,11 @@ options:
         description: 此操作将清理所有翻译缓存。此操作无法撤销。
   overlayTools:
     title: 悬浮工具
-    floatingButton:
-      title: 悬浮按钮
     selectionToolbar:
       title: 选择工具栏
     contextMenu:
       title: 右键菜单
   floatingButtonAndToolbar:
-    title: 悬浮按钮和工具栏
-    floatingButtonDemoImageAlt: 悬浮按钮演示
-    selectionToolbarDemoImageAlt: 选择工具栏演示
-    floatingButton:
-      globalToggle:
-        title: 启用悬浮按钮
-        description: 在网页上显示悬浮按钮，快速访问陪读蛙功能
-      closeMenu:
-        disableForSite: 禁用此网站
-        disableGlobally: 全局禁用
-      disabledSites:
-        title: 悬浮按钮禁用网站
-        description: 配置需要禁用悬浮按钮的网站
-        enterUrlPattern: 输入网址模式
-        urlPattern: 网址模式
-      clickAction:
-        title: 点击行为
-        description: 选择点击悬浮按钮时执行的操作
-        panel: 打开面板
-        translate: 切换页面翻译
     selectionToolbar:
       globalToggle:
         title: 启用选择工具栏
@@ -208,7 +58,6 @@ options:
         enterUrlPattern: 输入网址模式
         urlPattern: 网址模式
     contextMenu:
-      title: 右键菜单
       translate:
         title: 启用右键翻译
         description: 在浏览器右键菜单中添加翻译选项，快速翻译页面
@@ -233,43 +82,11 @@ options:
       maxItemsPerBatch:
         title: 最大段落数
         description: 每个批量翻译的最大段落数，用于控制单次翻译的内容量
-      statisticsLink: 过去 7 天已为您节省约 $1 成本
     autoTranslateWebsite:
       title: 基于网站自动翻译
       description: 总是翻译这个网站
       urlPattern: URL 模式
       enterUrlPattern: 输入 URL 模式
-    personalizedPrompts:
-      title: 个性化 Prompt
-      description: 自定义不同类型的 Prompt，可以在翻译时自行调整 Prompt 类型。Prompt 表示以用户身份发送给 LLM 的文本。
-      communityPrompts: 获取或分享社区 Prompt
-      communityPromptsUrl: https://github.com/mengxi-ream/read-frog/discussions/820
-      addPrompt: 添加 Prompt
-      default: 通用
-      importSuccess: 导入成功
-      import: 导入
-      export: 导出
-      current: 正在使用
-      editPrompt:
-        title: 编辑 Prompt
-        name: 标题
-        systemPrompt: 系统提示词
-        prompt: 提示词
-        promptCellInput:
-          input: 需要翻译的文本内容
-          targetLang: 目标语言
-          title: 网页标题
-          summary: 网页摘要（需启用 AI 智能上下文）
-        save: 保存
-        close: 取消
-      deletePrompt:
-        title: 删除 Prompt
-        description: 确认删除该 Prompt
-        confirm: 确认
-        cancel: 取消
-      exportPrompt:
-        exportSelected: 导出所选
-        cancel: 取消
     translationStyle:
       title: 翻译显示样式
       description: 设置任何你想要的样式以区分翻译结果和原文
@@ -294,7 +111,7 @@ options:
         editor:
           placeholder: |
             /* 示例：自定义颜色和背景样式 */
-            [data-read-frog-custom-translation-style='custom'] {
+            [data-tab-translation-custom-translation-style='custom'] {
               color: #414535;
               background-color: light-dark(#F2E3BC, #C19875);
               padding: 2px 4px;
@@ -329,199 +146,31 @@ options:
     nodeTranslationHotkey:
       title: 悬停翻译快捷键
       description: 自定义悬停在文本上翻译段落的修饰键
-    llmProviderConfigured: 已配置 LLM 翻译提供商
-    llmProviderNotConfigured: 未配置 LLM 翻译提供商
     autoTranslateLanguages:
       title: 基于语言的自动翻译
       description: 当检测到指定语言时自动翻译页面内容
       selectLanguages: 选择语言
       enableLLMDetection: 使用 LLM 检测语言
       enableLLMDetectionDescription: 提高准确率，但会增加延迟和 API 费用。需要配置 LLM 翻译提供商，并需配置自动翻译语言。
-    aiContentAware:
-      title: AI 智能上下文翻译
-      description: 通过向 AI 提供文章上下文来提高翻译质量
-      enable: 启用 AI 智能上下文翻译
-      enableDescription: AI 使用文章摘要来提高翻译准确性。需要 LLM 翻译提供商。刚开始翻译页面时会有延迟，并增加 API 费用。
   tts:
     title: 文本转语音
-    description: 自定义朗读按钮使用的 OpenAI 语音参数。
-    provider:
-      label: 提供商
-      selectPlaceholder: 选择提供商
-      noProvider: 请添加 OpenAI 提供商
-    model:
-      label: 模型
-    voice:
-      label: 声音
-      selectPlaceholder: 请选择一个声音
-      preview: 试听
-      previewSample: 来自 Read Frog 的问候！这是我朗读时的声音。
-    speed:
-      label: 语速
-      hint: 支持的取值范围为 0.25 到 4.0
-    betaDisabled: 启用测试体验后即可自定义文本转语音设置。
-  statistics:
-    title: 统计
-    batchRequest:
-      title: 批量翻译已节省请求
-      description: 周期内批量翻译节省的请求百分比
-      originalRequestCount: 原始请求数量
-      batchRequestCount: 批量请求数量
   config:
-    title: 配置
     sync:
-      title: 手动配置同步
-      description: 手动导入和导出您的配置设置
-      import: 导入配置
-      export: 导出配置
-      importSuccess: 配置导入成功
-      exportSuccess: 配置导出成功
-      importError: 导入失败
-      versionTooNew: 导入的配置版本较新，请升级 Read Frog 到最新版本
-      migrationError: 迁移失败
+      versionTooNew: 导入的配置版本较新，请升级Tab翻译到最新版本
       validationError: 配置验证失败
-      exportOptions:
-        title: 选择导出选项
-        description: 请选择是否在导出的配置中包含 API Keys。包含 API Keys 可能会泄露敏感信息，建议仅在安全环境下使用。
-        includeAPIKeys: 包含 API Keys
-        excludeAPIKeys: 不包含 API Keys
-        cancel: 取消
-      viewConfig:
-        expand: 展开配置
-        collapse: 收起配置
-      googleDrive:
-        title: Google Drive 云端同步
-        description: 远端配置较新时下载，本地配置较新时上传
-        sync: 同步到 Google Drive
-        syncing: 同步中...
-        syncSuccess:
-          uploaded: 本地配置已上传至云端
-          downloaded: 已应用远程配置
-          sameChanges: 本地和远程修改一致，已同步
-          noChange: 已是最新状态
-          unresolved: 冲突已解决并同步至本地和云端
-        syncError: 同步失败，请重试
-        metadataCorrupted: 同步数据损坏，已自动应用远端配置
-        lastSyncTime: 最后同步时间
-        logout: 登出账号
-        logoutSuccess: 已登出 Google 账号
-        unresolved:
-          title: 配置同步解决
-          description: 本地与云端配置存在差异，请选择每个字段要保留的版本。
-          resolved: 已解决
-          unresolved: 未解决
-          localValue: 本地值
-          remoteValue: 远端值
-          useLocal: 使用本地
-          useRemote: 使用远端
-          useAllLocal: 全选本地
-          useAllRemote: 全选远端
-          reset: 撤销选择
-          progress: 已解决 $1/$2 个更改
-          confirm: 确认同步
-          cancel: 取消
-          hasUnresolvedInChildren: ⚠ 包含待解决项
-          item: 项
-          items: 项
-          unresolvedPrompt: '[待解决 - 请选择]'
-          localLatest: 本地最新
-          remoteLatest: 远端最新
-          bothChanged: 双方已更改
-          localChanged: 本地已更改
-          remoteChanged: 远端已更改
-          configValid: 配置有效
-          configInvalid: 配置无效
-          resolveToContinue: 解决冲突后继续
-          validationAlert:
-            title: 合并后的配置存在验证错误
-            description: 请调整下方差异以修复：
-          moreErrors: ...还有 $1 个错误
-    backup:
-      title: 配置备份
-      description: 如果配置发生变化，每小时会自动创建备份。您可以在这里恢复之前的配置。（最多 $1 个备份）
-      loading: 正在加载备份...
-      backupNow: 立即备份
-      backupSuccess: 备份创建成功
-      restoreSuccess: 配置恢复成功
-      empty:
-        title: 暂无可用备份
-        description: 如果配置发生变化，每小时会自动创建备份。
-      item:
-        extensionVersion: 扩展版本：
-        schemaVersion: 配置版本：
-        restore: 恢复
-        export: 导出
-        delete: 删除
-      restore:
-        title: 恢复配置备份？
-        description: 如果当前配置与最新备份不同，将自动备份您的当前配置。如果备份数量超过限制，最旧的备份可能会被删除。
-        cancel: 取消
-        confirm: 恢复
-      delete:
-        title: 删除备份？
-        description: 您确定要删除此备份吗？此操作无法撤销。
-        cancel: 取消
-        confirm: 删除
-    resetConfig:
-      title: 恢复默认配置
-      description: 将所有配置重置为默认
-      dialog:
-        title: 恢复默认配置
-        trigger: 重置配置
-        confirm: 确认
-        cancel: 取消
-        description: 该操作将清空您的所有自定义配置，并将其重置为默认值，请确认是否清除。
   videoSubtitles:
     title: 视频字幕
     description: 当前仅支持 YouTube 视频字幕
     enable: 开启视频字幕
     enableDescription: 启用后，YouTube 播放器控制栏会出现翻译按钮。点击即可开始翻译字幕。
-  whatsNew:
-    title: 最近更新
-  survey:
-    title: 新功能建议
-  rateUs:
-    title: 好评支持
-side:
-  sourceLang: 来源语言
-  targetLang: 目标语言
-  fileExport: 文件导出
-readService:
-  title: 阅读服务
-  description: 用于阅读和解释文章
-translateService:
-  title: 翻译服务
-  description: 仅用于翻译网页内容
-  normalTranslator: 普通翻译
-  aiTranslator: AI 翻译
-translatePrompt:
-  title: AI 翻译风格
-  description: 选择在翻译时使用的 Prompt，可在选项页新增或修改自定义 Prompt
 languageLevel: 你的来源语言水平
 languageLevels:
   beginner: 初级
   intermediate: 中级
   advanced: 高级
-noAPIKeyConfig:
-  warning: 如果想要使用 AI 模型，请先在选项页设置 API Key
-  warningWithLink:
-    youMust: 您必须先
-    setTheAPIKey: 设置 API Key
-    firstOnThe: 在
-    optionsPage: 选项
-    page: 页
 translation:
   sameLanguage: 源语言和目标语言必须不同
   autoModeSameLanguage: 检测到的语言 '$1' 与目标语言相同
-speak:
-  fetchingAudio: 正在获取音频...
-  playingAudio: 正在播放音频...
-  failedToGenerateSpeech: 语音生成失败
-  noTextSelected: 未选择文本
-  openaiNotConfigured: OpenAI 提供商未配置或未启用
-  openaiApiKeyNotConfigured: OpenAI API Key 未配置
-shortcutKeySelector:
-  placeholder: 请输入快捷键
 subtitles:
   state:
     idle: 就绪

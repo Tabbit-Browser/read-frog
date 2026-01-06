@@ -1,4 +1,4 @@
-import type { LangLevel } from '@read-frog/definitions'
+import type { LangLevel } from '@/utils/constants/definitions'
 
 import { i18n } from '#imports'
 import { useAtom } from 'jotai'

@@ -1,7 +1,6 @@
-name: Read Frog
-extName: Read Frog - Dịch Nhúng Mã Nguồn Mở
-extDescription: Read Frog là tiện ích mở rộng trình duyệt mã nguồn mở được thiết kế để giúp bạn học ngôn ngữ sâu từ bất kỳ trang web nào.
-uninstallSurveyUrl: https://tally.so/r/nPK6Ob
+name: Tab Translation
+extName: Tab Translation - Dịch Nhúng
+extDescription: Tab Translation là tiện ích mở rộng trình duyệt được thiết kế để giúp bạn học ngôn ngữ sâu từ bất kỳ trang web nào.
 contextMenu:
   translate: Dịch
   showOriginal: Hiển thị bản gốc
@@ -9,149 +8,21 @@ popup:
   autoLang: Tự động
   sourceLang: Nguồn
   targetLang: Đích
-  read: Đọc bài viết
   translate: Dịch
   showOriginal: Hiển thị bản gốc
-  enabledFloatingButton: Bật nút nổi
   enabledSelectionToolbar: Bật thanh công cụ chọn văn bản
   alwaysTranslate: Luôn dịch trang web này
   options: Tùy chọn
   hover: Di chuột
   translateParagraph: để dịch đoạn văn
-  discord:
-    tooltip: Tham gia Discord để kết nối với các nhà phát triển và truy cập sớm các tính năng mới
-  blog:
-    notification: Có gì mới trong Read Frog
-  aiSmartContext: Ngữ cảnh thông minh AI
-  aiSmartContextDescription: Sử dụng ngữ cảnh trang web để cải thiện chất lượng dịch. Yêu cầu nhà cung cấp dịch LLM.
-  more:
-    title: Thêm
-    joinDiscord: Tham gia Discord
-    joinWechat: Tham gia nhóm WeChat
-    starGithub: Đánh dấu sao trên Github
-    rateUs: Đánh giá chúng tôi
-    ebook: Trình đọc sách điện tử bên thứ ba
-    tutorial: Hướng dẫn
 options:
   sidebar:
     settings: Cài đặt
-    product: Sản phẩm
-  setAPIKeyWarning:
-    please: Vui lòng đặt API Key trên trang
-    page: cài đặt
-  betaExperience:
-    title: Trải nghiệm Beta
-    description: Bật các tính năng thử nghiệm và truy cập sớm các chức năng mới. Các tính năng này có thể không ổn định hoặc chưa hoàn chỉnh.
-    enabled: Bật trải nghiệm Beta
-  apiProviders:
-    title: Nhà cung cấp API
-    description: Cấu hình các nhà cung cấp API cho chức năng dịch và đọc tại đây. Chúng tôi có hơn 20 nhà cung cấp API tích hợp sẵn và hỗ trợ bất kỳ nhà cung cấp API tương thích OpenAI nào.
-    promotion:
-      ai302:
-        description: Nhấp vào liên kết bên phải để đăng ký 302.AI và nhận 1 USD tín dụng API
-        action: Đăng ký để nhận API Key miễn phí
-        addProvider: Thêm cấu hình 302.AI
-    addProvider: Thêm nhà cung cấp
-    badges:
-      translate: Dịch
-      read: Đọc
-    dialog:
-      title: Thêm nhà cung cấp mới
-      groups:
-        builtInProviders:
-          title: Nhà cung cấp LLM tích hợp sẵn
-          description: Các nhà cung cấp mô hình ngôn ngữ lớn tích hợp sẵn, không cần điền hầu hết các cấu hình như Base URL
-        openaiCompatibleProviders:
-          title: Nhà cung cấp tùy chỉnh tương thích OpenAI
-          description: Nếu bạn không tìm thấy nhà cung cấp AI mong muốn, chọn Nhà cung cấp tùy chỉnh để cấu hình bất kỳ nhà cung cấp tương thích OpenAI nào, như Zhipu AI
-        pureTranslationProviders:
-          title: Nhà cung cấp dịch thuật thuần túy
-          description: Các nhà cung cấp tập trung vào tính năng dịch thuật mà không có khả năng mô hình ngôn ngữ lớn
-    form:
-      fields:
-        name: Tên
-        description: Mô tả
-        apiKey: API Key
-        baseURL: Base URL
-        optional: Tùy chọn
-      delete: Xóa
-      atLeastOneProvider: Cần ít nhất một nhà cung cấp đọc và một nhà cung cấp dịch.
-      duplicateProviderName: 'Tên nhà cung cấp trùng lặp "$1"'
-      defaultProvider:
-        translate: Đặt làm nhà cung cấp dịch mặc định
-        read: Đặt làm nhà cung cấp đọc mặc định
-      models:
-        read:
-          title: Mô hình đọc
-          customTitle: Mô hình đọc tùy chỉnh
-          placeholder: Chọn mô hình
-        translate:
-          title: Mô hình dịch
-          customTitle: Mô hình dịch tùy chỉnh
-          placeholder: Chọn mô hình
-        fetchModels: Lấy các mô hình có sẵn
-        fetchError: Không thể lấy mô hình
-        clickToRetry: Nhấp để thử lại
-        noModels: Không có mô hình nào
-        selectModel: Chọn mô hình
-        apiKeyRequired: Vui lòng thêm khóa API trước
-      advancedOptions: Tùy chọn nâng cao
-      temperature: Nhiệt độ
-      temperatureHint: Kiểm soát tính ngẫu nhiên trong phản hồi. Giá trị thấp (0) mang tính xác định hơn, giá trị cao mang tính sáng tạo hơn. Phạm vi thay đổi theo nhà cung cấp. Để trống để sử dụng giá trị mặc định của nhà cung cấp.
-      providerOptions: Tùy chọn nhà cung cấp
-      providerOptionsHint: Các tùy chọn dành riêng cho nhà cung cấp cho các tính năng API không chuẩn như chế độ suy nghĩ/lập luận. Xem tài liệu Vercel AI SDK hoặc tài liệu chính thức của nhà cung cấp để biết chi tiết cấu hình.
-      providerOptionsDocsLink: Xem Tài liệu Nhà cung cấp
-      invalidJson: Định dạng JSON không hợp lệ
-    providers:
-      description:
-        openai: Cung cấp các mô hình như GPT-4o
-        deepseek: Khuyến nghị sử dụng ở Trung Quốc
-        openrouter: Giao diện thống nhất cho nhiều nhà cung cấp LLM với giá trả theo lần sử dụng
-        ollama: Chạy các mô hình ngôn ngữ lớn cục bộ trên máy của bạn để bảo mật hoàn toàn
-        google: Các mô hình AI hàng đầu của Google với khả năng suy luận tiên tiến
-        anthropic: Các mô hình Claude nổi tiếng về độ an toàn và khả năng suy luận xuất sắc
-        xai: Công ty AI của Elon Musk cung cấp các mô hình Grok với truy cập dữ liệu thời gian thực
-        siliconflow: Nền tảng suy luận hiệu suất cao cho các mô hình Trung Quốc và quốc tế
-        tensdaq: Nền tảng MaaS đấu giá AI cách mạng với giá thị trường, loại bỏ giá cố định cao
-        ai302: Cung cấp các mô hình mới nhất và toàn diện nhất với API trả theo lần sử dụng
-        openaiCompatible: Bên thứ ba và tương thích API OpenAI
-        deeplx: API DeepL không chính thức
-        bedrock: Dịch vụ được quản lý bởi AWS cho các mô hình nền tảng cấp doanh nghiệp
-        groq: Phần cứng chuyên dụng cho tốc độ suy luận LLM siêu nhanh
-        deepinfra: Suy luận đám mây hiệu quả chi phí cho các mô hình mã nguồn mở phổ biến
-        mistral: Công ty AI châu Âu chuyên về các mô hình đa ngôn ngữ hiệu quả
-        togetherai: Nền tảng hợp tác để chạy và tinh chỉnh các mô hình mã nguồn mở
-        cohere: AI tập trung vào doanh nghiệp với khả năng đa ngôn ngữ và RAG mạnh mẽ
-        fireworks: Nền tảng suy luận sẵn sàng cho sản xuất cho các mô hình mã nguồn mở
-        cerebras: Suy luận AI siêu nhanh cho dịch thuật và phân tích văn bản nhanh
-        replicate: Truy cập các mô hình mã nguồn mở đa dạng cho các tác vụ dịch thuật chuyên biệt
-        perplexity: AI nâng cao kiến thức thời gian thực cho bản dịch ngữ cảnh và hỗ trợ đọc
-        vercel: Các mô hình AI tối ưu hóa cho dịch và phân tích nội dung web
-        volcengine: Nền tảng AI đám mây của ByteDance cung cấp các mô hình Doubao cho dịch và đọc
-        minimax: Nền tảng AI MiniMax cung cấp các mô hình MiniMax-M2 tiên tiến
-    apiKey:
-      showAPIKey: Hiển thị API Key
-    howToConfigure: Cấu hình như thế nào?
-    testConnection:
-      button: Kiểm tra kết nối
-      testing: Đang kiểm tra...
   general:
     title: Chung
-    readConfig:
-      title: Cấu hình đọc
-      description:
-        Cho tất cả các chức năng AI nâng cao, như giải thích bài viết chi tiết và trích xuất từ khóa.
-      provider: Nhà cung cấp
-      model:
-        title: Mô hình
-        enterCustomModel: Nhập tên mô hình tùy chỉnh
     translationConfig:
       title: Cấu hình dịch
       description: Chỉ dùng cho dịch trong trang web, như dịch đoạn văn song ngữ.
-      provider: Nhà cung cấp
-      model:
-        title: Mô hình
-        enterCustomModel: Nhập tên mô hình tùy chỉnh
       translateRange:
         title: Phạm vi dịch
         range:
@@ -169,33 +40,11 @@ options:
         description: Thao tác này sẽ xóa tất cả bộ nhớ đệm dịch. Hành động này không thể hoàn tác.
   overlayTools:
     title: Công cụ nổi
-    floatingButton:
-      title: Nút nổi
     selectionToolbar:
       title: Thanh công cụ chọn
     contextMenu:
       title: Menu ngữ cảnh
   floatingButtonAndToolbar:
-    title: Nút nổi & Thanh công cụ
-    floatingButtonDemoImageAlt: Demo nút nổi
-    selectionToolbarDemoImageAlt: Demo thanh công cụ chọn văn bản
-    floatingButton:
-      globalToggle:
-        title: Bật nút nổi
-        description: Hiển thị nút nổi trên các trang web để truy cập nhanh các tính năng Read Frog
-      closeMenu:
-        disableForSite: Tắt cho trang web này
-        disableGlobally: Tắt toàn cục
-      disabledSites:
-        title: Các trang web đã tắt nút nổi
-        description: Cấu hình các trang web mà nút nổi nên bị tắt
-        enterUrlPattern: Nhập mẫu URL
-        urlPattern: Mẫu URL
-      clickAction:
-        title: Hành động khi nhấn
-        description: Chọn hành động khi nhấn vào nút nổi
-        panel: Mở bảng điều khiển
-        translate: Bật/tắt dịch trang
     selectionToolbar:
       globalToggle:
         title: Bật thanh công cụ chọn văn bản
@@ -209,7 +58,6 @@ options:
         enterUrlPattern: Nhập mẫu URL
         urlPattern: Mẫu URL
     contextMenu:
-      title: Menu ngữ cảnh
       translate:
         title: Bật dịch menu ngữ cảnh
         description: Thêm tùy chọn dịch vào menu chuột phải của trình duyệt để dịch trang nhanh
@@ -234,41 +82,11 @@ options:
       maxItemsPerBatch:
         title: Số đoạn văn tối đa
         description: Số đoạn văn tối đa cho mỗi bản dịch lô để kiểm soát khối lượng nội dung của mỗi bản dịch
-      statisticsLink: Đã tiết kiệm khoảng $1 chi phí trong 7 ngày qua
     autoTranslateWebsite:
       title: Tự động dịch theo trang web
       description: Luôn dịch trang web này
       urlPattern: Mẫu URL
       enterUrlPattern: Nhập mẫu URL
-    personalizedPrompts:
-      title: Prompt cá nhân hóa
-      description: Tùy chỉnh các loại Prompt khác nhau cho phép bạn tự điều chỉnh loại Prompt trong quá trình dịch. Prompt là văn bản mà người dùng gửi cho LLM.
-      addPrompt: Thêm Prompt
-      default: Mặc định
-      importSuccess: Nhập thành công
-      import: Nhập
-      export: Xuất
-      current: đang sử dụng
-      editPrompt:
-        title: Chỉnh sửa Prompt
-        name: Tên
-        systemPrompt: System Prompt
-        prompt: Prompt
-        promptCellInput:
-          input: Nội dung văn bản để dịch
-          targetLang: Ngôn ngữ đích
-          title: Tiêu đề trang web
-          summary: Tóm tắt trang web (yêu cầu Ngữ cảnh thông minh AI)
-        save: Lưu thay đổi
-        close: Hủy
-      deletePrompt:
-        title: Xóa Prompt
-        description: Xác nhận xóa prompt
-        confirm: Xác nhận
-        cancel: Hủy
-      exportPrompt:
-        exportSelected: Xuất đã chọn
-        cancel: Hủy
     translationStyle:
       title: Kiểu hiển thị bản dịch
       description: Đặt bất kỳ kiểu nào bạn muốn để phân biệt kết quả dịch với văn bản gốc
@@ -293,7 +111,7 @@ options:
         editor:
           placeholder: |
             /* Ví dụ: Kiểu tùy chỉnh với màu sắc và nền */
-            [data-read-frog-custom-translation-style='custom'] {
+            [data-tab-translation-custom-translation-style='custom'] {
               color: #414535;
               background-color: light-dark(#F2E3BC, #C19875);
               padding: 2px 4px;
@@ -328,199 +146,31 @@ options:
     nodeTranslationHotkey:
       title: Phím tắt dịch khi di chuột
       description: Tùy chỉnh phím bổ trợ để dịch đoạn văn khi di chuột qua văn bản
-    llmProviderConfigured: Đã cấu hình nhà cung cấp dịch LLM
-    llmProviderNotConfigured: Chưa cấu hình nhà cung cấp dịch LLM
     autoTranslateLanguages:
       title: Tự động dịch theo ngôn ngữ
       description: Tự động dịch nội dung trang khi phát hiện các ngôn ngữ cụ thể
       selectLanguages: Chọn ngôn ngữ
       enableLLMDetection: Sử dụng LLM để phát hiện ngôn ngữ
       enableLLMDetectionDescription: Cải thiện độ chính xác nhưng thêm độ trễ và chi phí API. Yêu cầu nhà cung cấp dịch LLM và các ngôn ngữ tự động dịch đã cấu hình.
-    aiContentAware:
-      title: Dịch ngữ cảnh thông minh AI
-      description: Nâng cao chất lượng dịch bằng cách cung cấp ngữ cảnh bài viết cho AI
-      enable: Bật dịch ngữ cảnh thông minh AI
-      enableDescription: AI sử dụng tóm tắt bài viết để cải thiện độ chính xác dịch. Yêu cầu nhà cung cấp LLM. Thêm độ trễ khi bắt đầu dịch trang và tăng chi phí API.
   tts:
     title: Chuyển văn bản thành giọng nói
-    description: Tùy chỉnh nút Đọc với cài đặt giọng nói OpenAI ưa thích của bạn.
-    provider:
-      label: Nhà cung cấp
-      selectPlaceholder: Chọn nhà cung cấp
-      noProvider: Vui lòng thêm nhà cung cấp OpenAI
-    model:
-      label: Mô hình
-    voice:
-      label: Giọng nói
-      selectPlaceholder: Chọn giọng nói
-      preview: Xem trước
-      previewSample: Xin chào từ Read Frog! Đây là cách tôi sẽ phát âm khi đọc to.
-    speed:
-      label: Tốc độ
-      hint: Chấp nhận giá trị từ 0.25 đến 4.0
-    betaDisabled: Bật Trải nghiệm Beta để tùy chỉnh cài đặt chuyển văn bản thành giọng nói.
-  statistics:
-    title: Thống kê
-    batchRequest:
-      title: Đã tiết kiệm yêu cầu dịch theo lô
-      description: Tỷ lệ phần trăm yêu cầu đã tiết kiệm bằng dịch theo lô trong khoảng thời gian
-      originalRequestCount: Số yêu cầu ban đầu
-      batchRequestCount: Số yêu cầu theo lô
   config:
-    title: Cấu hình
     sync:
-      title: Đồng bộ cấu hình thủ công
-      description: Nhập và xuất cài đặt cấu hình thủ công
-      import: Nhập cấu hình
-      export: Xuất cấu hình
-      importSuccess: Nhập cấu hình thành công
-      exportSuccess: Xuất cấu hình thành công
-      importError: Nhập thất bại
-      versionTooNew: Phiên bản cấu hình đã nhập mới hơn, vui lòng nâng cấp Read Frog lên phiên bản mới nhất
-      migrationError: Di chuyển thất bại
+      versionTooNew: Phiên bản cấu hình đã nhập mới hơn, vui lòng nâng cấp Tab Translation lên phiên bản mới nhất
       validationError: Xác thực cấu hình thất bại
-      exportOptions:
-        title: Chọn tùy chọn xuất
-        description: Vui lòng chọn có bao gồm API Keys trong cấu hình xuất hay không. Bao gồm API Keys có thể làm rò rỉ thông tin nhạy cảm, vì vậy khuyến nghị chỉ sử dụng trong môi trường an toàn.
-        includeAPIKeys: Bao gồm API Keys
-        excludeAPIKeys: Loại trừ API Keys
-        cancel: Hủy
-      viewConfig:
-        expand: Mở rộng cấu hình
-        collapse: Thu gọn cấu hình
-      googleDrive:
-        title: Đồng bộ đám mây Google Drive
-        description: Tải xuống khi bản từ xa mới hơn, tải lên khi bản cục bộ mới hơn
-        sync: Đồng bộ với Google Drive
-        syncing: Đang đồng bộ...
-        syncSuccess:
-          uploaded: Đã tải cấu hình lên đám mây
-          downloaded: Đã áp dụng cấu hình từ xa
-          sameChanges: Thay đổi cục bộ và từ xa giống nhau, đã đồng bộ
-          noChange: Đã đồng bộ
-          unresolved: Đã giải quyết xung đột và đồng bộ
-        syncError: Đồng bộ thất bại, vui lòng thử lại
-        metadataCorrupted: Siêu dữ liệu đồng bộ bị hỏng, đã áp dụng cấu hình từ xa
-        lastSyncTime: Đồng bộ lần cuối lúc
-        logout: Đăng xuất
-        logoutSuccess: Đã đăng xuất khỏi tài khoản Google
-        unresolved:
-          title: Giải quyết đồng bộ cấu hình
-          description: Cấu hình cục bộ và từ xa khác nhau. Vui lòng chọn phiên bản nào để giữ cho mỗi trường.
-          resolved: Đã giải quyết
-          unresolved: Chưa giải quyết
-          localValue: Giá trị cục bộ
-          remoteValue: Giá trị từ xa
-          useLocal: Dùng cục bộ
-          useRemote: Dùng từ xa
-          useAllLocal: Dùng tất cả cục bộ
-          useAllRemote: Dùng tất cả từ xa
-          reset: Đặt lại lựa chọn
-          progress: Đã giải quyết $1/$2 thay đổi
-          confirm: Xác nhận đồng bộ
-          cancel: Hủy
-          hasUnresolvedInChildren: ⚠ Chứa thay đổi chưa giải quyết
-          item: mục
-          items: mục
-          unresolvedPrompt: '[Chưa giải quyết - Vui lòng chọn]'
-          localLatest: Cục bộ mới nhất
-          remoteLatest: Từ xa mới nhất
-          bothChanged: Cả hai đã thay đổi
-          localChanged: Cục bộ đã thay đổi
-          remoteChanged: Từ xa đã thay đổi
-          configValid: Cấu hình hợp lệ
-          configInvalid: Cấu hình không hợp lệ
-          resolveToContinue: Giải quyết xung đột để tiếp tục
-          validationAlert:
-            title: Cấu hình đã hợp nhất có lỗi xác thực
-            description: 'Điều chỉnh các khác biệt bên dưới để sửa:'
-          moreErrors: ...và $1 lỗi nữa
-    backup:
-      title: Sao lưu cấu hình
-      description: Các bản sao lưu tự động được tạo mỗi giờ nếu cấu hình thay đổi. Bạn có thể khôi phục các cấu hình trước đó tại đây. (Tối đa $1 bản sao lưu)
-      loading: Đang tải bản sao lưu...
-      backupNow: Sao lưu ngay
-      backupSuccess: Tạo bản sao lưu thành công
-      restoreSuccess: Khôi phục cấu hình thành công
-      empty:
-        title: Chưa có bản sao lưu nào
-        description: Các bản sao lưu được tạo tự động mỗi giờ nếu cấu hình thay đổi.
-      item:
-        extensionVersion: 'Phiên bản tiện ích:'
-        schemaVersion: 'Phiên bản schema:'
-        restore: Khôi phục
-        export: Xuất
-        delete: Xóa
-      restore:
-        title: Khôi phục bản sao lưu cấu hình?
-        description: Cấu hình hiện tại của bạn sẽ được tự động sao lưu nếu nó khác với bản sao lưu mới nhất. Bản sao lưu cũ nhất có thể bị xóa nếu số lượng bản sao lưu vượt quá giới hạn.
-        cancel: Hủy
-        confirm: Khôi phục
-      delete:
-        title: Xóa bản sao lưu?
-        description: Bạn có chắc chắn muốn xóa bản sao lưu này? Hành động này không thể hoàn tác.
-        cancel: Hủy
-        confirm: Xóa
-    resetConfig:
-      title: Đặt lại cấu hình
-      description: Đặt lại tất cả cấu hình về giá trị mặc định
-      dialog:
-        title: Đặt lại cấu hình
-        trigger: Đặt lại cấu hình
-        confirm: Xác nhận
-        cancel: Hủy
-        description: Thao tác này sẽ xóa tất cả cấu hình tùy chỉnh của bạn và đặt lại về giá trị mặc định. Vui lòng xác nhận.
   videoSubtitles:
     title: Phụ đề video
     description: Hiện chỉ hỗ trợ phụ đề video YouTube
     enable: Bật phụ đề video
     enableDescription: Khi bật, nút dịch sẽ xuất hiện trong thanh điều khiển YouTube. Nhấp để bắt đầu dịch phụ đề.
-  whatsNew:
-    title: Có gì mới
-  survey:
-    title: Đề xuất tính năng mới
-  rateUs:
-    title: Đánh giá chúng tôi
-side:
-  sourceLang: Ngôn ngữ nguồn
-  targetLang: Ngôn ngữ đích
-  fileExport: Xuất tệp
-readService:
-  title: Dịch vụ đọc
-  description: Để đọc và giải thích nội dung
-translateService:
-  title: Dịch vụ dịch thuật
-  description: Chỉ để dịch trang web
-  normalTranslator: Trình dịch thông thường
-  aiTranslator: Trình dịch AI
-translatePrompt:
-  title: Kiểu dịch AI
-  description: Chọn một Prompt để sử dụng trong quá trình dịch. Thêm hoặc sửa đổi Prompt tùy chỉnh trên trang tùy chọn.
 languageLevel: Trình độ ngôn ngữ nguồn của bạn
 languageLevels:
   beginner: Người mới bắt đầu
   intermediate: Trung cấp
   advanced: Nâng cao
-noAPIKeyConfig:
-  warning: Nếu bạn muốn sử dụng mô hình AI, vui lòng đặt API key trên trang tùy chọn trước
-  warningWithLink:
-    youMust: Bạn phải
-    setTheAPIKey: đặt API key
-    firstOnThe: trước trên trang
-    optionsPage: tùy chọn
-    page: ''
 translation:
   sameLanguage: Ngôn ngữ nguồn và đích phải khác nhau
   autoModeSameLanguage: Ngôn ngữ phát hiện '$1' giống với ngôn ngữ đích
-speak:
-  fetchingAudio: Đang tạo âm thanh...
-  playingAudio: Đang phát âm thanh...
-  failedToGenerateSpeech: Không thể tạo giọng nói
-  noTextSelected: Không có văn bản nào được chọn
-  openaiNotConfigured: Nhà cung cấp OpenAI chưa được cấu hình hoặc chưa được bật
-  openaiApiKeyNotConfigured: API key OpenAI chưa được cấu hình
-shortcutKeySelector:
-  placeholder: Vui lòng nhập phím tắt
 subtitles:
   state:
     idle: Sẵn sàng

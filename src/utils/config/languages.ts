@@ -1,4 +1,4 @@
-import type { LangCodeISO6393 } from '@read-frog/definitions'
+import type { LangCodeISO6393 } from '@/utils/constants/definitions'
 import { storage } from '#imports'
 import { DEFAULT_DETECTED_CODE, DETECTED_CODE_STORAGE_KEY } from '../constants/config'
 

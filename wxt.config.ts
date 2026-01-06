@@ -1,4 +1,3 @@
-import path from 'node:path'
 import process from 'node:process'
 import { defineConfig } from 'wxt'
 
@@ -9,12 +8,7 @@ export default defineConfig({
   modules: ['@wxt-dev/module-react', '@wxt-dev/i18n/module'],
   manifestVersion: 3,
   // WXT top level alias - will be automatically synced to tsconfig.json paths and Vite alias
-  alias: process.env.WXT_USE_LOCAL_PACKAGES === 'true'
-    ? {
-        '@read-frog/definitions': path.resolve(__dirname, '../read-frog-monorepo/packages/definitions/src'),
-        '@read-frog/api-contract': path.resolve(__dirname, '../read-frog-monorepo/packages/api-contract/src'),
-      }
-    : {},
+  alias: {},
   manifest: ({ mode, browser }) => ({
     name: '__MSG_extName__',
     description: '__MSG_extDescription__',
@@ -23,19 +17,10 @@ export default defineConfig({
     ...(mode === 'development' && (browser === 'chrome' || browser === 'edge') && {
       key: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw2KhiXO2vySZtPu5pNSbyKhYavh8Be7gXmCZt8aJf6tQ/L3JK0qzL+3JSc/o20td3Jw+B2Dcw+EI93NAZr24xKnTNXQiJpuIuHb8xLXD0Ra/HrTVi4TJIhPdESogoG4uL6CD/F3TxfZJ2trX4Bt9cdAw1RGGeU+xU0g+YFfEka4ZUCpFAmTEw9H3/DU+nCp8yGaJWyiVgCTcFe38GZKEPt0iMJkTw956wz/iiafLx0pNG/RaztG9cAPoQOD2+SMFaeQ+b/G4OG17TYhzb09AhNBl6zSJ3jTKHSwuedCFwCce8Q/EchJfQZv71mjAE97bzwvkDYPCLj31Z5FE8HntMwIDAQAB',
     }),
-    permissions: ['storage', 'tabs', 'alarms', 'cookies', 'contextMenus', 'identity', 'scripting', 'webNavigation'],
+    permissions: ['storage', 'tabs', 'alarms', 'cookies', 'contextMenus', 'scripting', 'webNavigation'],
     host_permissions: [
       '*://*/*', // Required for scripting.executeScript in any frame
     ],
-    // Firefox-specific settings for MV3
-    ...(browser === 'firefox' && {
-      browser_specific_settings: {
-        gecko: {
-          id: 'extension@readfrog.app',
-          strict_min_version: '109.0',
-        },
-      },
-    }),
   }),
   dev: {
     server: {
@@ -60,20 +45,6 @@ export default defineConfig({
                   + `${apiKeyVars.map(k => `   - ${k}`).join('\n')}\n\n`
                   + `Please unset these variables before building for production.\n`,
                 )
-              }
-
-              // Check required env vars only for zip builds
-              if (process.env.WXT_ZIP_MODE) {
-                const requiredEnvVars = ['WXT_GOOGLE_CLIENT_ID']
-                const missing = requiredEnvVars.filter(key => !process.env[key])
-
-                if (missing.length > 0) {
-                  throw new Error(
-                    `\n\nMissing required environment variables for zip:\n`
-                    + `${missing.map(k => `   - ${k}`).join('\n')}\n\n`
-                    + `Set them in .env.production or your environment.\n`,
-                  )
-                }
               }
             },
           },

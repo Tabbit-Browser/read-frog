@@ -1,14 +1,14 @@
 @import '@/assets/styles/custom-translation-node.css';
 
-.read-frog-translated-content-wrapper,
-.read-frog-translated-content-wrapper * {
+.tab-translation-translated-content-wrapper,
+.tab-translation-translated-content-wrapper * {
   overflow-wrap: anywhere;
   word-break: normal;
   user-select: text;
   text-decoration-skip-ink: auto;
 }
 
-.read-frog-translated-block-content {
+.tab-translation-translated-block-content {
   display: inline-block;
   margin: 8px 0 !important; /* 上下边距设置为8px，并强制覆盖其他样式 */
   color: inherit; /* 保持文本颜色与周围文本一致 */
@@ -16,7 +16,7 @@
   white-space: pre-wrap; /* 保留换行符 */
 }
 
-.read-frog-translated-inline-content {
+.tab-translation-translated-inline-content {
   display: inline;
   color: inherit;
   font-family: inherit;
@@ -25,8 +25,8 @@
 }
 
 /* Simplified Chinese - macOS > Windows > Cross-platform > Fallback */
-.read-frog-translated-content-wrapper[lang='zh'],
-.read-frog-translated-content-wrapper[lang='zh'] * {
+.tab-translation-translated-content-wrapper[lang='zh'],
+.tab-translation-translated-content-wrapper[lang='zh'] * {
   font-family:
     'PingFang SC',
     'Microsoft YaHei',
@@ -43,8 +43,8 @@
 }
 
 /* Traditional Chinese - macOS > Windows > Cross-platform > Fallback */
-.read-frog-translated-content-wrapper[lang='zh-TW'],
-.read-frog-translated-content-wrapper[lang='zh-TW'] * {
+.tab-translation-translated-content-wrapper[lang='zh-TW'],
+.tab-translation-translated-content-wrapper[lang='zh-TW'] * {
   font-family:
     'PingFang TC',
     'Microsoft JhengHei',
@@ -64,8 +64,8 @@
 }
 
 /* Japanese - macOS/Windows high-quality > Cross-platform > Legacy > Fallback */
-.read-frog-translated-content-wrapper[lang='ja'],
-.read-frog-translated-content-wrapper[lang='ja'] * {
+.tab-translation-translated-content-wrapper[lang='ja'],
+.tab-translation-translated-content-wrapper[lang='ja'] * {
   font-family:
     'Hiragino Kaku Gothic ProN',
     'Yu Gothic',
@@ -85,35 +85,35 @@
 }
 
 /* Arabic script languages - common typography features */
-.read-frog-translated-content-wrapper[lang='ar'],
-.read-frog-translated-content-wrapper[lang='ar'] *,
-.read-frog-translated-content-wrapper[lang='fa'],
-.read-frog-translated-content-wrapper[lang='fa'] *,
-.read-frog-translated-content-wrapper[lang='ur'],
-.read-frog-translated-content-wrapper[lang='ur'] * {
+.tab-translation-translated-content-wrapper[lang='ar'],
+.tab-translation-translated-content-wrapper[lang='ar'] *,
+.tab-translation-translated-content-wrapper[lang='fa'],
+.tab-translation-translated-content-wrapper[lang='fa'] *,
+.tab-translation-translated-content-wrapper[lang='ur'],
+.tab-translation-translated-content-wrapper[lang='ur'] * {
   font-feature-settings:
     'rlig' 1,
     'calt' 1;
 }
 
 /* Arabic - macOS high-quality > Cross-platform > macOS legacy > Fallback */
-.read-frog-translated-content-wrapper[lang='ar'],
-.read-frog-translated-content-wrapper[lang='ar'] * {
+.tab-translation-translated-content-wrapper[lang='ar'],
+.tab-translation-translated-content-wrapper[lang='ar'] * {
   font-family:
     'SF Arabic', 'Noto Sans Arabic', 'Noto Naskh Arabic', 'Geeza Pro', 'Traditional Arabic', 'Segoe UI', Tahoma, Arial,
     sans-serif;
 }
 
 /* Persian/Farsi - macOS > Cross-platform > Platform-specific > Fallback */
-.read-frog-translated-content-wrapper[lang='fa'],
-.read-frog-translated-content-wrapper[lang='fa'] * {
+.tab-translation-translated-content-wrapper[lang='fa'],
+.tab-translation-translated-content-wrapper[lang='fa'] * {
   font-family:
     'SF Arabic', 'Noto Sans Arabic', 'Geeza Pro', 'Iranian Sans', 'Segoe UI', Tahoma, Arial, sans-serif !important;
 }
 
 /* Urdu - Specialized Nastaliq > Cross-platform > Fallback */
-.read-frog-translated-content-wrapper[lang='ur'],
-.read-frog-translated-content-wrapper[lang='ur'] * {
+.tab-translation-translated-content-wrapper[lang='ur'],
+.tab-translation-translated-content-wrapper[lang='ur'] * {
   font-family:
     'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'SF Arabic', 'Noto Sans Arabic', 'Alvi Nastaleeq', 'Segoe UI',
     Tahoma, Arial, sans-serif;

@@ -4,16 +4,12 @@ import { atom } from 'jotai'
 const EMPTY_TAB_URLS = [
   'about:blank',
   'chrome://newtab/',
-  'edge://newtab/',
-  'about:newtab',
 ]
 
 const EXTENSION_URLS = [
   'chrome://extensions/',
   'chrome-extension://',
-  'edge-extension://',
   'chrome://newtab/',
-  'edge://newtab/',
 ]
 
 async function checkIgnoreTab() {

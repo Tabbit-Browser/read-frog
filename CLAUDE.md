@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Read Frog is an open-source AI-powered language learning browser extension that provides immersive translation, article analysis, and contextual learning features.
+Tab Translation is an open-source AI-powered language learning browser extension that provides immersive translation, article analysis, and contextual learning features.
 
 ## Design Principles
 

@@ -24,7 +24,12 @@ export function translationMessage() {
 
   onMessage('tryToSetEnablePageTranslationByTabId', async (msg) => {
     const { tabId, enabled } = msg.data
-    void sendMessage('askManagerToTogglePageTranslation', { enabled }, tabId)
+    try {
+      await sendMessage('askManagerToTogglePageTranslation', { enabled }, tabId)
+    }
+    catch {
+      // Content script may not be loaded on this page (e.g., chrome:// pages)
+    }
   })
 
   onMessage('tryToSetEnablePageTranslationOnContentScript', async (msg) => {
@@ -32,7 +37,12 @@ export function translationMessage() {
     const { enabled } = msg.data
     if (typeof tabId === 'number') {
       logger.info('sending tryToSetEnablePageTranslationOnContentScript to manager', { enabled, tabId })
-      await sendMessage('askManagerToTogglePageTranslation', { enabled }, tabId)
+      try {
+        await sendMessage('askManagerToTogglePageTranslation', { enabled }, tabId)
+      }
+      catch {
+        // Content script may not be loaded on this page (e.g., chrome:// pages)
+      }
     }
     else {
       logger.error('tabId is not a number', msg)
@@ -48,7 +58,12 @@ export function translationMessage() {
         return
       const shouldEnable = await shouldEnableAutoTranslation(url, detectedCodeOrUnd, config)
       if (shouldEnable) {
-        void sendMessage('askManagerToTogglePageTranslation', { enabled: true }, tabId)
+        try {
+          await sendMessage('askManagerToTogglePageTranslation', { enabled: true }, tabId)
+        }
+        catch {
+          // Content script may not be loaded on this page (e.g., chrome:// pages)
+        }
       }
     }
   })
@@ -61,7 +76,12 @@ export function translationMessage() {
         getTranslationStateKey(tabId),
         { enabled },
       )
-      void sendMessage('notifyTranslationStateChanged', { enabled }, tabId)
+      try {
+        await sendMessage('notifyTranslationStateChanged', { enabled }, tabId)
+      }
+      catch {
+        // Content script may not be loaded on this page (e.g., chrome:// pages)
+      }
     }
     else {
       logger.error('tabId is not a number', msg)

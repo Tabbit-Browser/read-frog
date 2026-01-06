@@ -85,7 +85,6 @@ export class PageTranslationManager implements IPageTranslationManager {
     const detectedCode = await getDetectedCodeFromStorage()
 
     if (!validateTranslationConfigAndToast({
-      providersConfig: config.providersConfig,
       translate: config.translate,
       language: config.language,
     }, detectedCode)) {
@@ -223,14 +222,14 @@ export class PageTranslationManager implements IPageTranslationManager {
 
     walkAndLabelElement(container, this.walkId, config)
     // if container itself has paragraph and the id
-    if (container.hasAttribute('data-read-frog-paragraph') && container.getAttribute('data-read-frog-walked') === this.walkId) {
+    if (container.hasAttribute('data-tab-translation-paragraph') && container.getAttribute('data-tab-translation-walked') === this.walkId) {
       observer.observe(container)
       return
     }
 
     const paragraphs = this.collectParagraphElementsDeep(container, this.walkId)
     const topLevelParagraphs = paragraphs.filter((el) => {
-      const ancestor = el.parentElement?.closest('[data-read-frog-paragraph]')
+      const ancestor = el.parentElement?.closest('[data-tab-translation-paragraph]')
       // keep it if either:
       //  • no paragraph ancestor at all, or
       //  • the ancestor is *not* inside container
@@ -246,7 +245,7 @@ export class PageTranslationManager implements IPageTranslationManager {
     const result: HTMLElement[] = []
 
     const collectFromContainer = (root: HTMLElement | Document | ShadowRoot) => {
-      const elements = root.querySelectorAll<HTMLElement>(`[data-read-frog-paragraph][data-read-frog-walked="${CSS.escape(walkId)}"]`)
+      const elements = root.querySelectorAll<HTMLElement>(`[data-tab-translation-paragraph][data-tab-translation-walked="${CSS.escape(walkId)}"]`)
       result.push(...Array.from(elements))
     }
 

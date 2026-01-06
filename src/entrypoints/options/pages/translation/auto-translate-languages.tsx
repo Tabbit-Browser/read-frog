@@ -1,14 +1,7 @@
-import type { LangCodeISO6393 } from '@read-frog/definitions'
+import type { LangCodeISO6393 } from '@/utils/constants/definitions'
 import { i18n } from '#imports'
 import { Icon } from '@iconify/react'
-import {
-  LANG_CODE_TO_EN_NAME,
-  LANG_CODE_TO_LOCALE_NAME,
-  langCodeISO6393Schema,
-} from '@read-frog/definitions'
-import { deepmerge } from 'deepmerge-ts'
 import { useAtom } from 'jotai'
-import { useMemo } from 'react'
 import { Button } from '@/components/shadcn/button'
 import {
   DropdownMenu,
@@ -16,23 +9,17 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/shadcn/dropdown-menu'
-import { Field, FieldContent, FieldLabel } from '@/components/shadcn/field'
-import { Hint } from '@/components/shadcn/hint'
-import { Switch } from '@/components/shadcn/switch'
-import { isLLMTranslateProviderConfig } from '@/types/config/provider'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
-import { getProviderConfigById } from '@/utils/config/helpers'
+import {
+  LANG_CODE_TO_EN_NAME,
+  LANG_CODE_TO_LOCALE_NAME,
+  langCodeISO6393Schema,
+} from '@/utils/constants/definitions'
 import { LLMStatusIndicator } from '../../../../components/llm-status-indicator'
 import { ConfigCard } from '../../components/config-card'
 
 export function AutoTranslateLanguages() {
-  const [translateConfig] = useAtom(configFieldsAtomMap.translate)
-  const [providersConfig] = useAtom(configFieldsAtomMap.providersConfig)
-
-  const hasLLMProvider = useMemo(() => {
-    const providerConfig = getProviderConfigById(providersConfig, translateConfig.providerId)
-    return providerConfig ? isLLMTranslateProviderConfig(providerConfig) : false
-  }, [providersConfig, translateConfig.providerId])
+  const hasLLMProvider = true
 
   return (
     <div className="py-6 flex flex-col gap-y-4">
@@ -46,39 +33,10 @@ export function AutoTranslateLanguages() {
         )}
         className="py-0"
       >
-        <div className="flex flex-col gap-y-4">
-          <LLMDetectionToggle />
-          <AutoTranslateLanguagesSelector />
-        </div>
+        <AutoTranslateLanguagesSelector />
       </ConfigCard>
       <SelectedLanguageCells />
     </div>
-  )
-}
-
-function LLMDetectionToggle() {
-  const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.translate)
-
-  return (
-    <Field orientation="horizontal">
-      <FieldContent className="self-center">
-        <FieldLabel htmlFor="llm-detection-toggle">
-          {i18n.t('options.translation.autoTranslateLanguages.enableLLMDetection')}
-          <Hint content={i18n.t('options.translation.autoTranslateLanguages.enableLLMDetectionDescription')} />
-        </FieldLabel>
-      </FieldContent>
-      <Switch
-        id="llm-detection-toggle"
-        checked={translateConfig.page.enableLLMDetection}
-        onCheckedChange={(checked) => {
-          void setTranslateConfig(
-            deepmerge(translateConfig, {
-              page: { enableLLMDetection: checked },
-            }),
-          )
-        }}
-      />
-    </Field>
   )
 }
 

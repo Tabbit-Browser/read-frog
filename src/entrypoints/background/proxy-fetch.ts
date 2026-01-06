@@ -1,6 +1,4 @@
 import type { ProxyResponse } from '@/types/proxy-fetch'
-import { browser } from '#imports'
-import { AUTH_COOKIE_PATTERNS, AUTH_DOMAINS } from '@read-frog/definitions'
 import { DEFAULT_PROXY_CACHE_TTL_MS } from '@/utils/constants/proxy-fetch'
 
 import { logger } from '@/utils/logger'
@@ -17,58 +15,6 @@ export function proxyFetch() {
   async function invalidateAllCache() {
     logger.info('[ProxyFetch] Invalidating all cache')
     await SessionCacheGroupRegistry.clearAllCacheGroup()
-  }
-
-  // Listen for cookie changes to invalidate auth-related cache
-  if (browser.cookies && browser.cookies.onChanged) {
-    browser.cookies.onChanged.addListener(async (changeInfo) => {
-      const { cookie, removed } = changeInfo
-      // Check if it's an auth-related cookie for monitored domains
-      if (cookie.domain && AUTH_DOMAINS.some(domain => cookie.domain.includes(domain))) {
-        // Check against defined auth cookie patterns
-        if (AUTH_COOKIE_PATTERNS.some(name => cookie.name.includes(name))) {
-          // Get current cookie value for before/after comparison
-          let beforeValue: string | undefined
-          let afterValue: string | undefined
-
-          if (removed) {
-            // Cookie was removed - before value was the cookie value, after is undefined
-            beforeValue = cookie.value
-            afterValue = undefined
-          }
-          else {
-            // Cookie was added/updated - get the previous value by querying all cookies
-            try {
-              const existingCookies = await browser.cookies.getAll({
-                domain: cookie.domain,
-                name: cookie.name,
-              })
-              // If cookie exists, this was an update; if not, this was creation
-              beforeValue = existingCookies.length > 0 && existingCookies[0].value !== cookie.value
-                ? existingCookies[0].value
-                : undefined
-              afterValue = cookie.value
-            }
-            catch (error) {
-              logger.warn('[ProxyFetch] Could not retrieve previous cookie value:', error)
-              beforeValue = 'unknown'
-              afterValue = cookie.value
-            }
-          }
-
-          logger.info('[ProxyFetch] Auth cookie changed, invalidating cache:', {
-            cookieName: cookie.name,
-            domain: cookie.domain,
-            removed,
-            beforeValue,
-            afterValue,
-          })
-          invalidateAllCache().catch(error =>
-            logger.error('[ProxyFetch] Failed to invalidate cache:', error),
-          )
-        }
-      }
-    })
   }
 
   // Proxy cross-origin fetches for content scripts and other contexts

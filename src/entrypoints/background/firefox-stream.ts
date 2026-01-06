@@ -1,20 +1,11 @@
-import type { TextUIPart } from 'ai'
-import { readUIMessageStream, streamText } from 'ai'
+import { streamCustomTranslate } from '@/utils/host/translate/custom-stream'
 import { logger } from '@/utils/logger'
-import { getReadModelById, getTranslateModelById } from '@/utils/providers/model'
-
-export interface AnalyzeSelectionParams {
-  providerId: string
-  systemPrompt: string
-  userMessage: string
-  temperature?: number
-}
 
 export interface TranslateStreamParams {
-  providerId: string
-  prompt: string
-  providerOptions?: unknown
-  temperature?: number
+  input: string
+  targetLang: string
+  model?: string
+  isBatch?: boolean
 }
 
 export interface StreamOptions {
@@ -137,102 +128,40 @@ function createStreamPortHandler<TMessage, TPayload>(
   }
 }
 
-export async function runAnalyzeSelectionStream(
-  params: AnalyzeSelectionParams,
-  options: StreamOptions = {},
-) {
-  const { providerId, systemPrompt, userMessage, temperature = 0.2 } = params
-  const { signal, onChunk } = options
-
-  if (signal?.aborted) {
-    throw new DOMException('stream aborted', 'AbortError')
-  }
-
-  const model = await getReadModelById(providerId)
-
-  const result = await streamText({
-    model,
-    temperature,
-    system: systemPrompt,
-    messages: [
-      {
-        role: 'user',
-        content: userMessage,
-      },
-    ],
-    abortSignal: signal,
-  })
-
-  let fullResponse = ''
-
-  for await (const delta of result.textStream) {
-    if (signal?.aborted) {
-      throw new DOMException('stream aborted', 'AbortError')
-    }
-
-    fullResponse += delta
-    onChunk?.(delta, fullResponse)
-  }
-
-  return fullResponse
-}
-
 export async function runTranslateLLMStream(
   params: TranslateStreamParams,
   options: StreamOptions = {},
 ) {
-  const { providerId, prompt, providerOptions, temperature } = params
+  const { input, targetLang, model, isBatch } = params
   const { signal, onChunk } = options
+
+  logger.info('[Background] runTranslateLLMStream called', { input: input.slice(0, 50), targetLang })
 
   if (signal?.aborted) {
     throw new DOMException('stream aborted', 'AbortError')
   }
 
-  const model = await getTranslateModelById(providerId)
-
-  const streamConfig: Record<string, unknown> = {
+  const stream = streamCustomTranslate({
+    input,
+    target_lang: targetLang,
     model,
-    prompt,
     abortSignal: signal,
-  }
+    isBatch,
+  })
 
-  if (providerOptions !== undefined) {
-    streamConfig.providerOptions = providerOptions
-  }
+  let fullText = ''
 
-  if (temperature !== undefined) {
-    streamConfig.temperature = temperature
-  }
-
-  const result = await streamText(streamConfig as Parameters<typeof streamText>[0])
-
-  let latestText = ''
-
-  for await (const uiMessage of readUIMessageStream({ stream: result.toUIMessageStream() })) {
+  for await (const chunk of stream) {
     if (signal?.aborted) {
       throw new DOMException('stream aborted', 'AbortError')
     }
 
-    const lastPart = uiMessage.parts[uiMessage.parts.length - 1] as TextUIPart | undefined
-    if (lastPart?.type === 'text') {
-      latestText = lastPart.text
-      onChunk?.(latestText, latestText)
-    }
+    fullText += chunk
+    onChunk?.(chunk, fullText)
   }
 
-  return latestText
+  return fullText
 }
-
-export const handleAnalyzeSelectionPort = createStreamPortHandler<
-  { type: 'start', payload: AnalyzeSelectionParams },
-  AnalyzeSelectionParams
->(
-  runAnalyzeSelectionStream,
-  (msg): msg is { type: 'start', payload: AnalyzeSelectionParams } => {
-    const message = msg as { type: 'start', payload: AnalyzeSelectionParams }
-    return message?.type === 'start' && !!message.payload
-  },
-)
 
 export const handleTranslateStreamPort = createStreamPortHandler<
   { type: 'start', payload: TranslateStreamParams },

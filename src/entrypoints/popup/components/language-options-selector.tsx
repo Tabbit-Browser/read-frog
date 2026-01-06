@@ -1,11 +1,6 @@
-import type { LangCodeISO6393 } from '@read-frog/definitions'
+import type { LangCodeISO6393 } from '@/utils/constants/definitions'
 import { i18n } from '#imports'
 import { Icon } from '@iconify/react'
-import {
-  LANG_CODE_TO_EN_NAME,
-  LANG_CODE_TO_LOCALE_NAME,
-  langCodeISO6393Schema,
-} from '@read-frog/definitions'
 import { useAtom, useAtomValue } from 'jotai'
 import {
   Select,
@@ -16,6 +11,11 @@ import {
 } from '@/components/shadcn/select'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
 import { detectedCodeAtom } from '@/utils/atoms/detected-code'
+import {
+  LANG_CODE_TO_EN_NAME,
+  LANG_CODE_TO_LOCALE_NAME,
+  langCodeISO6393Schema,
+} from '@/utils/constants/definitions'
 
 function langCodeLabel(langCode: LangCodeISO6393) {
   return `${LANG_CODE_TO_EN_NAME[langCode]} (${LANG_CODE_TO_LOCALE_NAME[langCode]})`

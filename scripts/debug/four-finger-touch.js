@@ -1,7 +1,7 @@
 // Chrome Console Debugger - Simulate Four Finger Touch
 // Copy and paste into Chrome DevTools Console to run
 
-console.log('🐸 Read Frog - 四手指触摸调试脚本')
+console.log('🐸 Tab Translation - 四手指触摸调试脚本')
 
 // Create simulated touch points
 function createTouch(x, y, id) {

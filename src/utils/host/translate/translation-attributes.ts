@@ -1,5 +1,5 @@
 import type { Config } from '@/types/config/config'
-import { ISO6393_TO_6391, RTL_LANG_CODES } from '@read-frog/definitions'
+import { ISO6393_TO_6391, RTL_LANG_CODES } from '@/utils/constants/definitions'
 
 export function setTranslationDirAndLang(element: HTMLElement, config: Config): void {
   const dir = RTL_LANG_CODES.includes(config.language.targetCode as typeof RTL_LANG_CODES[number]) ? 'rtl' : 'ltr'

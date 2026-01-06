@@ -1,6 +1,6 @@
-name: Read Frog
-extName: Read Frog - 오픈 소스 몰입형 번역
-extDescription: Read Frog는 모든 웹사이트에서 언어를 깊이 있게 학습할 수 있도록 도와주는 오픈 소스 브라우저 확장 프로그램입니다.
+name: Tab 번역
+extName: Tab 번역 - 몰입형 번역
+extDescription: Tab 번역은 모든 웹사이트에서 언어를 깊이 있게 학습할 수 있도록 도와주는 브라우저 확장 프로그램입니다.
 contextMenu:
   translate: 번역
   showOriginal: 원문 보기
@@ -8,154 +8,26 @@ popup:
   autoLang: 자동
   sourceLang: 원본
   targetLang: 대상
-  read: 기사 읽기
   translate: 번역
   showOriginal: 원문 보기
-  enabledFloatingButton: 플로팅 버튼 활성화
   enabledSelectionToolbar: 선택 툴바 활성화
   alwaysTranslate: 이 사이트 항상 번역
   options: 옵션
   hover: 마우스 오버
   translateParagraph: 단락 번역
-  discord:
-    tooltip: Discord에 참여하여 개발자와 소통하고 새 기능을 먼저 체험하세요
-  blog:
-    notification: Read Frog의 새로운 소식
-  aiSmartContext: AI 스마트 컨텍스트
-  aiSmartContextDescription: 웹페이지 컨텍스트를 사용하여 번역 품질을 향상시킵니다. LLM 번역 제공자가 필요합니다.
-  more:
-    title: 더보기
-    joinDiscord: Discord 참여
-    joinWechat: WeChat 그룹 참여
-    starGithub: Github에서 스타
-    rateUs: 리뷰 남기기
-    ebook: 서드파티 전자책 리더
-    tutorial: 사용 가이드
 options:
   sidebar:
     settings: 설정
-    product: 제품
-  setAPIKeyWarning:
-    please: API Key를 설정해 주세요
-    page: 페이지에서
-  betaExperience:
-    title: Beta 체험
-    description: 실험적 기능과 새로운 기능에 대한 조기 액세스를 활성화합니다. 이러한 기능은 불안정하거나 불완전할 수 있습니다.
-    enabled: Beta 체험 활성화
-  apiProviders:
-    title: API 제공업체
-    description: 번역 및 읽기 기능을 위한 API 제공업체 구성. 20개 이상의 API 제공업체와 모든 OpenAI 호환 API 제공업체를 지원합니다.
-    promotion:
-      ai302:
-        description: 오른쪽 링크를 클릭하여 302.AI에 등록하면 1달러 API 크레딧을 받을 수 있습니다
-        action: 등록하여 무료 API 키 받기
-        addProvider: 302.AI 구성 추가
-    addProvider: 제공업체 추가
-    badges:
-      translate: 번역
-      read: 읽기
-    dialog:
-      title: 새 제공업체 추가
-      groups:
-        builtInProviders:
-          title: 내장 LLM 제공업체
-          description: 내장된 대규모 언어 모델 제공업체, Base URL과 같은 대부분의 설정이 필요 없음
-        openaiCompatibleProviders:
-          title: OpenAI 호환 사용자 정의 제공업체
-          description: 원하는 AI 제공업체를 찾을 수 없는 경우 Custom Provider를 선택하여 Zhipu AI와 같은 OpenAI 호환 제공업체를 구성할 수 있습니다
-        pureTranslationProviders:
-          title: 순수 번역 제공업체
-          description: 대규모 언어 모델 기능이 없는 번역 전문 제공업체
-    form:
-      fields:
-        name: 이름
-        description: 설명
-        apiKey: API Key
-        baseURL: Base URL
-        optional: 선택사항
-      delete: 삭제
-      atLeastOneProvider: 최소 하나의 읽기 제공업체와 하나의 번역 제공업체가 필요합니다.
-      duplicateProviderName: '중복된 제공업체 이름 "$1"'
-      defaultProvider:
-        translate: 기본 번역 제공업체로 설정
-        read: 기본 읽기 제공업체로 설정
-      models:
-        read:
-          title: 읽기 모델
-          customTitle: 사용자 정의 읽기 모델
-          placeholder: 모델을 선택하세요
-        translate:
-          title: 번역 모델
-          customTitle: 사용자 정의 번역 모델
-          placeholder: 모델을 선택하세요
-        fetchModels: 사용 가능한 모델 가져오기
-        fetchError: 모델을 가져오지 못했습니다
-        clickToRetry: 다시 시도하려면 클릭
-        noModels: 사용 가능한 모델이 없습니다
-        selectModel: 모델 선택
-        apiKeyRequired: 먼저 API 키를 추가하세요
-      advancedOptions: 고급 옵션
-      temperature: 온도
-      temperatureHint: 응답의 무작위성을 제어합니다. 낮은 값(0)은 더 결정적이고, 높은 값은 더 창의적입니다. 범위는 제공자에 따라 다릅니다. 비워두면 제공자 기본값을 사용합니다.
-      providerOptions: 제공자 옵션
-      providerOptionsHint: 사고/추론 모드와 같은 비표준 API 기능을 위한 공급자별 옵션입니다. 자세한 내용은 Vercel AI SDK 문서 또는 공급자의 공식 문서를 참조하세요.
-      providerOptionsDocsLink: 공급자 문서 보기
-      invalidJson: 잘못된 JSON 형식
-    providers:
-      description:
-        openai: GPT-4o 같은 모델을 제공합니다
-        deepseek: 중국에서 사용을 권장합니다
-        openrouter: 여러 LLM 제공업체를 위한 통합 인터페이스, 사용량 기반 과금
-        ollama: 로컬 LLM
-        google: 고급 추론 능력을 갖춘 구글의 주력 AI 모델
-        anthropic: 안전성과 추론 능력이 뛰어난 Claude 모델
-        xai: 실시간 데이터 접근이 가능한 Grok 모델을 제공하는 일론 머스크의 AI 회사
-        siliconflow: 중국 및 국제 모델을 위한 고성능 추론 플랫폼
-        tensdaq: 혁신적인 경매 AI MaaS 플랫폼으로 시장 수요와 공급에 따라 가격이 결정되어 고비용 고정 요금제를 없앰
-        ai302: 최신의 포괄적인 모델과 종량제 API를 제공
-        openaiCompatible: OpenAI API 호환 서드파티
-        deeplx: 비공식 DeepL API
-        bedrock: 엔터프라이즈급 파운데이션 모델을 위한 AWS 관리 서비스
-        groq: 초고속 LLM 추론 속도에 특화된 하드웨어
-        deepinfra: 인기 있는 오픈소스 모델을 위한 비용 효율적인 클라우드 추론
-        mistral: 효율적인 다국어 모델에 특화된 유럽 AI 회사
-        togetherai: 오픈소스 모델 실행 및 파인튜닝을 위한 협업 플랫폼
-        cohere: 강력한 다국어 및 RAG 기능을 갖춘 엔터프라이즈 중심 AI
-        fireworks: 오픈소스 모델을 위한 프로덕션 준비 추론 플랫폼
-        cerebras: 빠른 번역과 텍스트 분석을 위한 초고속 AI 추론
-        replicate: 전문적인 번역 작업을 위한 다양한 오픈소스 모델 액세스
-        perplexity: 맥락적 번역과 읽기 지원을 위한 실시간 지식 강화 AI
-        vercel: 웹 콘텐츠 번역과 분석에 최적화된 AI 모델
-        volcengine: ByteDance의 클라우드 AI 플랫폼, Doubao 모델 제공
-        minimax: MiniMax AI 플랫폼, 고급 MiniMax-M2 모델 제공
-    apiKey:
-      showAPIKey: API Key 표시
-    howToConfigure: 구성 방법은?
-    testConnection:
-      button: 연결 테스트
-      testing: 테스트 중...
   general:
     title: 일반
-    readConfig:
-      title: 읽기 설정
-      description:
-        심층 기사 설명 및 키워드 추출과 같은 모든 고급 AI 기능에 사용됩니다.
-      provider: 제공업체
-      model:
-        title: 모델
-        enterCustomModel: 사용자 정의 모델 이름 입력
     translationConfig:
       title: 번역 설정
       description: 이중 언어 단락 번역과 같은 웹 페이지 내 번역에만 사용됩니다.
-      provider: 제공업체
-      model:
-        title: 모델
-        enterCustomModel: 사용자 정의 모델 이름 입력
       translateRange:
         title: 번역 범위
         range:
           main: 주요 내용
-          all: 전체 내용
+          all: 모든 내용
     clearCache:
       title: 캐시 지우기
       description: 브라우저의 모든 번역 캐시를 지웁니다
@@ -168,33 +40,11 @@ options:
         description: 이 작업은 모든 번역 캐시를 지웁니다. 이 작업은 되돌릴 수 없습니다.
   overlayTools:
     title: 오버레이 도구
-    floatingButton:
-      title: 플로팅 버튼
     selectionToolbar:
       title: 선택 툴바
     contextMenu:
       title: 컨텍스트 메뉴
   floatingButtonAndToolbar:
-    title: 플로팅 버튼 및 툴바
-    floatingButtonDemoImageAlt: 플로팅 버튼 데모
-    selectionToolbarDemoImageAlt: 선택 툴바 데모
-    floatingButton:
-      globalToggle:
-        title: 플로팅 버튼 활성화
-        description: 웹 페이지에 플로팅 버튼을 표시하여 Read Frog 기능에 빠르게 액세스
-      closeMenu:
-        disableForSite: 이 사이트에서 비활성화
-        disableGlobally: 전역 비활성화
-      disabledSites:
-        title: 플로팅 버튼 비활성화 사이트
-        description: 플로팅 버튼을 비활성화할 웹사이트를 설정합니다
-        enterUrlPattern: URL 패턴 입력
-        urlPattern: URL 패턴
-      clickAction:
-        title: 클릭 동작
-        description: 플로팅 버튼을 클릭할 때 실행할 동작 선택
-        panel: 패널 열기
-        translate: 페이지 번역 전환
     selectionToolbar:
       globalToggle:
         title: 선택 툴바 활성화
@@ -208,7 +58,6 @@ options:
         enterUrlPattern: URL 패턴 입력
         urlPattern: URL 패턴
     contextMenu:
-      title: 컨텍스트 메뉴
       translate:
         title: 우클릭 번역 활성화
         description: 브라우저 우클릭 메뉴에 번역 옵션을 추가하여 빠른 페이지 번역
@@ -233,41 +82,11 @@ options:
       maxItemsPerBatch:
         title: 최대 단락 수
         description: 각 배치 번역의 최대 단락 수로 각 번역의 콘텐츠 양을 제어합니다
-      statisticsLink: 지난 7일간 약 $1 의 비용을 절약했습니다
     autoTranslateWebsite:
       title: 웹사이트 기반 자동 번역
       description: 이 사이트를 항상 번역합니다
       urlPattern: URL 패턴
       enterUrlPattern: URL 패턴 입력
-    personalizedPrompts:
-      title: 개인화된 프롬프트
-      description: 다양한 유형의 프롬프트를 사용자 정의하여, 번역 시 프롬프트 유형을 직접 조정할 수 있습니다. 프롬프트는 사용자가 LLM에게 보내는 텍스트를 나타내며.
-      addPrompt: 프롬프트 추가
-      default: 기본
-      importSuccess: 가져오기 성공
-      import: 가져오기
-      export: 내보내기
-      current: 사용 중
-      editPrompt:
-        title: 프롬프트 편집
-        name: 이름
-        systemPrompt: 시스템 프롬프트
-        prompt: 프롬프트
-        promptCellInput:
-          input: 번역할 텍스트 내용
-          targetLang: 목표 언어
-          title: 웹페이지 제목
-          summary: 웹페이지 요약 (AI 스마트 컨텍스트 필요)
-        save: 저장
-        close: 취소
-      deletePrompt:
-        title: 프롬프트 삭제
-        description: 이 프롬프트를 삭제하시겠습니까
-        confirm: 확인
-        cancel: 취소
-      exportPrompt:
-        exportSelected: 선택 항목 내보내기
-        cancel: 취소
     translationStyle:
       title: 번역 표시 스타일
       description: 번역 결과와 원문을 구분하기 위해 원하는 스타일을 설정하세요
@@ -292,7 +111,7 @@ options:
         editor:
           placeholder: |
             /* 예제: 사용자 정의 색상 및 배경 스타일 */
-            [data-read-frog-custom-translation-style='custom'] {
+            [data-tab-translation-custom-translation-style='custom'] {
               color: #414535;
               background-color: light-dark(#F2E3BC, #C19875);
               padding: 2px 4px;
@@ -327,199 +146,31 @@ options:
     nodeTranslationHotkey:
       title: 호버 번역 단축키
       description: 텍스트 위에 호버하여 단락을 번역할 때 사용할 수정 키를 사용자 지정합니다
-    llmProviderConfigured: LLM 번역 제공업체가 설정되었습니다
-    llmProviderNotConfigured: LLM 번역 제공업체가 설정되지 않았습니다
     autoTranslateLanguages:
       title: 언어에 기반한 자동 번역
       description: 특정 언어가 감지되면 페이지 콘텐츠를 자동으로 번역합니다
       selectLanguages: 언어 선택
       enableLLMDetection: LLM을 사용한 언어 감지
       enableLLMDetectionDescription: 정확도가 향상되지만 지연 시간과 API 비용이 증가합니다. LLM 번역 제공업체와 자동 번역 언어 설정이 필요합니다.
-    aiContentAware:
-      title: AI 스마트 컨텍스트 번역
-      description: AI에 문서 컨텍스트를 제공하여 번역 품질을 향상시킵니다
-      enable: AI 스마트 컨텍스트 번역 활성화
-      enableDescription: AI가 문서 요약을 사용하여 번역 정확도를 향상시킵니다. LLM 제공업체가 필요합니다. 번역 시작 시 지연이 발생하고 API 비용이 증가합니다.
   tts:
     title: 텍스트 음성 변환
-    description: 선호하는 OpenAI 음성 설정으로 말하기 버튼을 사용자 지정하세요.
-    provider:
-      label: 제공업체
-      selectPlaceholder: 제공업체 선택
-      noProvider: OpenAI 제공업체를 추가하세요
-    model:
-      label: 모델
-    voice:
-      label: 음성
-      selectPlaceholder: 음성을 선택하세요
-      preview: 미리 듣기
-      previewSample: Read Frog의 인사입니다! 제가 읽어 드릴 때 이렇게 들립니다.
-    speed:
-      label: 속도
-      hint: 0.25에서 4.0 사이의 값을 입력할 수 있습니다
-    betaDisabled: 텍스트 음성 변환 설정을 사용자 지정하려면 Beta 체험을 활성화하세요.
-  statistics:
-    title: 통계
-    batchRequest:
-      title: 일괄 번역으로 절약된 요청
-      description: 기간 내 일괄 번역으로 절약된 요청 비율
-      originalRequestCount: 원래 요청 수
-      batchRequestCount: 일괄 요청 수
   config:
-    title: 설정
     sync:
-      title: 수동 설정 동기화
-      description: 수동으로 설정 가져오기 및 내보내기
-      import: 설정 가져오기
-      export: 설정 내보내기
-      importSuccess: 설정 가져오기 완료
-      exportSuccess: 설정 내보내기 완료
-      importError: 가져오기 실패
-      versionTooNew: 가져온 설정 버전이 최신이므로 Read Frog를 최신 버전으로 업그레이드해 주세요
-      migrationError: 마이그레이션 실패
+      versionTooNew: 가져온 설정 버전이 최신이므로 Tab 번역을 최신 버전으로 업그레이드해 주세요
       validationError: 설정 검증 실패
-      exportOptions:
-        title: 내보내기 옵션 선택
-        description: 내보내는 설정에 API 키를 포함할지 선택하세요. API 키를 포함하면 민감한 정보가 유출될 수 있으므로 안전한 환경에서만 사용하는 것을 권장합니다.
-        includeAPIKeys: API 키 포함
-        excludeAPIKeys: API 키 제외
-        cancel: 취소
-      viewConfig:
-        expand: 설정 펼치기
-        collapse: 설정 접기
-      googleDrive:
-        title: Google Drive 클라우드 동기화
-        description: 원격이 최신이면 다운로드, 로컬이 최신이면 업로드
-        sync: Google Drive 동기화
-        syncing: 동기화 중...
-        syncSuccess:
-          uploaded: 로컬 설정이 클라우드에 업로드됨
-          downloaded: 원격 설정이 적용됨
-          sameChanges: 로컬과 원격 변경 사항이 동일하여 동기화됨
-          noChange: 이미 동기화됨
-          unresolved: 충돌이 해결되고 로컬 및 클라우드에 동기화됨
-        syncError: 동기화 실패, 다시 시도해 주세요
-        metadataCorrupted: 동기화 메타데이터가 손상되어 원격 구성을 적용했습니다
-        lastSyncTime: 마지막 동기화 시간
-        logout: 로그아웃
-        logoutSuccess: Google 계정에서 로그아웃되었습니다
-        unresolved:
-          title: 구성 동기화 해결
-          description: 로컬 및 원격 구성이 다릅니다. 각 필드에 대해 유지할 버전을 선택하세요.
-          resolved: 해결됨
-          unresolved: 미해결
-          localValue: 로컬 값
-          remoteValue: 원격 값
-          useLocal: 로컬 사용
-          useRemote: 원격 사용
-          useAllLocal: 모두 로컬 사용
-          useAllRemote: 모두 원격 사용
-          reset: 선택 재설정
-          progress: $1/$2개의 변경 해결됨
-          confirm: 동기화 확인
-          cancel: 취소
-          hasUnresolvedInChildren: ⚠ 미해결 변경 포함
-          item: 항목
-          items: 항목
-          unresolvedPrompt: '[미해결 - 선택하세요]'
-          localLatest: 로컬 최신
-          remoteLatest: 원격 최신
-          bothChanged: 양쪽 모두 변경됨
-          localChanged: 로컬이 변경됨
-          remoteChanged: 원격이 변경됨
-          configValid: 구성이 유효합니다
-          configInvalid: 구성이 유효하지 않습니다
-          resolveToContinue: 계속하려면 충돌을 해결하세요
-          validationAlert:
-            title: 병합된 구성에 유효성 검사 오류가 있습니다
-            description: '아래 차이점을 조정하여 수정하세요:'
-          moreErrors: ...그리고 $1개의 오류가 더 있습니다
-    backup:
-      title: 설정 백업
-      description: 설정이 변경되면 매시간 자동으로 백업이 생성됩니다. 여기에서 이전 설정을 복원할 수 있습니다. (최대 $1개 백업)
-      loading: 백업을 불러오는 중...
-      backupNow: 지금 백업
-      backupSuccess: 백업이 생성되었습니다
-      restoreSuccess: 설정이 복원되었습니다
-      empty:
-        title: 아직 사용 가능한 백업이 없습니다
-        description: 설정이 변경되면 매시간 자동으로 백업이 생성됩니다.
-      item:
-        extensionVersion: 확장 프로그램 버전：
-        schemaVersion: 설정 버전：
-        restore: 복원
-        export: 내보내기
-        delete: 삭제
-      restore:
-        title: 설정 백업을 복원하시겠습니까?
-        description: 현재 설정이 최신 백업과 다른 경우 자동으로 현재 설정이 백업됩니다. 백업 수가 제한을 초과하면 가장 오래된 백업이 삭제될 수 있습니다.
-        cancel: 취소
-        confirm: 복원
-      delete:
-        title: 백업을 삭제하시겠습니까?
-        description: 이 백업을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.
-        cancel: 취소
-        confirm: 삭제
-    resetConfig:
-      title: 기본 설정 복원
-      description: 모든 설정을 기본값으로 재설정
-      dialog:
-        title: 기본 설정 복원
-        trigger: 설정 초기화
-        confirm: 확인
-        cancel: 취소
-        description: 이 작업은 모든 사용자 지정 설정을 지우고 기본값으로 재설정합니다. 삭제하시겠습니까?
   videoSubtitles:
     title: 비디오 자막
     description: 현재 YouTube 비디오 자막만 지원
     enable: 비디오 자막 활성화
     enableDescription: 활성화하면 YouTube 플레이어 컨트롤 바에 번역 버튼이 나타납니다. 클릭하여 자막 번역을 시작하세요.
-  whatsNew:
-    title: 새로운 기능
-  survey:
-    title: 새로운 기능 제안
-  rateUs:
-    title: 리뷰 남기기
-side:
-  sourceLang: 원본 언어
-  targetLang: 대상 언어
-  fileExport: 파일 내보내기
-readService:
-  title: 읽기 서비스
-  description: 기사 읽기 및 설명
-translateService:
-  title: 번역 서비스
-  description: 웹페이지 번역 전용
-  normalTranslator: 일반 번역기
-  aiTranslator: AI 번역기
-translatePrompt:
-  title: AI 번역 스타일
-  description: 번역 시 사용할 프롬프트를 선택할 수 있습니다. 설정 페이지에서 사용자 정의 프롬프트를 추가하거나 수정할 수 있습니다
 languageLevel: 원본 언어 수준
 languageLevels:
   beginner: 초급
   intermediate: 중급
   advanced: 고급
-noAPIKeyConfig:
-  warning: AI 모델을 사용하려면 먼저 옵션 페이지에서 API 키를 설정해 주세요
-  warningWithLink:
-    youMust: 반드시
-    setTheAPIKey: API 키를 설정해야 합니다
-    firstOnThe: 먼저
-    optionsPage: 옵션
-    page: 페이지에서
 translation:
   sameLanguage: 원본 언어와 대상 언어는 달라야 합니다
   autoModeSameLanguage: 감지된 언어 '$1'은(는) 대상 언어와 같습니다
-speak:
-  fetchingAudio: 오디오 생성 중...
-  playingAudio: 오디오 재생 중...
-  failedToGenerateSpeech: 음성 생성 실패
-  noTextSelected: 텍스트가 선택되지 않았습니다
-  openaiNotConfigured: OpenAI 공급자가 구성되지 않았거나 활성화되지 않았습니다
-  openaiApiKeyNotConfigured: OpenAI API 키가 구성되지 않았습니다
-shortcutKeySelector:
-  placeholder: 단축키를 입력해 주세요
 subtitles:
   state:
     idle: 준비 완료

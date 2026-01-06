@@ -49,23 +49,12 @@
     prev = now
   })
 
-  /* ---------- 3. Modern Navigation API (only Chrome/Edge) ---------- */
+  /* ---------- 3. Modern Navigation API (Chrome) ---------- */
   if ('navigation' in window) {
     (window as any).navigation.addEventListener('navigate', (e: any) => {
       const now = e.destination?.url ?? location.href
       fire(prev, now, 'navigate')
       prev = now
     })
-  }
-
-  /* ---------- 4. Fallback polling (optional, to ensure 100% coverage) ---------- */
-  if (!['chrome', 'edge'].includes(import.meta.env.BROWSER)) {
-    setInterval(() => {
-      const now = location.href
-      if (now !== prev) {
-        fire(prev, now, 'interval')
-        prev = now
-      }
-    }, 1000)
   }
 })()

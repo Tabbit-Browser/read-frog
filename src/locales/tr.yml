@@ -1,7 +1,6 @@
-name: Read Frog
-extName: Read Frog - Açık Kaynak Sürükleyici Çeviri
-extDescription: Read Frog, herhangi bir web sitesinden dilleri derinlemesine öğrenmenize yardımcı olmak için tasarlanmış açık kaynaklı bir tarayıcı uzantısıdır.
-uninstallSurveyUrl: https://tally.so/r/nPK6Ob
+name: Tab Çevirisi
+extName: Tab Çevirisi - Sürükleyici Çeviri
+extDescription: Tab Çevirisi, herhangi bir web sitesinden dilleri derinlemesine öğrenmenize yardımcı olmak için tasarlanmış bir tarayıcı uzantısıdır.
 contextMenu:
   translate: Çevir
   showOriginal: Orijinali Göster
@@ -9,149 +8,21 @@ popup:
   autoLang: Otomatik
   sourceLang: Kaynak
   targetLang: Hedef
-  read: Makaleyi Oku
   translate: Çevir
   showOriginal: Orijinali Göster
-  enabledFloatingButton: Yüzen butonu etkinleştir
   enabledSelectionToolbar: Seçim araç çubuğunu etkinleştir
   alwaysTranslate: Bu siteyi her zaman çevir
   options: Seçenekler
   hover: Üzerine Gel
   translateParagraph: paragrafı çevirmek için
-  discord:
-    tooltip: Geliştiricilerle bağlantı kurmak ve yeni özelliklere erken erişim sağlamak için Discord'a katılın
-  blog:
-    notification: Read Frog'da yenilikler
-  aiSmartContext: AI Akıllı Bağlam
-  aiSmartContextDescription: Çeviri kalitesini artırmak için web sayfası bağlamını kullanır. LLM çeviri sağlayıcısı gerektirir.
-  more:
-    title: Daha Fazla
-    joinDiscord: Discord'a Katıl
-    joinWechat: WeChat Grubuna Katıl
-    starGithub: Github'da Yıldız Ver
-    rateUs: Bizi Değerlendirin
-    ebook: Üçüncü Taraf E-kitap Okuyucu
-    tutorial: Rehber
 options:
   sidebar:
     settings: Ayarlar
-    product: Ürün
-  setAPIKeyWarning:
-    please: Lütfen API Anahtarını
-    page: sayfasında ayarlayın
-  betaExperience:
-    title: Beta Deneyimi
-    description: Deneysel özellikleri ve yeni işlevlere erken erişimi etkinleştirin. Bu özellikler kararsız veya eksik olabilir.
-    enabled: Beta Deneyimini Etkinleştir
-  apiProviders:
-    title: API Sağlayıcıları
-    description: Çeviri ve okuma işlevleri için API sağlayıcılarını buradan yapılandırın. 20'den fazla yerleşik API sağlayıcımız var ve herhangi bir OpenAI uyumlu API sağlayıcısını destekliyoruz.
-    promotion:
-      ai302:
-        description: 302.AI'ye kaydolmak ve 1 USD API kredisi almak için sağdaki bağlantıya tıklayın
-        action: Ücretsiz API Anahtarı Almak İçin Kaydolun
-        addProvider: 302.AI Yapılandırması Ekle
-    addProvider: Sağlayıcı Ekle
-    badges:
-      translate: Çeviri
-      read: Okuma
-    dialog:
-      title: Yeni Sağlayıcı Ekle
-      groups:
-        builtInProviders:
-          title: Yerleşik LLM Sağlayıcıları
-          description: Yerleşik büyük dil modeli sağlayıcıları, Base URL gibi çoğu yapılandırmayı doldurmaya gerek yok
-        openaiCompatibleProviders:
-          title: OpenAI Uyumlu Özel Sağlayıcılar
-          description: İstediğiniz AI sağlayıcısını bulamıyorsanız, Zhipu AI gibi herhangi bir OpenAI uyumlu sağlayıcıyı yapılandırmak için Özel Sağlayıcı'yı seçin
-        pureTranslationProviders:
-          title: Saf Çeviri Sağlayıcıları
-          description: Büyük dil modeli yetenekleri olmadan çeviri özelliklerine odaklanan sağlayıcılar
-    form:
-      fields:
-        name: Ad
-        description: Açıklama
-        apiKey: API Anahtarı
-        baseURL: Base URL
-        optional: İsteğe Bağlı
-      delete: Sil
-      atLeastOneProvider: En az bir okuma sağlayıcısı ve bir çeviri sağlayıcısı gereklidir.
-      duplicateProviderName: 'Yinelenen sağlayıcı adı "$1"'
-      defaultProvider:
-        translate: Varsayılan çeviri sağlayıcısı olarak ayarla
-        read: Varsayılan okuma sağlayıcısı olarak ayarla
-      models:
-        read:
-          title: Okuma Modeli
-          customTitle: Özel Okuma Modeli
-          placeholder: Bir model seçin
-        translate:
-          title: Çeviri Modeli
-          customTitle: Özel Çeviri Modeli
-          placeholder: Bir model seçin
-        fetchModels: Mevcut modelleri getir
-        fetchError: Modeller getirilemedi
-        clickToRetry: Yeniden denemek için tıklayın
-        noModels: Mevcut model yok
-        selectModel: Model seç
-        apiKeyRequired: Lütfen önce API anahtarı ekleyin
-      advancedOptions: Gelişmiş Seçenekler
-      temperature: Sıcaklık
-      temperatureHint: Yanıtlardaki rastgeleliği kontrol eder. Düşük değerler (0) daha belirleyici, yüksek değerler daha yaratıcıdır. Aralık sağlayıcıya göre değişir. Sağlayıcı varsayılanını kullanmak için boş bırakın.
-      providerOptions: Sağlayıcı Seçenekleri
-      providerOptionsHint: Düşünme/akıl yürütme modu gibi standart dışı API özellikleri için sağlayıcıya özel seçenekler. Ayrıntılar için Vercel AI SDK belgelerine veya sağlayıcınızın resmi belgelerine bakın.
-      providerOptionsDocsLink: Sağlayıcı Belgelerini Görüntüle
-      invalidJson: Geçersiz JSON formatı
-    providers:
-      description:
-        openai: GPT-4o gibi modeller sağlar
-        deepseek: Çin'de kullanım için önerilir
-        openrouter: Kullandıkça öde fiyatlandırmasıyla birden fazla LLM sağlayıcısı için birleşik arayüz
-        ollama: Tam gizlilik için büyük dil modellerini makinenizde yerel olarak çalıştırın
-        google: Gelişmiş akıl yürütme yeteneklerine sahip Google'ın amiral gemisi AI modelleri
-        anthropic: Güvenlik ve akıl yürütme mükemmelliğiyle tanınan Claude modelleri
-        xai: Gerçek zamanlı veri erişimli Grok modelleri sunan Elon Musk'ın AI şirketi
-        siliconflow: Çin ve uluslararası modeller için yüksek performanslı çıkarım platformu
-        tensdaq: Yüksek maliyetli sabit fiyatlandırmayı ortadan kaldıran pazar odaklı fiyatlandırma ile devrimci açık artırma AI MaaS platformu
-        ai302: Kullandıkça öde API ile en son ve en kapsamlı modelleri sağlar
-        openaiCompatible: Üçüncü taraf ve OpenAI API uyumlu
-        deeplx: Resmi olmayan DeepL API
-        bedrock: Kurumsal düzeyde temel modeller için AWS yönetilen hizmeti
-        groq: Ultra hızlı LLM çıkarım hızları için özel donanım
-        deepinfra: Popüler açık kaynak modelleri için uygun maliyetli bulut çıkarımı
-        mistral: Verimli çok dilli modellerde uzmanlaşmış Avrupalı AI şirketi
-        togetherai: Açık kaynak modellerini çalıştırma ve ince ayar yapma için işbirlikçi platform
-        cohere: Güçlü çok dilli ve RAG yetenekleriyle kurumsal odaklı AI
-        fireworks: Açık kaynak modelleri için üretime hazır çıkarım platformu
-        cerebras: Hızlı çeviri ve metin analizi için ultra hızlı AI çıkarımı
-        replicate: Özel çeviri görevleri için çeşitli açık kaynak modellere erişim
-        perplexity: Bağlamsal çeviriler ve okuma yardımı için gerçek zamanlı bilgi ile güçlendirilmiş AI
-        vercel: Web içeriği çevirisi ve analizi için optimize edilmiş AI modelleri
-        volcengine: Çeviri ve okuma için Doubao modelleri sunan ByteDance'ın bulut AI platformu
-        minimax: Gelişmiş MiniMax-M2 modelleri sunan MiniMax AI platformu
-    apiKey:
-      showAPIKey: API Anahtarını Göster
-    howToConfigure: Nasıl yapılandırılır?
-    testConnection:
-      button: Bağlantıyı Test Et
-      testing: Test ediliyor...
   general:
     title: Genel
-    readConfig:
-      title: Okuma Yapılandırması
-      description:
-        Derinlemesine makale açıklamaları ve anahtar kelime çıkarma gibi tüm gelişmiş AI işlevleri için.
-      provider: Sağlayıcı
-      model:
-        title: Model
-        enterCustomModel: Özel model adını girin
     translationConfig:
       title: Çeviri Yapılandırması
       description: Yalnızca web sayfalarındaki çeviri için, örneğin iki dilli paragraf çevirisi.
-      provider: Sağlayıcı
-      model:
-        title: Model
-        enterCustomModel: Özel model adını girin
       translateRange:
         title: Çeviri Kapsamı
         range:
@@ -169,33 +40,11 @@ options:
         description: Bu işlem tüm çeviri önbelleğini temizleyecektir. Bu işlem geri alınamaz.
   overlayTools:
     title: Kaplama Araçları
-    floatingButton:
-      title: Yüzen Buton
     selectionToolbar:
       title: Seçim Araç Çubuğu
     contextMenu:
       title: Bağlam Menüsü
   floatingButtonAndToolbar:
-    title: Yüzen Buton ve Araç Çubuğu
-    floatingButtonDemoImageAlt: Yüzen Buton Demosu
-    selectionToolbarDemoImageAlt: Seçim Araç Çubuğu Demosu
-    floatingButton:
-      globalToggle:
-        title: Yüzen Butonu Etkinleştir
-        description: Read Frog özelliklerine hızlı erişim için web sayfalarında yüzen butonu görüntüle
-      closeMenu:
-        disableForSite: Bu site için devre dışı bırak
-        disableGlobally: Genel olarak devre dışı bırak
-      disabledSites:
-        title: Yüzen Buton Devre Dışı Siteler
-        description: Yüzen butonun devre dışı bırakılması gereken web sitelerini yapılandırın
-        enterUrlPattern: URL kalıbı girin
-        urlPattern: URL Kalıbı
-      clickAction:
-        title: Tıklama Eylemi
-        description: Yüzen butona tıklandığında gerçekleştirilecek eylemi seçin
-        panel: Paneli Aç
-        translate: Sayfa Çevirisini Aç/Kapat
     selectionToolbar:
       globalToggle:
         title: Seçim Araç Çubuğunu Etkinleştir
@@ -209,7 +58,6 @@ options:
         enterUrlPattern: URL kalıbı girin
         urlPattern: URL Kalıbı
     contextMenu:
-      title: Bağlam Menüsü
       translate:
         title: Bağlam Menüsü Çevirisini Etkinleştir
         description: Hızlı sayfa çevirisi için tarayıcı sağ tıklama menüsüne çeviri seçeneği ekle
@@ -234,41 +82,11 @@ options:
       maxItemsPerBatch:
         title: Maksimum Paragraf Sayısı
         description: Her çevirinin içerik hacmini kontrol etmek için her toplu çeviri için maksimum paragraf sayısı
-      statisticsLink: Son 7 günde yaklaşık $1 maliyet tasarrufu sağlandı
     autoTranslateWebsite:
       title: Web Sitesine Göre Otomatik Çevir
       description: Bu web sitesini her zaman çevir
       urlPattern: URL Kalıbı
       enterUrlPattern: URL Kalıbı Girin
-    personalizedPrompts:
-      title: Kişiselleştirilmiş Promptlar
-      description: Farklı türde Promptları özelleştirmek, çeviri sırasında Prompt türünü kendiniz ayarlamanıza olanak tanır. Prompt, kullanıcının LLM'ye gönderdiği metni temsil eder.
-      addPrompt: Prompt Ekle
-      default: Varsayılan
-      importSuccess: İçe Aktarma Başarılı
-      import: İçe Aktar
-      export: Dışa Aktar
-      current: kullanımda
-      editPrompt:
-        title: Promptu Düzenle
-        name: Ad
-        systemPrompt: Sistem Promptu
-        prompt: Prompt
-        promptCellInput:
-          input: Çevrilecek metin içeriği
-          targetLang: Hedef dil
-          title: Web sayfası başlığı
-          summary: Web sayfası özeti (AI Akıllı Bağlam gerektirir)
-        save: Değişiklikleri Kaydet
-        close: İptal
-      deletePrompt:
-        title: Promptu Sil
-        description: Promptu silmeyi onayla
-        confirm: Onayla
-        cancel: İptal
-      exportPrompt:
-        exportSelected: Seçilenleri Dışa Aktar
-        cancel: İptal
     translationStyle:
       title: Çeviri Görüntüleme Stili
       description: Çeviri sonuçlarını orijinal metinden ayırt etmek için istediğiniz herhangi bir stili ayarlayın
@@ -293,7 +111,7 @@ options:
         editor:
           placeholder: |
             /* Örnek: Renk ve arka planlı özel stil */
-            [data-read-frog-custom-translation-style='custom'] {
+            [data-tab-translation-custom-translation-style='custom'] {
               color: #414535;
               background-color: light-dark(#F2E3BC, #C19875);
               padding: 2px 4px;
@@ -328,199 +146,31 @@ options:
     nodeTranslationHotkey:
       title: Üzerine Gelme Çeviri Kısayolu
       description: Paragrafları çevirmek için metnin üzerine gelirken değiştirici tuşu özelleştirin
-    llmProviderConfigured: LLM çeviri sağlayıcısı yapılandırıldı
-    llmProviderNotConfigured: LLM çeviri sağlayıcısı yapılandırılmadı
     autoTranslateLanguages:
       title: Dile Göre Otomatik Çevir
       description: Belirli diller algılandığında sayfa içeriğini otomatik olarak çevir
       selectLanguages: Dilleri seçin
       enableLLMDetection: Dil algılama için LLM kullan
       enableLLMDetectionDescription: Doğruluğu artırır ancak gecikme ve API maliyetleri ekler. LLM çeviri sağlayıcısı ve yapılandırılmış otomatik çeviri dilleri gerektirir.
-    aiContentAware:
-      title: AI Akıllı Bağlam Çevirisi
-      description: AI'ya makale bağlamı sağlayarak çeviri kalitesini artırın
-      enable: AI Akıllı Bağlam Çevirisini Etkinleştir
-      enableDescription: AI, çeviri doğruluğunu artırmak için makale özetini kullanır. LLM sağlayıcısı gerektirir. Bir sayfayı çevirmeye başlarken gecikme ekler ve API maliyetlerini artırır.
   tts:
     title: Metinden Konuşmaya
-    description: Tercih ettiğiniz OpenAI ses ayarlarıyla Konuş butonunu özelleştirin.
-    provider:
-      label: Sağlayıcı
-      selectPlaceholder: Bir sağlayıcı seçin
-      noProvider: Lütfen OpenAI sağlayıcısı ekleyin
-    model:
-      label: Model
-    voice:
-      label: Ses
-      selectPlaceholder: Bir ses seçin
-      preview: Önizleme
-      previewSample: Read Frog'dan merhaba! Yüksek sesle okurken böyle ses çıkaracağım.
-    speed:
-      label: Hız
-      hint: 0.25 ile 4.0 arasında değerler kabul eder
-    betaDisabled: Metinden konuşmaya ayarlarını özelleştirmek için Beta Deneyimini etkinleştirin.
-  statistics:
-    title: İstatistikler
-    batchRequest:
-      title: Kaydedilen Toplu Çeviri İstekleri
-      description: Dönem içinde toplu çeviri ile kaydedilen istek yüzdesi
-      originalRequestCount: Orijinal İstek Sayısı
-      batchRequestCount: Toplu İstek Sayısı
   config:
-    title: Yapılandırma
     sync:
-      title: Manuel Yapılandırma Senkronizasyonu
-      description: Yapılandırma ayarlarınızı manuel olarak içe ve dışa aktarın
-      import: Yapılandırmayı İçe Aktar
-      export: Yapılandırmayı Dışa Aktar
-      importSuccess: Yapılandırma başarıyla içe aktarıldı
-      exportSuccess: Yapılandırma başarıyla dışa aktarıldı
-      importError: İçe aktarma başarısız
-      versionTooNew: İçe aktarılan yapılandırma sürümü daha yeni, lütfen Read Frog'u en son sürüme yükseltin
-      migrationError: Geçiş başarısız
+      versionTooNew: İçe aktarılan yapılandırma sürümü daha yeni, lütfen Tab Çevirisi'ni en son sürüme yükseltin
       validationError: Yapılandırma doğrulaması başarısız
-      exportOptions:
-        title: Dışa Aktarma Seçeneklerini Seçin
-        description: Lütfen dışa aktarılan yapılandırmaya API Anahtarlarını dahil edip etmemeyi seçin. API Anahtarlarını dahil etmek hassas bilgileri sızdırabilir, bu nedenle yalnızca güvenli ortamlarda kullanılması önerilir.
-        includeAPIKeys: API Anahtarlarını Dahil Et
-        excludeAPIKeys: API Anahtarlarını Hariç Tut
-        cancel: İptal
-      viewConfig:
-        expand: Yapılandırmayı Genişlet
-        collapse: Yapılandırmayı Daralt
-      googleDrive:
-        title: Google Drive Bulut Senkronizasyonu
-        description: Uzak daha yeniyse indirir, yerel daha yeniyse yükler
-        sync: Google Drive'a Senkronize Et
-        syncing: Senkronize ediliyor...
-        syncSuccess:
-          uploaded: Yerel ayarlar buluta yüklendi
-          downloaded: Uzak ayarlar uygulandı
-          sameChanges: Yerel ve uzak değişiklikler aynı, senkronize edildi
-          noChange: Zaten güncel
-          unresolved: Çakışmalar çözüldü ve senkronize edildi
-        syncError: Senkronizasyon başarısız, lütfen tekrar deneyin
-        metadataCorrupted: Senkronizasyon meta verileri bozuk, uzak yapılandırma uygulandı
-        lastSyncTime: Son senkronizasyon
-        logout: Çıkış yap
-        logoutSuccess: Google hesabından çıkış yapıldı
-        unresolved:
-          title: Yapılandırma Senkronizasyon Çözümü
-          description: Yerel ve uzak yapılandırmalar farklı. Lütfen her alan için hangi sürümün tutulacağını seçin.
-          resolved: Çözüldü
-          unresolved: Çözülmedi
-          localValue: Yerel Değer
-          remoteValue: Uzak Değer
-          useLocal: Yereli Kullan
-          useRemote: Uzakı Kullan
-          useAllLocal: Tüm Yereli Kullan
-          useAllRemote: Tüm Uzakı Kullan
-          reset: Seçimi Sıfırla
-          progress: $1/$2 değişiklik çözüldü
-          confirm: Senkronizasyonu Onayla
-          cancel: İptal
-          hasUnresolvedInChildren: ⚠ Çözülmemiş değişiklikler içeriyor
-          item: öğe
-          items: öğe
-          unresolvedPrompt: '[Çözülmedi - Lütfen seçin]'
-          localLatest: En Son Yerel
-          remoteLatest: En Son Uzak
-          bothChanged: Her ikisi de değişti
-          localChanged: Yerel değişti
-          remoteChanged: Uzak değişti
-          configValid: Yapılandırma geçerli
-          configInvalid: Yapılandırma geçersiz
-          resolveToContinue: Devam etmek için çakışmaları çözün
-          validationAlert:
-            title: Birleştirilmiş yapılandırmada doğrulama hataları var
-            description: 'Düzeltmek için aşağıdaki farklılıkları ayarlayın:'
-          moreErrors: ...ve $1 hata daha
-    backup:
-      title: Yapılandırma Yedekleme
-      description: Yapılandırma değiştirilirse otomatik yedeklemeler her saat oluşturulur. Önceki yapılandırmaları buradan geri yükleyebilirsiniz. (Maksimum $1 yedekleme)
-      loading: Yedeklemeler yükleniyor...
-      backupNow: Şimdi yedekle
-      backupSuccess: Yedekleme başarıyla oluşturuldu
-      restoreSuccess: Yapılandırma başarıyla geri yüklendi
-      empty:
-        title: Henüz yedekleme mevcut değil
-        description: Yapılandırma değiştirilirse yedeklemeler her saat otomatik olarak oluşturulur.
-      item:
-        extensionVersion: 'Uzantı sürümü:'
-        schemaVersion: 'Şema sürümü:'
-        restore: Geri Yükle
-        export: Dışa Aktar
-        delete: Sil
-      restore:
-        title: Yapılandırma yedeğini geri yükle?
-        description: Mevcut yapılandırmanız en son yedeklemeden farklıysa otomatik olarak yedeklenecektir. Yedekleme sayısı limiti aşarsa en eski yedekleme kaldırılabilir.
-        cancel: İptal
-        confirm: Geri Yükle
-      delete:
-        title: Yedekleme silinsin mi?
-        description: Bu yedeklemeyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
-        cancel: İptal
-        confirm: Sil
-    resetConfig:
-      title: Yapılandırmayı Sıfırla
-      description: Tüm yapılandırmayı varsayılan değere sıfırla
-      dialog:
-        title: Yapılandırmayı Sıfırla
-        trigger: Yapılandırmayı Sıfırla
-        confirm: Onayla
-        cancel: İptal
-        description: Bu işlem tüm özel yapılandırmalarınızı temizleyecek ve varsayılan değerlere sıfırlayacaktır. Lütfen onaylayın.
   videoSubtitles:
     title: Video Altyazıları
     description: Şu anda yalnızca YouTube video altyazılarını desteklemektedir
     enable: Video Altyazılarını Etkinleştir
     enableDescription: Etkinleştirildiğinde, YouTube oynatıcı kontrollerinde bir çeviri düğmesi görünecektir. Altyazıları çevirmeye başlamak için tıklayın.
-  whatsNew:
-    title: Yenilikler
-  survey:
-    title: Yeni Özellik Önerisi
-  rateUs:
-    title: Bizi Değerlendirin
-side:
-  sourceLang: Kaynak Dil
-  targetLang: Hedef Dil
-  fileExport: Dosya Dışa Aktarma
-readService:
-  title: Okuma Servisi
-  description: İçerik okuma ve açıklama için
-translateService:
-  title: Çeviri Servisi
-  description: Yalnızca web sayfası çevirisi için
-  normalTranslator: Normal Çevirmen
-  aiTranslator: AI Çevirmen
-translatePrompt:
-  title: AI Çeviri Stili
-  description: Çeviri sırasında kullanılacak bir Prompt seçin. Seçenekler sayfasında özel Promptlar ekleyin veya değiştirin.
 languageLevel: Kaynak Dil Seviyeniz
 languageLevels:
   beginner: Başlangıç
   intermediate: Orta
   advanced: İleri
-noAPIKeyConfig:
-  warning: AI modelleri kullanmak istiyorsanız, lütfen önce seçenekler sayfasında API anahtarını ayarlayın
-  warningWithLink:
-    youMust: Önce
-    setTheAPIKey: API anahtarını ayarlamalısınız
-    firstOnThe: ''
-    optionsPage: seçenekler
-    page: sayfasında
 translation:
   sameLanguage: Kaynak ve hedef diller farklı olmalıdır
   autoModeSameLanguage: Algılanan dil '$1' hedef dille aynı
-speak:
-  fetchingAudio: Ses oluşturuluyor...
-  playingAudio: Ses çalınıyor...
-  failedToGenerateSpeech: Konuşma oluşturulamadı
-  noTextSelected: Metin seçilmedi
-  openaiNotConfigured: OpenAI sağlayıcısı yapılandırılmadı veya etkinleştirilmedi
-  openaiApiKeyNotConfigured: OpenAI API anahtarı yapılandırılmadı
-shortcutKeySelector:
-  placeholder: Lütfen kısayolu girin
 subtitles:
   state:
     idle: Hazır

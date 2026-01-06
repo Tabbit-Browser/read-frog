@@ -16,7 +16,7 @@ export let shadowWrapper: HTMLElement | null = null
 
 declare global {
   interface Window {
-    __READ_FROG_SELECTION_INJECTED__?: boolean
+    __TAB_TRANSLATION_SELECTION_INJECTED__?: boolean
   }
 }
 
@@ -26,9 +26,9 @@ export default defineContentScript({
   allFrames: true,
   async main(ctx) {
     // Prevent double injection (manifest-based + programmatic injection)
-    if (window.__READ_FROG_SELECTION_INJECTED__)
+    if (window.__TAB_TRANSLATION_SELECTION_INJECTED__)
       return
-    window.__READ_FROG_SELECTION_INJECTED__ = true
+    window.__TAB_TRANSLATION_SELECTION_INJECTED__ = true
 
     const ui = await createShadowRootUi(ctx, {
       name: `${kebabCase(APP_NAME)}-selection`,

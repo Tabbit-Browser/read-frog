@@ -1,5 +1,5 @@
-import { langCodeISO6393Schema } from '@read-frog/definitions'
 import { z } from 'zod'
+import { langCodeISO6393Schema } from '@/utils/constants/definitions'
 import { HOTKEYS } from '@/utils/constants/hotkeys'
 import { MAX_PRELOAD_MARGIN, MAX_PRELOAD_THRESHOLD, MIN_BATCH_CHARACTERS, MIN_BATCH_ITEMS, MIN_PRELOAD_MARGIN, MIN_PRELOAD_THRESHOLD, MIN_TRANSLATE_CAPACITY, MIN_TRANSLATE_RATE } from '@/utils/constants/translate'
 import { TRANSLATION_NODE_STYLE } from '@/utils/constants/translation-node-style'
@@ -43,35 +43,7 @@ export const translationNodeStyleConfigSchema = z.object({
 
 export type TranslationNodeStyleConfig = z.infer<typeof translationNodeStyleConfigSchema>
 
-export const translatePromptObjSchema = z.object({
-  name: z.string(),
-  id: z.string(),
-  systemPrompt: z.string(),
-  prompt: z.string(),
-})
-export type TranslatePromptObj = z.infer<typeof translatePromptObjSchema>
-
-export const customPromptsConfigSchema = z.object({
-  promptId: z.string().nullable(),
-  patterns: z.array(
-    translatePromptObjSchema,
-  ),
-}).superRefine((data, ctx) => {
-  if (data.promptId !== null) {
-    const patternIds = data.patterns.map(p => p.id)
-    if (!patternIds.includes(data.promptId)) {
-      ctx.addIssue({
-        code: 'invalid_value',
-        values: patternIds,
-        message: `promptId "${data.promptId}" must be null or match a pattern id`,
-        path: ['promptId'],
-      })
-    }
-  }
-})
-
 export const translateConfigSchema = z.object({
-  providerId: z.string().nonempty(),
   mode: translationModeSchema,
   node: z.object({
     enabled: z.boolean(),
@@ -82,11 +54,8 @@ export const translateConfigSchema = z.object({
     autoTranslatePatterns: z.array(z.string()),
     autoTranslateLanguages: z.array(langCodeISO6393Schema),
     shortcut: z.array(z.string()),
-    enableLLMDetection: z.boolean(),
     preload: preloadConfigSchema,
   }),
-  enableAIContentAware: z.boolean(),
-  customPromptsConfig: customPromptsConfigSchema,
   requestQueueConfig: requestQueueConfigSchema,
   batchQueueConfig: batchQueueConfigSchema,
   translationNodeStyle: translationNodeStyleConfigSchema,

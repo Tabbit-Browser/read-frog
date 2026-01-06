@@ -1,5 +1,5 @@
-import type { LangCodeISO6393 } from '@read-frog/definitions'
 import type { Config } from '@/types/config/config'
+import type { LangCodeISO6393 } from '@/utils/constants/definitions'
 import { createShadowRootUi, defineContentScript, storage } from '#imports'
 import { kebabCase } from 'case-anything'
 import ReactDOM from 'react-dom/client'
@@ -23,7 +23,7 @@ import './style.css'
 
 declare global {
   interface Window {
-    __READ_FROG_HOST_INJECTED__?: boolean
+    __TAB_TRANSLATION_HOST_INJECTED__?: boolean
   }
 }
 
@@ -33,9 +33,9 @@ export default defineContentScript({
   allFrames: true,
   async main(ctx) {
     // Prevent double injection (manifest-based + programmatic injection)
-    if (window.__READ_FROG_HOST_INJECTED__)
+    if (window.__TAB_TRANSLATION_HOST_INJECTED__)
       return
-    window.__READ_FROG_HOST_INJECTED__ = true
+    window.__TAB_TRANSLATION_HOST_INJECTED__ = true
 
     // eruda.init()
 

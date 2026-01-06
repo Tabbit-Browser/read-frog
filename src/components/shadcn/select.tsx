@@ -2,21 +2,10 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 import { IconCheck, IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 import * as React from 'react'
 import { cn } from '@/utils/styles/tailwind'
-import {
-  getFirefoxExtensionRoot,
-  getIsFirefoxExtensionEnv,
-  preventDismiss,
-} from '../../utils/firefox/firefox-compat'
-import { useFirefoxRadixOpenController } from '../../utils/firefox/firefox-radix'
-
-const isFirefoxExtensionEnv = getIsFirefoxExtensionEnv()
 
 function Select({
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Root>) {
-  if (isFirefoxExtensionEnv)
-    return <SelectFirefox {...props} />
-
   return <SelectPrimitive.Root data-slot="select" {...props} />
 }
 
@@ -71,19 +60,6 @@ function SelectContent({
 }: React.ComponentProps<typeof SelectPrimitive.Content> & {
   container?: HTMLElement | null
 }) {
-  if (isFirefoxExtensionEnv) {
-    return (
-      <SelectContentFirefox
-        className={className}
-        position={position}
-        container={container}
-        {...props}
-      >
-        {children}
-      </SelectContentFirefox>
-    )
-  }
-
   return (
     <SelectPrimitive.Portal container={container ?? undefined}>
       <SelectPrimitive.Content
@@ -211,139 +187,4 @@ export {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-}
-
-function SelectFirefox({
-  open: controlledOpen,
-  onOpenChange,
-  defaultOpen,
-  onValueChange,
-  children,
-  ...rest
-}: React.ComponentProps<typeof SelectPrimitive.Root>) {
-  const {
-    isFirefoxMode,
-    rootOpen,
-    rootDefaultOpen,
-    handleOpenChange,
-    grantClosePermission,
-  } = useFirefoxRadixOpenController({
-    controlledOpen,
-    defaultOpen,
-    onOpenChange,
-    triggerSelectors: ['[data-slot="select-trigger"]'],
-    interactiveSelectors: ['[data-slot="select-item"]'],
-    contentSelector: '[data-slot="select-content"]',
-  })
-
-  const handleValueChange = React.useCallback((value: string) => {
-    if (isFirefoxMode)
-      grantClosePermission()
-
-    onValueChange?.(value)
-  }, [grantClosePermission, isFirefoxMode, onValueChange])
-
-  return (
-    <SelectPrimitive.Root
-      data-slot="select"
-      open={rootOpen}
-      defaultOpen={rootDefaultOpen}
-      onOpenChange={handleOpenChange}
-      onValueChange={handleValueChange}
-      {...rest}
-    >
-      {children}
-    </SelectPrimitive.Root>
-  )
-}
-
-function SelectContentFirefox({
-  className,
-  children,
-  position = 'popper',
-  container,
-  onPointerDownOutside,
-  onCloseAutoFocus,
-  collisionBoundary,
-  disablePortal = false,
-  ...props
-}: React.ComponentProps<typeof SelectPrimitive.Content> & {
-  container?: HTMLElement | null
-  disablePortal?: boolean
-}) {
-  const pointerDownOutsideHandler = React.useMemo(() => {
-    return (event: Event) => {
-      preventDismiss(event)
-      onPointerDownOutside?.(event as any)
-    }
-  }, [onPointerDownOutside])
-
-  const closeAutoFocusHandler = React.useMemo(() => {
-    return (event: Event) => {
-      preventDismiss(event)
-      onCloseAutoFocus?.(event as any)
-    }
-  }, [onCloseAutoFocus])
-
-  const isInShadowDOM = React.useMemo(() => {
-    if (typeof document === 'undefined')
-      return false
-
-    let node: Node | null = document.activeElement
-    while (node) {
-      if (node instanceof ShadowRoot)
-        return true
-      node = (node as any).parentNode || (node as any).host || null
-    }
-
-    return false
-  }, [])
-
-  const firefoxRoot = React.useMemo(() => getFirefoxExtensionRoot() ?? undefined, [])
-
-  const finalCollisionBoundary = (isFirefoxExtensionEnv && isInShadowDOM)
-    ? (collisionBoundary ?? firefoxRoot)
-    : collisionBoundary
-
-  const finalDisablePortal = (isFirefoxExtensionEnv && isInShadowDOM) ? true : disablePortal
-  const finalContainer = container ?? (isFirefoxExtensionEnv ? firefoxRoot : undefined)
-
-  const content = (
-    <SelectPrimitive.Content
-      data-slot="select-content"
-      className={cn(
-        'bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border shadow-md',
-        position === 'popper'
-        && 'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
-        'z-[2147483647]',
-        className,
-      )}
-      position={position}
-      onPointerDownOutside={pointerDownOutsideHandler}
-      onCloseAutoFocus={closeAutoFocusHandler}
-      collisionBoundary={finalCollisionBoundary}
-      {...props}
-    >
-      <SelectScrollUpButton />
-      <SelectPrimitive.Viewport
-        className={cn(
-          'p-1',
-          position === 'popper'
-          && 'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1',
-        )}
-      >
-        {children}
-      </SelectPrimitive.Viewport>
-      <SelectScrollDownButton />
-    </SelectPrimitive.Content>
-  )
-
-  if (finalDisablePortal)
-    return content
-
-  return (
-    <SelectPrimitive.Portal container={finalContainer}>
-      {content}
-    </SelectPrimitive.Portal>
-  )
 }

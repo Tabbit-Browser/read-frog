@@ -1,11 +1,11 @@
 import { i18n } from '#imports'
-import { LANG_CODE_ISO6391_OPTIONS } from '@read-frog/definitions'
 import { useAtomValue } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { Field, FieldLabel } from '@/components/shadcn/field'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/shadcn/select'
 import { Textarea } from '@/components/shadcn/textarea'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
+import { LANG_CODE_ISO6391_OPTIONS } from '@/utils/constants/definitions'
 import { BLOCK_CONTENT_CLASS, CONTENT_WRAPPER_CLASS } from '@/utils/constants/dom-labels'
 import { decorateTranslationNode } from '@/utils/host/translate/ui/decorate-translation'
 

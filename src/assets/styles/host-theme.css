@@ -1,13 +1,13 @@
 :root {
-  --read-frog-primary: oklch(76.5% 0.177 163.223);
-  --read-frog-muted: oklch(0.97 0 0);
-  --read-frog-muted-foreground: oklch(0.556 0 0);
+  --tab-translation-primary: oklch(76.5% 0.177 163.223);
+  --tab-translation-muted: oklch(0.97 0 0);
+  --tab-translation-muted-foreground: oklch(0.556 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --read-frog-primary: oklch(59.6% 0.145 163.225);
-    --read-frog-muted: oklch(0.269 0 0);
-    --read-frog-muted-foreground: oklch(0.708 0 0);
+    --tab-translation-primary: oklch(59.6% 0.145 163.225);
+    --tab-translation-muted: oklch(0.269 0 0);
+    --tab-translation-muted-foreground: oklch(0.708 0 0);
   }
 }

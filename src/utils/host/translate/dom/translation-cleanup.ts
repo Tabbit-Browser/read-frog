@@ -13,7 +13,7 @@ export function removeShadowHostInTranslatedWrapper(wrapper: HTMLElement): void 
   }
 
   // Remove lightweight spinners
-  const spinner = wrapper.querySelector('.read-frog-spinner')
+  const spinner = wrapper.querySelector('.tab-translation-spinner')
   if (spinner) {
     batchDOMOperation(() => spinner.remove())
   }

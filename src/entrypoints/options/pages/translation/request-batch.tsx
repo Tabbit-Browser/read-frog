@@ -1,16 +1,12 @@
 import type { BatchQueueConfig } from '@/types/config/translate'
 import { i18n } from '#imports'
-import { Icon } from '@iconify/react'
 import { useAtom } from 'jotai'
-import { Link } from 'react-router'
 import { toast } from 'sonner'
 import { Field, FieldContent, FieldGroup, FieldLabel } from '@/components/shadcn/field'
 import { Hint } from '@/components/shadcn/hint'
 import { Input } from '@/components/shadcn/input'
-import { useBatchRequestRecords } from '@/hooks/use-batch-request-record'
 import { batchQueueConfigSchema } from '@/types/config/translate'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
-import { calculateAverageSavePercentage } from '@/utils/batch-request-record'
 import { MIN_BATCH_CHARACTERS, MIN_BATCH_ITEMS } from '@/utils/constants/translate'
 import { sendMessage } from '@/utils/message'
 import { ConfigCard } from '../../components/config-card'
@@ -21,36 +17,13 @@ export function RequestBatch() {
   return (
     <ConfigCard
       title={i18n.t('options.translation.batchQueueConfig.title')}
-      description={(
-        <div className="flex flex-col">
-          <span>{i18n.t('options.translation.batchQueueConfig.description')}</span>
-          <StatisticsLink />
-        </div>
-      )}
+      description={i18n.t('options.translation.batchQueueConfig.description')}
     >
       <FieldGroup>
         <BatchNumberSelector property="maxCharactersPerBatch" />
         <BatchNumberSelector property="maxItemsPerBatch" />
       </FieldGroup>
     </ConfigCard>
-  )
-}
-
-function StatisticsLink() {
-  const { currentPeriodRecords } = useBatchRequestRecords(7)
-
-  const averageSavePercentage = calculateAverageSavePercentage(currentPeriodRecords)
-
-  return (
-    <Link
-      className="text-primary hover:opacity-80 cursor-pointer transition-opacity"
-      to="/statistics"
-      target="_blank"
-    >
-      {i18n.t('options.translation.batchQueueConfig.statisticsLink', [averageSavePercentage])}
-      {' '}
-      <Icon icon="tabler:external-link" className="inline w-3.5 h-3.5" />
-    </Link>
   )
 }
 

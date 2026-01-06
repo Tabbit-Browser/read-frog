@@ -5,10 +5,9 @@ import { useHydrateAtoms } from 'jotai/utils'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router'
-import FrogToast from '@/components/frog-toast'
-import { ChartThemeProvider } from '@/components/providers/chart-theme-provider'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { SidebarProvider } from '@/components/shadcn/sidebar'
+import TabTranslationToast from '@/components/tab-translation-toast'
 import { configAtom } from '@/utils/atoms/config'
 import { getLocalConfig } from '@/utils/config/storage'
 import { queryClient } from '@/utils/tanstack-query'
@@ -46,11 +45,9 @@ async function initApp() {
             <HashRouter>
               <SidebarProvider>
                 <ThemeProvider>
-                  <ChartThemeProvider>
-                    <AppSidebar />
-                    <App />
-                    <FrogToast />
-                  </ChartThemeProvider>
+                  <AppSidebar />
+                  <App />
+                  <TabTranslationToast />
                 </ThemeProvider>
               </SidebarProvider>
             </HashRouter>

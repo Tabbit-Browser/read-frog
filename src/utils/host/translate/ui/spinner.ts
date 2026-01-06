@@ -15,7 +15,7 @@ import { translateText } from '../translate-text'
  */
 export function createLightweightSpinner(ownerDoc: Document): HTMLElement {
   const spinner = ownerDoc.createElement('span')
-  spinner.className = 'read-frog-spinner'
+  spinner.className = 'tab-translation-spinner'
   // Inline styles to match the original spinner design
   // add important to make the styles don't get overridden by the host page styles,
   // Otherwise, in some page like https://www.reddit.com/r/canadaexpressentry/, some spinners size will be overridden by the host page styles.
@@ -25,8 +25,8 @@ export function createLightweightSpinner(ownerDoc: Document): HTMLElement {
     height: 6px !important;
     margin: 0 4px !important;
     vertical-align: middle !important;
-    border: 3px solid var(--read-frog-muted) !important;
-    border-top: 3px solid var(--read-frog-primary) !important;
+    border: 3px solid var(--tab-translation-muted) !important;
+    border-top: 3px solid var(--tab-translation-primary) !important;
     border-radius: 50% !important;
     box-sizing: content-box !important;
   `
@@ -51,7 +51,7 @@ export function createLightweightSpinner(ownerDoc: Document): HTMLElement {
   }
   else {
     // For reduced motion or when Web Animations API isn't available, show static spinner with muted color
-    spinner.style.borderTopColor = 'var(--read-frog-muted)'
+    spinner.style.borderTopColor = 'var(--tab-translation-muted)'
   }
 
   return spinner

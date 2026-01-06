@@ -3,17 +3,11 @@ import { upperCamelCase } from 'case-anything'
 import Dexie from 'dexie'
 import { APP_NAME } from '@/utils/constants/app'
 import ArticleSummaryCache from './tables/article-summary-cache'
-import BatchRequestRecord from './tables/batch-request-record'
 import TranslationCache from './tables/translation-cache'
 
 export default class AppDB extends Dexie {
   translationCache!: EntityTable<
     TranslationCache,
-    'key'
-  >
-
-  batchRequestRecord!: EntityTable<
-    BatchRequestRecord,
     'key'
   >
 
@@ -58,7 +52,6 @@ export default class AppDB extends Dexie {
         createdAt`,
     })
     this.translationCache.mapToClass(TranslationCache)
-    this.batchRequestRecord.mapToClass(BatchRequestRecord)
     this.articleSummaryCache.mapToClass(ArticleSummaryCache)
   }
 }

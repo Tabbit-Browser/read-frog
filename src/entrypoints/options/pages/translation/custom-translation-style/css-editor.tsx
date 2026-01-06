@@ -16,7 +16,6 @@ import { CSSCodeEditor } from '@/components/ui/css-code-editor'
 import { useDebouncedValue } from '@/hooks/use-debounced-value'
 import { MAX_CUSTOM_CSS_LENGTH } from '@/types/config/translate'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
-import { WEBSITE_URL } from '@/utils/constants/url'
 import { lintCSS } from '@/utils/css/lint-css'
 import { cn } from '@/utils/styles/tailwind'
 
@@ -67,9 +66,9 @@ export function CSSEditor() {
           <FieldLabel htmlFor="css-editor" data-invalid>
             {i18n.t('options.translation.translationStyle.cssEditor')}
           </FieldLabel>
-          <a href={`${WEBSITE_URL}/tutorial/custom-css`} className="text-xs text-link hover:opacity-90" target="_blank" rel="noreferrer">
-            {i18n.t('options.apiProviders.howToConfigure')}
-          </a>
+          {/* <a href={`${WEBSITE_URL}/tutorial/custom-css`} className="text-xs text-link hover:opacity-90" target="_blank" rel="noreferrer">
+            如何配置
+          </a> */}
         </div>
         <CSSCodeEditor
           value={cssInput}
@@ -78,36 +77,6 @@ export function CSSEditor() {
           placeholder={i18n.t('options.translation.translationStyle.customCSS.editor.placeholder')}
           className="min-h-[200px] max-h-[400px] overflow-y-auto"
         />
-        {/* Show syntax errors */}
-        {/* <Activity mode={hasSyntaxError ? 'visible' : 'hidden'}>
-          <Alert variant="destructive">
-            <Icon icon="tabler:exclamation-circle" className="size-4 text-destructive" />
-            <AlertTitle>CSS Syntax Errors</AlertTitle>
-            <AlertDescription>
-              <ul className="list-inside list-disc text-sm">
-                {syntaxCheck.errors.slice(0, 5).map((error, idx) => (
-                  <li key={idx}>
-                    Line
-                    {' '}
-                    {error.line}
-                    :
-                    {' '}
-                    {error.message}
-                  </li>
-                ))}
-                {syntaxCheck.errors.length > 5 && (
-                  <li>
-                    ... and
-                    {' '}
-                    {syntaxCheck.errors.length - 5}
-                    {' '}
-                    more errors
-                  </li>
-                )}
-              </ul>
-            </AlertDescription>
-          </Alert>
-        </Activity> */}
         <div className="flex items-center gap-2 justify-between">
           <div className={cn('text-sm text-green-500', isValidating && 'text-muted-foreground', (hasSyntaxError || hasLengthError) && 'text-destructive')}>
             {cssInput.trim().length > 0 ? getValidationMessage(isValidating, hasSyntaxError, hasLengthError, hasChanges) : ''}

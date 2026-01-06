@@ -1,6 +1,6 @@
-name: 読書カエル
-extName: 読書カエル - オープンソースインビジブル翻訳
-extDescription: 読書カエルは、あらゆるウェブサイトから言語を深く学ぶために設計されたオープンソースのブラウザ拡張機能です。
+name: Tab翻訳
+extName: Tab翻訳 - インビジブル翻訳
+extDescription: Tab翻訳は、あらゆるウェブサイトから言語を深く学ぶために設計されたブラウザ拡張機能です。
 contextMenu:
   translate: 翻訳
   showOriginal: 原文を表示
@@ -8,148 +8,21 @@ popup:
   autoLang: 自動検出
   sourceLang: ソース言語
   targetLang: 翻訳言語
-  read: 記事を読む
   translate: 翻訳
   showOriginal: 原文を表示
-  enabledFloatingButton: フローティングボタンを有効化
   enabledSelectionToolbar: 選択ツールバーを有効化
   alwaysTranslate: このサイトを常に翻訳する
   options: オプション
   hover: ホバー
   translateParagraph: 段落を翻訳
-  discord:
-    tooltip: Discordに参加して開発者とつながり、新機能を先行体験しましょう
-  blog:
-    notification: 読書カエルの最新情報
-  aiSmartContext: AI スマートコンテキスト
-  aiSmartContextDescription: ウェブページのコンテキストを使用して翻訳品質を向上させます。LLM翻訳プロバイダーが必要です。
-  more:
-    title: その他
-    joinDiscord: Discordに参加
-    joinWechat: WeChatグループに参加
-    starGithub: Githubでスター
-    rateUs: レビューを書く
-    ebook: サードパーティ電子書籍リーダー
-    tutorial: 使い方ガイド
 options:
   sidebar:
     settings: 設定
-    product: 製品
-  setAPIKeyWarning:
-    please: 設定ページで
-    page: APIキーを設定してください
-  betaExperience:
-    title: Beta 体験
-    description: 実験的機能と新機能への早期アクセスを有効にします。これらの機能は不安定または不完全な場合があります。
-    enabled: Beta 体験を有効にする
-  apiProviders:
-    title: APIプロバイダー
-    description: 翻訳および読解機能用のAPIプロバイダーを設定。20以上のAPIプロバイダーに加えて、OpenAI互換のAPIプロバイダーもサポートしています。
-    promotion:
-      ai302:
-        description: 右のリンクをクリックして 302.AI に登録すると、1ドルのAPIクレジットを受け取ることができます
-        action: 登録して無料APIキーを取得
-        addProvider: 302.AI設定を追加
-    addProvider: プロバイダーを追加
-    badges:
-      translate: 翻訳
-      read: 読解
-    dialog:
-      title: 新しいプロバイダーを追加
-      groups:
-        builtInProviders:
-          title: 組み込みLLMプロバイダー
-          description: 組み込みの大規模言語モデルプロバイダー、Base URLなどの設定が不要
-        openaiCompatibleProviders:
-          title: OpenAI互換カスタムプロバイダー
-          description: 希望するAIプロバイダーが見つからない場合は、Custom Providerを選択してZhipu AIなどのOpenAI互換プロバイダーを設定できます
-        pureTranslationProviders:
-          title: 純粋翻訳プロバイダー
-          description: 大規模言語モデル機能を持たない翻訳専門のプロバイダー
-    form:
-      fields:
-        name: 名前
-        description: 説明
-        apiKey: APIキー
-        baseURL: ベースURL
-        optional: オプション
-      delete: 削除
-      atLeastOneProvider: 最低1つの読解プロバイダーと1つの翻訳プロバイダーが必要です。
-      duplicateProviderName: '重複するプロバイダー名 "$1"'
-      defaultProvider:
-        translate: デフォルト翻訳プロバイダーに設定
-        read: デフォルト読解プロバイダーに設定
-      models:
-        read:
-          title: 読解モデル
-          customTitle: カスタム読解モデル
-          placeholder: モデルを選択してください
-        translate:
-          title: 翻訳モデル
-          customTitle: カスタム翻訳モデル
-          placeholder: モデルを選択してください
-        fetchModels: 利用可能なモデルを取得
-        fetchError: モデルの取得に失敗しました
-        clickToRetry: クリックして再試行
-        noModels: 利用可能なモデルがありません
-        selectModel: モデルを選択
-        apiKeyRequired: 先にAPIキーを追加してください
-      advancedOptions: 詳細オプション
-      temperature: 温度
-      temperatureHint: 応答のランダム性を制御します。低い値（0）はより決定的で、高い値はより創造的です。範囲はプロバイダーによって異なります。空欄の場合はプロバイダーのデフォルト値を使用します。
-      providerOptions: プロバイダーオプション
-      providerOptionsHint: 思考/推論モードなどの非標準API機能のためのプロバイダー固有オプション。詳細はVercel AI SDKドキュメントまたはプロバイダーの公式ドキュメントをご覧ください。
-      providerOptionsDocsLink: プロバイダードキュメントを見る
-      invalidJson: 無効なJSON形式
-    providers:
-      description:
-        openai: GPT-4oなどのモデルを提供
-        deepseek: 中国国内での使用を推奨
-        openrouter: 複数のLLMプロバイダの統合インターフェース、従量課金制
-        ollama: ローカル大規模言語モデルサービス
-        google: 高度な推論能力を持つGoogleの主力AIモデル
-        anthropic: 安全性と推論能力に優れたClaudeモデル
-        xai: リアルタイムデータアクセス可能なGrokモデルを提供するイーロン・マスクのAI企業
-        siliconflow: 中国および国際モデル向けの高性能推論プラットフォーム
-        tensdaq: 革命的入札型AI MaaSプラットフォーム、市場の需給で価格が決まり高コスト固定料金を排除
-        ai302: 最新かつ包括的なモデルと従量課金制APIを提供
-        openaiCompatible: OpenAI API互換のサードパーティー
-        deeplx: 非公式 DeepL API
-        bedrock: エンタープライズグレードの基盤モデル向けAWSマネージドサービス
-        groq: 超高速LLM推論速度に特化したハードウェア
-        deepinfra: 人気のオープンソースモデル向けコスト効率的なクラウド推論
-        mistral: 効率的な多言語モデルに特化したヨーロッパのAI企業
-        togetherai: オープンソースモデルの実行とファインチューニングのための協働プラットフォーム
-        cohere: 強力な多言語およびRAG機能を持つエンタープライズ向けAI
-        fireworks: オープンソースモデル向けプロダクション対応推論プラットフォーム
-        cerebras: 高速翻訳とテキスト分析に最適な超高速AI推論
-        replicate: 専門的な翻訳タスクのための多様なオープンソースモデルへのアクセス
-        perplexity: 文脈的翻訳と読解支援のためのリアルタイム知識強化AI
-        vercel: ウェブコンテンツの翻訳と分析に最適化されたAIモデル
-        volcengine: ByteDanceのクラウドAIプラットフォーム、Doubaoモデルを提供
-        minimax: MiniMax AIプラットフォーム、先進的なMiniMax-M2モデルを提供
-    apiKey:
-      showAPIKey: APIキーを表示
-    howToConfigure: 設定方法は?
-    testConnection:
-      button: 接続テスト
-      testing: テスト中...
   general:
     title: 一般
-    readConfig:
-      title: 読解設定
-      description: 高度なAI機能（記事の詳細解説、キーワード抽出など）に使用されます。
-      provider: プロバイダー
-      model:
-        title: モデル
-        enterCustomModel: カスタムモデル名を入力
     translationConfig:
       title: 翻訳設定
       description: ウェブページ内の翻訳にのみ使用されます（バイリンガル段落翻訳など）。
-      provider: プロバイダー
-      model:
-        title: モデル
-        enterCustomModel: カスタムモデル名を入力
       translateRange:
         title: 翻訳範囲
         range:
@@ -167,33 +40,11 @@ options:
         description: この操作により、すべての翻訳キャッシュがクリアされます。この操作は元に戻せません。
   overlayTools:
     title: オーバーレイツール
-    floatingButton:
-      title: フローティングボタン
     selectionToolbar:
       title: 選択ツールバー
     contextMenu:
       title: コンテキストメニュー
   floatingButtonAndToolbar:
-    title: フローティングボタンとツールバー
-    floatingButtonDemoImageAlt: フローティングボタンデモ
-    selectionToolbarDemoImageAlt: 選択ツールバーデモ
-    floatingButton:
-      globalToggle:
-        title: フローティングボタンを有効化
-        description: ウェブページにフローティングボタンを表示し、Read Frog機能に素早くアクセス
-      closeMenu:
-        disableForSite: このサイトで無効化
-        disableGlobally: グローバルで無効化
-      disabledSites:
-        title: フローティングボタン無効化サイト
-        description: フローティングボタンを無効化するウェブサイトを設定します
-        enterUrlPattern: URL パターンを入力
-        urlPattern: URL パターン
-      clickAction:
-        title: クリック動作
-        description: フローティングボタンをクリックしたときの動作を選択
-        panel: パネルを開く
-        translate: ページ翻訳を切り替え
     selectionToolbar:
       globalToggle:
         title: 選択ツールバーを有効化
@@ -207,7 +58,6 @@ options:
         enterUrlPattern: URL パターンを入力
         urlPattern: URL パターン
     contextMenu:
-      title: コンテキストメニュー
       translate:
         title: 右クリック翻訳を有効化
         description: ブラウザの右クリックメニューに翻訳オプションを追加し、ページを素早く翻訳
@@ -232,48 +82,18 @@ options:
       maxItemsPerBatch:
         title: 最大段落数
         description: 各バッチ翻訳の最大段落数、各翻訳のコンテンツ量を制御します
-      statisticsLink: 過去 7 日間で約 $1 のコストを節約しました
     autoTranslateWebsite:
       title: ウェブサイトに基づく自動翻訳
       description: このサイトを常に翻訳する
       urlPattern: URL パターン
       enterUrlPattern: URL パターンを入力
-    personalizedPrompts:
-      title: 個人化プロンプト
-      description: 異なるタイプのプロンプトをカスタマイズすることで、翻訳時にプロンプトタイプを自ら調整できます。プロンプトとは、ユーザーがLLMに送信するテキストを指します。
-      addPrompt: プロンプトを追加
-      default: デフォルト
-      importSuccess: インポート成功
-      import: インポート
-      export: エクスポート
-      current: 使用中
-      editPrompt:
-        title: プロンプトを編集
-        name: 名前
-        systemPrompt: システムプロンプト
-        prompt: プロンプト
-        promptCellInput:
-          input: 翻訳するテキスト内容
-          targetLang: 目標言語
-          title: ウェブページタイトル
-          summary: ウェブページ要約（AI スマートコンテキストが必要）
-        save: 保存
-        close: キャンセル
-      deletePrompt:
-        title: プロンプトを削除
-        description: このプロンプトを削除しますか
-        confirm: 確認
-        cancel: キャンセル
-      exportPrompt:
-        exportSelected: 選択したものをエクスポート
-        cancel: キャンセル
     translationStyle:
       title: 翻訳表示スタイル
       description: 翻訳結果と原文を区別するために好みのスタイルを設定
       useCustomStyle: カスタム CSS スタイルを使用
       useCustomStyleDescription: 任意の CSS に対応、フォント、アニメーション、言語別スタイルなど
       presetStyle: プリセットスタイル
-      cssEditor: CSSエディター
+      cssEditor: CSS エディター
       preview: プレビュー
       stylePreviewLanguage: 言語
       stylePreviewDirection: 方向
@@ -291,7 +111,7 @@ options:
         editor:
           placeholder: |
             /* 例：カスタムカラーと背景のスタイル */
-            [data-read-frog-custom-translation-style='custom'] {
+            [data-tab-translation-custom-translation-style='custom'] {
               color: #414535;
               background-color: light-dark(#F2E3BC, #C19875);
               padding: 2px 4px;
@@ -301,9 +121,9 @@ options:
           savedButton: 保存済み
           validation:
             validating: 検証中...
-            valid: CSSは有効です
-            syntaxError: CSSに構文エラーがあります
-            tooLong: CSSが長すぎます
+            valid: CSS は有効です
+            syntaxError: CSS に構文エラーがあります
+            tooLong: CSS が長すぎます
             saved: すべての変更が保存されました
     translationMode:
       title: 翻訳モード
@@ -316,7 +136,7 @@ options:
       description: ウェブページ全体を翻訳するショートカットキーをカスタマイズします
     preloadConfig:
       title: 事前翻訳範囲
-      description: ビューポート下のコンテンツをどれだけ事前翻訳するかを制御し、API コストを節約します
+      description: ビューポート下のコンテンツをどれだけ事前翻訳するかを制御し、 API コストを節約します
       margin:
         title: プリロード距離（ピクセル）
         description: ビューポートからどれくらい離れた位置でコンテンツの翻訳を開始するか。小さい値は API コストを節約しますが、スクロール時に遅延が発生する可能性があります。
@@ -326,216 +146,48 @@ options:
     nodeTranslationHotkey:
       title: ホバー翻訳ショートカットキー
       description: テキストにホバーして段落を翻訳する際の修飾キーをカスタマイズします
-    llmProviderConfigured: LLM 翻訳プロバイダーが設定されています
-    llmProviderNotConfigured: LLM 翻訳プロバイダーが設定されていません
     autoTranslateLanguages:
       title: 言語に基づく自動翻訳
       description: 特定の言語が検出された場合にページコンテンツを自動翻訳します
       selectLanguages: 言語を選択
       enableLLMDetection: LLM を使用した言語検出
-      enableLLMDetectionDescription: 精度が向上しますが、遅延と API コストが増加します。LLM 翻訳プロバイダーと自動翻訳言語の設定が必要です。
-    aiContentAware:
-      title: AI スマートコンテキスト翻訳
-      description: 記事のコンテキストを AI に提供して翻訳品質を向上させます
-      enable: AI スマートコンテキスト翻訳を有効にする
-      enableDescription: AI は記事の要約を使用して翻訳精度を向上させます。LLM プロバイダーが必要です。翻訳開始時に遅延が発生し、API コストが増加します。
+      enableLLMDetectionDescription: 精度が向上しますが、遅延と API コストが増加します。 LLM 翻訳プロバイダーと自動翻訳言語の設定が必要です。
   tts:
-    title: テキスト読み上げ
-    description: お好みの OpenAI 音声設定で読み上げボタンをカスタマイズします。
-    provider:
-      label: プロバイダー
-      selectPlaceholder: プロバイダーを選択
-      noProvider: OpenAI プロバイダーを追加してください
-    model:
-      label: モデル
-    voice:
-      label: ボイス
-      selectPlaceholder: ボイスを選択
-      preview: 試聴
-      previewSample: Read Frog からこんにちは！朗読するときはこのように聞こえます。
-    speed:
-      label: 速度
-      hint: 0.25〜4.0 の値を入力できます
-    betaDisabled: テキスト読み上げ設定をカスタマイズするには Beta 体験を有効にしてください。
-  statistics:
-    title: 統計
-    batchRequest:
-      title: バッチ翻訳で節約されたリクエスト
-      description: 期間内にバッチ翻訳で節約されたリクエストの割合
-      originalRequestCount: 元のリクエスト数
-      batchRequestCount: バッチリクエスト数
+    title: 音声読み上げ
   config:
-    title: 設定
     sync:
-      title: 手動設定同期
-      description: 手動で設定をインポート・エクスポート
-      import: 設定をインポート
-      export: 設定をエクスポート
-      importSuccess: 設定のインポートが完了しました
-      exportSuccess: 設定のエクスポートが完了しました
-      importError: インポートに失敗しました
-      versionTooNew: インポートされた設定のバージョンが新しいため、Read Frogを最新バージョンにアップグレードしてください
-      migrationError: 移行に失敗しました
+      versionTooNew: インポートされた設定のバージョンが新しいため、Tab翻訳を最新バージョンにアップグレードしてください
       validationError: 設定の検証に失敗しました
-      exportOptions:
-        title: エクスポートオプションを選択
-        description: エクスポートする設定にAPIキーを含めるかどうかを選択してください。APIキーを含めると機密情報が漏洩する可能性があるため、安全な環境でのみ使用することをお勧めします。
-        includeAPIKeys: APIキーを含める
-        excludeAPIKeys: APIキーを含めない
-        cancel: キャンセル
-      viewConfig:
-        expand: 設定を展開
-        collapse: 設定を折りたたむ
-      googleDrive:
-        title: Google Driveクラウド同期
-        description: リモートが新しい場合はダウンロード、ローカルが新しい場合はアップロード
-        sync: Google Driveに同期
-        syncing: 同期中...
-        syncSuccess:
-          uploaded: ローカル設定をクラウドにアップロードしました
-          downloaded: リモート設定を適用しました
-          sameChanges: ローカルとリモートの変更が一致、同期しました
-          noChange: 既に同期済みです
-          unresolved: 競合を解決し、ローカルとクラウドに同期しました
-        syncError: 同期に失敗しました。もう一度お試しください
-        metadataCorrupted: 同期メタデータが破損しています。リモート設定を適用しました
-        lastSyncTime: 最終同期時間
-        logout: ログアウト
-        logoutSuccess: Googleアカウントからログアウトしました
-        unresolved:
-          title: 設定の同期解決
-          description: ローカルとリモートの設定が異なります。各フィールドについて、保持するバージョンを選択してください。
-          resolved: 解決済み
-          unresolved: 未解決
-          localValue: ローカル値
-          remoteValue: リモート値
-          useLocal: ローカルを使用
-          useRemote: リモートを使用
-          useAllLocal: すべてローカルを使用
-          useAllRemote: すべてリモートを使用
-          reset: 選択をリセット
-          progress: $1/$2 個の変更を解決しました
-          confirm: 同期を確認
-          cancel: キャンセル
-          hasUnresolvedInChildren: ⚠ 未解決の変更を含む
-          item: 項目
-          items: 項目
-          unresolvedPrompt: '[未解決 - 選択してください]'
-          localLatest: ローカル最新
-          remoteLatest: リモート最新
-          bothChanged: 両方が変更されました
-          localChanged: ローカルが変更されました
-          remoteChanged: リモートが変更されました
-          configValid: 設定は有効です
-          configInvalid: 設定は無効です
-          resolveToContinue: 続行するには競合を解決してください
-          validationAlert:
-            title: マージされた設定に検証エラーがあります
-            description: 以下の差異を調整して修正してください：
-          moreErrors: ...他 $1 件のエラー
-    backup:
-      title: 設定のバックアップ
-      description: 設定が変更された場合、1時間ごとに自動的にバックアップが作成されます。以前の設定をここで復元できます。（最大 $1 個のバックアップ）
-      loading: バックアップを読み込んでいます...
-      backupNow: 今すぐバックアップ
-      backupSuccess: バックアップが作成されました
-      restoreSuccess: 設定が復元されました
-      empty:
-        title: まだバックアップがありません
-        description: 設定が変更された場合、1時間ごとに自動的にバックアップが作成されます。
-      item:
-        extensionVersion: 拡張機能のバージョン：
-        schemaVersion: 設定のバージョン：
-        restore: 復元
-        export: エクスポート
-        delete: 削除
-      restore:
-        title: 設定のバックアップを復元しますか？
-        description: 現在の設定が最新のバックアップと異なる場合、自動的に現在の設定がバックアップされます。バックアップ数が上限を超える場合、最も古いバックアップが削除される可能性があります。
-        cancel: キャンセル
-        confirm: 復元
-      delete:
-        title: バックアップを削除しますか？
-        description: このバックアップを削除してもよろしいですか？この操作は元に戻せません。
-        cancel: キャンセル
-        confirm: 削除
-    resetConfig:
-      title: 設定をリセット
-      description: すべての設定をデフォルト値にリセットします。
-      dialog:
-        title: 設定をリセット
-        trigger: 設定をリセット
-        confirm: 確認
-        cancel: キャンセル
-        description: この操作は、すべての設定をデフォルト値にリセットします。ご確認ください。
   videoSubtitles:
     title: 動画字幕
     description: 現在 YouTube 動画字幕のみ対応
     enable: 動画字幕を有効にする
-    enableDescription: 有効にすると、YouTube プレーヤーのコントロールバーに翻訳ボタンが表示されます。クリックして字幕の翻訳を開始します。
-  whatsNew:
-    title: 新機能
-  survey:
-    title: 新機能の提案
-  rateUs:
-    title: レビューを書く
-side:
-  sourceLang: ソース言語
-  targetLang: 翻訳言語
-  fileExport: ファイルエクスポート
-readService:
-  title: 読解サービス
-  description: 記事の読解と解説に使用
-translateService:
-  title: 翻訳サービス
-  description: ウェブページの翻訳にのみ使用
-  normalTranslator: 通常翻訳
-  aiTranslator: AI翻訳
-translatePrompt:
-  title: AI翻訳スタイル
-  description: 翻訳時に使用するプロンプトを選択できます。オプションページでカスタムプロンプトを追加または変更できます
+    enableDescription: 有効にすると、 YouTube プレーヤーのコントロールバーに翻訳ボタンが表示されます。クリックして字幕の翻訳を開始します。
 languageLevel: ソース言語のレベル
 languageLevels:
   beginner: 初級
   intermediate: 中級
   advanced: 上級
-noAPIKeyConfig:
-  warning: AIモデルを使用するには、まずオプションページでAPIキーを設定してください
-  warningWithLink:
-    youMust: まず
-    setTheAPIKey: APIキーを設定
-    firstOnThe: する必要があります（
-    optionsPage: オプションページ
-    page: ）
 translation:
   sameLanguage: ソース言語とターゲット言語は異なる必要があります
   autoModeSameLanguage: 検出された言語 '$1' はターゲット言語と同じです
-speak:
-  fetchingAudio: 音声を生成しています...
-  playingAudio: 音声を再生しています...
-  failedToGenerateSpeech: 音声生成に失敗しました
-  noTextSelected: テキストが選択されていません
-  openaiNotConfigured: OpenAIプロバイダーが設定されていないか有効になっていません
-  openaiApiKeyNotConfigured: OpenAI APIキーが設定されていません
-shortcutKeySelector:
-  placeholder: ショートカットを入力してください
 subtitles:
   state:
     idle: 準備完了
-    fetching: 字幕取得中
+    fetching: 字幕を取得中
     fetchSuccess: 字幕読み込み完了
     fetchFailed: 字幕取得失敗
-    processing: 字幕翻訳中（約2分）
+    processing: 字幕翻訳中（約 2 分）
     completed: 翻訳完了
     error: エラーが発生しました
   errors:
-    http429: 429 YouTube字幕APIへのリクエストが多すぎます。しばらくしてから再試行してください
-    http404: 404 YouTubeの字幕が見つかりません
-    http403: 403 YouTube字幕へのアクセスが拒否されました
-    http500: 500 YouTubeサーバーエラー
-    invalidResponse: YouTube字幕のレスポンス形式が無効です
+    http429: 429 YouTube 字幕 API へのリクエストが多すぎます。しばらくしてから再試行してください
+    http404: 404 YouTube の字幕が見つかりません
+    http403: 403 YouTube 字幕へのアクセスが拒否されました
+    http500: 500 YouTube サーバーエラー
+    invalidResponse: YouTube 字幕のレスポンス形式が無効です
     networkError: 字幕取得時にネットワークエラーが発生しました
-    fetchSubTimeout: YouTube字幕の取得がタイムアウトしました
+    fetchSubTimeout: YouTube 字幕の取得がタイムアウトしました
     buttonNotFound: 字幕ボタンが見つかりません
     noSubtitlesFound: 字幕が見つかりません
     videoNotFound: 動画要素が見つかりません

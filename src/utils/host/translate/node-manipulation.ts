@@ -22,7 +22,6 @@ export async function removeOrShowNodeTranslation(point: Point, config: Config):
   const detectedCode = await getDetectedCodeFromStorage()
 
   if (!validateTranslationConfigAndToast({
-    providersConfig: config.providersConfig,
     translate: config.translate,
     language: config.language,
   }, detectedCode)) {

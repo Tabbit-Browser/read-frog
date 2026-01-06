@@ -14,10 +14,6 @@ describe('mergeWithArrayOverwrite', () => {
           autoTranslateLanguages: ['eng'],
         },
       },
-      floatingButton: {
-        ...DEFAULT_CONFIG.floatingButton,
-        disabledFloatingButtonPatterns: ['gmail.com'],
-      },
     }
 
     const patch = {
@@ -29,9 +25,6 @@ describe('mergeWithArrayOverwrite', () => {
         },
         mode: 'replace',
       },
-      floatingButton: {
-        disabledFloatingButtonPatterns: ['youtube.com'],
-      },
     }
 
     const result = mergeWithArrayOverwrite(config, patch)
@@ -39,10 +32,8 @@ describe('mergeWithArrayOverwrite', () => {
     // Arrays should be completely replaced
     expect(result.translate.page.autoTranslatePatterns).toEqual(['new.com', 'test.org'])
     expect(result.translate.page.autoTranslateLanguages).toEqual([])
-    expect(result.floatingButton.disabledFloatingButtonPatterns).toEqual(['youtube.com'])
 
     expect(result.translate.mode).toBe('replace')
-    expect(result.floatingButton.enabled).toBe(true)
 
     // Ensure immutability
     expect(result).not.toBe(config)

@@ -6,7 +6,7 @@ import { getTranslationStateKey, TRANSLATION_STATE_KEY_PREFIX } from '@/utils/co
 import { sendMessage } from '@/utils/message'
 import { ensureInitializedConfig } from './config'
 
-const MENU_ID_TRANSLATE = 'read-frog-translate'
+const MENU_ID_TRANSLATE = 'tab-translation-translate'
 
 /**
  * Register all context menu event listeners synchronously
@@ -163,7 +163,12 @@ async function handleTranslateClick(tabId: number) {
   await storage.setItem(getTranslationStateKey(tabId), { enabled: newState })
 
   // Notify content script in that specific tab
-  void sendMessage('askManagerToTogglePageTranslation', { enabled: newState }, tabId)
+  try {
+    await sendMessage('askManagerToTogglePageTranslation', { enabled: newState }, tabId)
+  }
+  catch {
+    // Content script may not be loaded on this page (e.g., chrome:// pages)
+  }
 
   // Update menu title immediately
   await updateTranslateMenuTitle(tabId)

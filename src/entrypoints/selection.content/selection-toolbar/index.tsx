@@ -4,10 +4,8 @@ import { configFieldsAtomMap } from '@/utils/atoms/config'
 import { NOTRANSLATE_CLASS } from '@/utils/constants/dom-labels'
 import { MARGIN } from '@/utils/constants/selection'
 import { matchDomainPattern } from '@/utils/url'
-import { AiButton, AiPopover } from './ai-button'
 import { isSelectionToolbarVisibleAtom, selectionContentAtom, selectionRangeAtom } from './atom'
 import { CloseButton, DropEvent } from './close-button'
-import { SpeakButton } from './speak-button'
 import { TranslateButton, TranslatePopover } from './translate-button'
 
 enum SelectionDirection {
@@ -130,8 +128,6 @@ export function SelectionToolbar() {
         const selection = window.getSelection()
         const selectedText = selection?.toString().trim() || ''
 
-        // https://github.com/mengxi-ream/read-frog/issues/547
-        // https://github.com/mengxi-ream/read-frog/pull/790
         if (!isInputOrTextarea && !selection?.containsNode(e.target as Node, true) && e.target instanceof HTMLButtonElement) {
           return
         }
@@ -245,14 +241,11 @@ export function SelectionToolbar() {
           className="group absolute z-2147483647 bg-zinc-200 dark:bg-zinc-800 rounded-sm shadow-lg overflow-visible flex items-center"
         >
           <div className="flex items-center overflow-hidden rounded-sm">
-            <AiButton />
             <TranslateButton />
-            <SpeakButton />
           </div>
           <CloseButton />
         </div>
       )}
-      <AiPopover />
       <TranslatePopover />
     </div>
   )
