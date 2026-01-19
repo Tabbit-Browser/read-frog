@@ -1,3 +1,5 @@
+import { getTabHost } from '@/utils/instance-manager'
+
 export interface CustomTranslateParams {
   input: string
   target_lang: string
@@ -13,8 +15,9 @@ export interface CustomTranslateEvent {
 
 export async function* streamCustomTranslate(params: CustomTranslateParams) {
   const { input, target_lang, model = 'gpt-4.1-nano', abortSignal, isBatch = false } = params
+  const tabHost = await getTabHost()
 
-  const response = await fetch('https://example.com/proxy/v0/translate', {
+  const response = await fetch(`https://${tabHost}/proxy/v0/translate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
