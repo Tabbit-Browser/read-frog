@@ -15,20 +15,6 @@
       ],
       "outputs": ["{projectRoot}/.output", "{projectRoot}/.wxt"]
     },
-    "build:firefox": {
-      "cache": true,
-      "inputs": [
-        "{projectRoot}/src/**/*",
-        "{projectRoot}/public/**/*",
-        "{projectRoot}/wxt.config.ts",
-        "{projectRoot}/package.json",
-        "{projectRoot}/pnpm-lock.yaml",
-        "{projectRoot}/tsconfig.json",
-        "{projectRoot}/postcss.config.cjs",
-        "{projectRoot}/vitest.setup.ts"
-      ],
-      "outputs": ["{projectRoot}/.output", "{projectRoot}/.wxt"]
-    },
     "test": {
       "cache": true,
       "inputs": [

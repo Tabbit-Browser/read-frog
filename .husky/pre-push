@@ -1,3 +1,6 @@
+#!/usr/bin/env sh
+set -e
+
 # Check if SKIP_PRE_PUSH environment variable is set
 if [ "$SKIP_HUSKY" = "true" ]; then
   echo "⏭️  Skipping pre-push checks (SKIP_HUSKY=true)"
@@ -22,13 +25,22 @@ else
   echo "✅ No pnpm-lock.yaml overrides found."
 fi
 
-pnpm exec nx lint
-pnpm exec nx type-check
-pnpm exec nx build
+echo "🔍 Running lint..."
+pnpm exec nx lint || { echo "❌ Lint failed!"; exit 1; }
+
+echo "🔍 Running type-check..."
+pnpm exec nx type-check || { echo "❌ Type-check failed!"; exit 1; }
+
+echo "🔍 Running build..."
+pnpm exec nx build || { echo "❌ Build failed!"; exit 1; }
 
 # Check if SKIP_FREE_API environment variable is set
 if [ "$SKIP_FREE_API" = "true" ]; then
-  pnpm exec nx test -- --exclude="**/free-api.test.ts"
+  echo "🔍 Running tests (excluding free-api)..."
+  pnpm exec nx test -- --exclude="**/free-api.test.ts" || { echo "❌ Tests failed!"; exit 1; }
 else
-  pnpm exec nx test
+  echo "🔍 Running tests..."
+  pnpm exec nx test || { echo "❌ Tests failed!"; exit 1; }
 fi
+
+echo "✅ All pre-push checks passed!"
