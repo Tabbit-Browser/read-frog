@@ -23,7 +23,18 @@ export function isNumericContent(text: string): boolean {
 export function isForceInlineTranslation(targetNode: TransNode): boolean {
   if (isHTMLElement(targetNode)) {
     const computedStyle = window.getComputedStyle(targetNode)
-    return FORCE_INLINE_TRANSLATION_TAGS.has(targetNode.tagName) || computedStyle.display.includes('flex')
+    // 检查自身是否是 flex
+    if (FORCE_INLINE_TRANSLATION_TAGS.has(targetNode.tagName) || computedStyle.display.includes('flex')) {
+      return true
+    }
+    // 检查父元素是否是 flex，flex 容器内的子元素应该 inline 显示翻译
+    const parent = targetNode.parentElement
+    if (parent) {
+      const parentStyle = window.getComputedStyle(parent)
+      if (parentStyle.display.includes('flex')) {
+        return true
+      }
+    }
   }
   return false
 }
