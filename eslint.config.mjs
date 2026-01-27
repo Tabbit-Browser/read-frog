@@ -22,6 +22,8 @@ export default antfu({
   },
   ignores: [
     'lib/**',
+    'CLAUDE.md',
+    'docs/**',
   ],
   rules: {
     'unused-imports/no-unused-imports': 'error',

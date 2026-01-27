@@ -1,5 +1,6 @@
 import { deepmerge } from 'deepmerge-ts'
 import { requestQueueConfigSchema } from '@/types/config/translate'
+import { UnauthorizedError } from '@/utils/host/translate/custom-stream'
 import { BinaryHeapPQ } from './priority-queue'
 
 export interface RequestTask {
@@ -160,8 +161,8 @@ export class RequestQueue {
 
       // console.error(`❌ Task ${task.id} failed at ${Date.now()}:`, error)
 
-      // Check if we should retry
-      if (task.retryCount < this.options.maxRetries) {
+      // Check if we should retry (skip retry for unauthorized errors)
+      if (task.retryCount < this.options.maxRetries && !(error instanceof UnauthorizedError)) {
         task.retryCount++
 
         // Calculate exponential backoff delay

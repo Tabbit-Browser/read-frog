@@ -28,6 +28,10 @@ function HydrateAtoms({
 }
 
 async function initApp() {
+  // 设置 body 圆角
+  document.body.style.overflow = 'hidden'
+  document.body.style.borderRadius = '12px'
+
   const root = document.getElementById('root')!
   root.className = 'antialiased bg-background'
 

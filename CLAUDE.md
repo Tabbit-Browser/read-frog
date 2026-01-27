@@ -4,242 +4,107 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Tab Translation is an open-source AI-powered language learning browser extension that provides immersive translation, article analysis, and contextual learning features.
+Tab Translation is an AI-powered browser extension for immersive translation and language learning.
 
 ## Design Principles
 
-- **SOLID**
-  - **S**ingle Responsibility: one reason to change per unit.
-  - **O**pen/Closed: extend via **composition**; avoid modifying stable core.
-  - **L**iskov: subtypes must be true drop-ins.
-  - **I**nterface Segregation: small, focused interfaces.
-  - **D**ependency Inversion: depend on abstractions; wire via DI.
+- **SOLID**: Single Responsibility, Open/Closed (extend via composition), Liskov, Interface Segregation, Dependency Inversion
+- **DRY, KISS, YAGNI**: No duplication; simplest solution; don't build for imaginary futures
+- **Functional Lean**: Prefer pure functions, immutability, clear boundaries (ports & adapters)
 
-- **DRY, KISS, YAGNI**
-  - No duplication; simplest thing that could work; don’t build for imaginary futures.
-
-- **Functional Lean**
-  - Prefer **pure functions**, **immutability**, and **clear boundaries** (ports & adapters / hexagonal).
-
-## Requirements Confirmation Process
-
-Whenever users express demands, must follow these steps:
-
-1. **Thinking Prerequisites - Linus's Three Questions**
-
-Before starting any analysis, ask yourself:
-
-```text
-1. "Is this a real problem or an imagined one?" - Reject over-engineering
-2. "Is there a simpler way?" - Always seek the simplest solution
-3. "Will it break anything?" - Backward compatibility is an iron law
-```
-
-2. **Requirements Understanding Confirmation**
-
-```text
-Based on existing information, I understand your requirement is: [Restate requirement using Linus's thinking communication style]
-Please confirm if my understanding is accurate?
-```
-
-2. **Linus-style Problem Decomposition Thinking**
-
-   **Layer 1: Data Structure Analysis**
-
-```text
-"Bad programmers worry about the code. Good programmers worry about data structures."
-
-- What is the core data? How are they related?
-- Where does the data flow? Who owns it? Who modifies it?
-- Are there unnecessary data copying or transformations?
-```
-
-**Layer 2: Special Case Identification**
-
-```text
-"Good code has no special cases"
-
-- Find all if/else branches
-- Which are real business logic? Which are patches for bad design?
-- Can we redesign data structures to eliminate these branches?
-```
-
-**Layer 3: Complexity Review**
-
-```text
-"If implementation requires more than 3 levels of indentation, redesign it"
-
-- What is the essence of this feature? (Explain in one sentence)
-- How many concepts does the current solution use?
-- Can we reduce it to half? Half again?
-```
-
-**Layer 4: Destructive Analysis**
-
-```text
-"Never break userspace" - Backward compatibility is an iron law
-
-- List all existing features that might be affected
-- Which dependencies will be broken?
-- How to improve without breaking anything?
-```
-
-**Layer 5: Practicality Verification**
-
-```text
-"Theory and practice sometimes clash. Theory loses. Every single time."
-
-- Does this problem really exist in production?
-- How many users actually encounter this problem?
-- Does the complexity of the solution match the severity of the problem?
-```
-
-3. **Decision Output Pattern**
-
-After the above 5 layers of thinking, output must include (format can be prettier align with markdown of Github):
-
-```text
-【Core Judgment】
-✅ Worth doing: [reason] / ❌ Not worth doing: [reason]
-
-【Key Insights】
-- Data structure: [most critical data relationships]
-- Complexity: [complexity that can be eliminated]
-- Risk points: [biggest destructive risks]
-
-【Linus-style Solution】
-If worth doing:
-1. First step is always to simplify data structures
-2. Eliminate all special cases
-3. Implement in the stupidest but clearest way
-4. Ensure zero destructiveness
-
-If not worth doing:
-"This is solving a non-existent problem. The real problem is [XXX]."
-```
-
-4. **Code Review Output**
-
-When seeing code, immediately make three-layer judgment:
-
-```text
-【Taste Score】
-🟢 Good taste / 🟡 Acceptable / 🔴 Poor quality
-
-【Fatal Issues】
-- [If any, directly point out the worst parts]
-
-【Improvement Direction】
-"Eliminate this special case"
-"These 10 lines can become 3 lines"
-"Data structure is wrong, should be..."
-```
+Before implementing, ask:
+1. Is this a real problem or imagined?
+2. Is there a simpler way?
+3. Will it break anything?
 
 ## Tech Stack
 
-- **Framework**: [WXT](https://wxt.dev/) - Modern browser extension framework with Manifest V3
-- **UI**: React 19, TailwindCSS 4, Radix UI, shadcn/ui components
-- **Language**: TypeScript
-- **State Management**: Jotai with custom storage adapter for extension storage sync
-- **Database**: Dexie (IndexedDB wrapper) for local data persistence
-- **AI Integration**: Vercel AI SDK with 20+ provider integrations
-- **Testing**: Vitest with Istanbul coverage
-- **Build**: Vite-based bundler (via WXT)
-- **i18n**: @wxt-dev/i18n with YML locale files in `src/locales/`
+- **Framework**: [WXT](https://wxt.dev/) - Manifest V3 browser extension framework
+- **UI**: React 19, TailwindCSS 4, Radix UI, shadcn/ui
+- **State**: Jotai with custom storage adapter for cross-context sync
+- **Database**: Dexie (IndexedDB wrapper)
+- **AI**: Vercel AI SDK
+- **i18n**: @wxt-dev/i18n with YML files in `src/locales/`
 
 ## Development Commands
 
-### Core Development
-
 ```bash
-# Start development mode (Chrome)
-pnpm dev
+# Development
+pnpm dev                    # Start dev mode (Chrome, localhost:3333)
+pnpm dev:local              # Dev with local monorepo packages
 
-# Start development with local monorepo packages
-pnpm dev:local
-```
+# Testing
+pnpm test                   # Run all tests
+pnpm test:watch             # Watch mode
+pnpm test:cov               # With coverage
+vitest run src/path/to/file.test.ts  # Single test file
 
-### Testing and Quality
+# Quality
+pnpm type-check             # TypeScript check
+pnpm lint                   # ESLint
+pnpm lint:fix               # Auto-fix lint issues
 
-```bash
-# Run all tests
-pnpm test
-
-# Run tests in watch mode
-pnpm test:watch
-
-# Run tests with coverage
-pnpm test:cov
-
-# Type checking
-pnpm type-check
-
-# Linting
-pnpm lint
-pnpm lint:fix
+# Build
+pnpm build                  # Production build to .output/
+pnpm build:analyze          # Build with bundle analysis
+pnpm zip                    # Create distributable ZIP
 ```
 
 ## Architecture
 
-### Extension Structure
+### Extension Entrypoints (WXT pattern)
 
-The extension follows WXT's entrypoints pattern:
-
-- **`src/entrypoints/background/`** - Background service worker
-  - Handles extension lifecycle, message routing, proxy fetch
-  - Manages translation queues, database cleanup, config backup
-  - Coordinates between content scripts and popup
-
-- **`src/entrypoints/*.content/`** - Content scripts injected into web pages
-  - `host.content` - Main article reading and analysis UI
-  - `selection.content` - Selection translation popup
-  - `side.content` - Side panel interface
-  - `guide.content` - Onboarding guide overlay
-
+- **`src/entrypoints/background/`** - Service worker: lifecycle, message routing, proxy fetch, translation queues, config backup
+- **`src/entrypoints/*.content/`** - Content scripts:
+  - `host.content` - Main article reading/analysis UI
+  - `selection.content` - Text selection translation popup
+  - `subtitles.content` - Video subtitle translation
+  - `interceptor.content` - XHR request interception
 - **`src/entrypoints/popup/`** - Extension popup UI
 - **`src/entrypoints/options/`** - Settings page (multi-page React app)
 
-### Extension Config Migration
+### Messaging Architecture
 
-When changing the schema of the config, you need to add a migration script to the `src/utils/config/migration-scripts` directory, update the `CONFIG_SCHEMA_VERSION` constant and write examples for testing migration scripts.
+Uses `@webext-core/messaging` for typed communication between contexts. Protocol defined in `src/utils/message.ts`:
 
-### State Management Architecture
+```typescript
+// Send from content script to background
+import { sendMessage } from '@/utils/message'
+await sendMessage('backgroundFetch', { url, options })
 
-Uses Jotai atoms with a custom storage adapter pattern:
+// Listen in background
+import { onMessage } from '@/utils/message'
+onMessage('backgroundFetch', async (message) => { ... })
+```
 
-- **Config Atom** ([src/utils/atoms/config.ts](src/utils/atoms/config.ts))
-  - Single source of truth for extension settings
-  - Syncs with browser.storage.local via `storageAdapter`
-  - Uses `deepmerge-ts` with array overwrite strategy for updates
-  - Watches for changes across extension contexts (popup, content, options)
-  - Handles visibility changes to prevent stale config in inactive tabs
+### State Management
 
-- **Storage Adapter** ([src/utils/atoms/storage-adapter.ts](src/utils/atoms/storage-adapter.ts))
-  - Abstraction over browser.storage API
-  - Provides `get`, `set`, `watch` methods with Zod schema validation
-  - Enables reactive state sync across extension contexts
+**Config Atom** (`src/utils/atoms/config.ts`):
+- Single source of truth for settings
+- Optimistic updates with write queue for sequential storage operations
+- Cross-context sync via `storageAdapter.watch()`
+- Visibility change handler to refresh stale tabs
+
+**Storage Adapter** (`src/utils/atoms/storage-adapter.ts`):
+- Abstraction over `browser.storage` API
+- Zod schema validation on read/write
+- `get`, `set`, `watch` methods
+
+### Config Migration
+
+When changing config schema:
+1. Add migration script to `src/utils/config/migration-scripts/`
+2. Update `CONFIG_SCHEMA_VERSION` constant
+3. Write test examples in `__tests__/example/`
 
 ## Commit Conventions
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/) with these types:
+Conventional Commits enforced via commitlint:
 
-Standard types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+Standard: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
 
-Custom types: `i18n`, `ai`
-
-Examples:
-
-- `feat: add openrouter provider support`
-- `fix: resolve translation state race condition`
-- `i18n: update Japanese translations`
-- `ai: improve read article prompt for better analysis`
-
-Enforced via commitlint and husky pre-commit hooks.
-
-## Pull Request Process
-
-follow `.claude/commands/create-pr.md`
+Custom: `i18n`, `ai`
 
 ## Important Notes
 
-As AI, you should be extremely concise. Sacrifice grammar for the sake of concision.
+Be concise. Sacrifice grammar for brevity.

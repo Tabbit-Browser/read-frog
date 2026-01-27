@@ -33,6 +33,11 @@ function HydrateAtoms({
 }
 
 async function initApp() {
+  // 设置 body 圆角
+  document.documentElement.style.background = 'transparent'
+  document.body.style.overflow = 'hidden'
+  document.body.style.borderRadius = '12px'
+
   const root = document.getElementById('root')!
   root.className = 'text-base antialiased w-[320px] bg-background'
   const config = (await getLocalConfig()) ?? DEFAULT_CONFIG

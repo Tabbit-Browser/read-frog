@@ -2,6 +2,7 @@ import type { Config } from '@/types/config/config'
 import type { BatchQueueConfig, RequestQueueConfig } from '@/types/config/translate'
 import type { ProxyRequest, ProxyResponse } from '@/types/proxy-fetch'
 import type { LangCodeISO6393 } from '@/utils/constants/definitions'
+import type { ChromeThemeColors } from '@/utils/tab-theme-api'
 import { defineExtensionMessaging } from '@webext-core/messaging'
 
 interface ProtocolMap {
@@ -27,6 +28,8 @@ interface ProtocolMap {
   backgroundFetch: (data: ProxyRequest) => Promise<ProxyResponse>
   // cache management
   clearAllTranslationRelatedCache: () => Promise<void>
+  // theme colors (must be called from background)
+  getTabThemeColors: () => ChromeThemeColors | null
 }
 
 export const { sendMessage, onMessage }

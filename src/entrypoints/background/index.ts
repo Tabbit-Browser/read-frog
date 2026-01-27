@@ -1,3 +1,4 @@
+import type { ChromeThemeColors } from '@/utils/tab-theme-api'
 import { browser, defineBackground } from '#imports'
 import { logger } from '@/utils/logger'
 import { onMessage } from '@/utils/message'
@@ -39,6 +40,29 @@ export default defineBackground({
 
     onMessage('clearAllTranslationRelatedCache', async () => {
       await cleanupAllTranslationCache()
+    })
+
+    // Handle theme color requests from content scripts
+    onMessage('getTabThemeColors', async () => {
+      // @ts-expect-error - tabThemeColor is a custom Chrome API
+      if (typeof chrome === 'undefined' || !chrome.tabThemeColor) {
+        logger.warn('[Background] tabThemeColor API not available')
+        return null
+      }
+
+      return new Promise<ChromeThemeColors | null>((resolve) => {
+        try {
+          // @ts-expect-error - tabThemeColor is a custom Chrome API
+          chrome.tabThemeColor.getUserColor((colors: ChromeThemeColors) => {
+            logger.info('[Background] getUserColor result:', colors)
+            resolve(colors)
+          })
+        }
+        catch (error) {
+          logger.error('[Background] getUserColor error:', error)
+          resolve(null)
+        }
+      })
     })
 
     translationMessage()
