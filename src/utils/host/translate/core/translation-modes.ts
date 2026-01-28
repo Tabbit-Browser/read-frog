@@ -238,11 +238,25 @@ export async function translateNodeTranslationOnlyMode(
       originalContentMap.set(parentNode, parentNode.innerHTML)
     }
 
+    // 用占位符替换 HTML 元素，避免翻译 API 破坏 HTML 标签
+    const htmlPlaceholders: Map<string, string> = new Map()
+    let placeholderIndex = 0
+
     const getStringFormatFromNode = (node: Element | Text) => {
       if (isTextNode(node)) {
         return node.textContent
       }
-      return node.outerHTML
+      // 对于 HTML 元素，提取内部文本并用占位符包裹
+      // 保存原始 HTML 以便翻译后还原
+      const innerText = node.textContent?.trim() || ''
+      if (!innerText) {
+        return ''
+      }
+      const placeholder = `{{HTML_${placeholderIndex++}}}`
+      htmlPlaceholders.set(placeholder, node.outerHTML)
+      // 返回占位符 + 内部文本，让翻译 API 翻译文本内容
+      // 格式: {{HTML_0}}原文{{/HTML_0}}
+      return `${placeholder}${innerText}{{/HTML_${placeholderIndex - 1}}}`
     }
 
     const textContent = cleanTextContent(transNodes.map(getStringFormatFromNode).join(''))
@@ -280,8 +294,38 @@ export async function translateNodeTranslationOnlyMode(
       return
     }
 
+    // 还原 HTML 占位符
+    let finalHtml = translatedText
+    htmlPlaceholders.forEach((originalHtml, placeholder) => {
+      // 匹配 {{HTML_N}}翻译后的文本{{/HTML_N}} 格式
+      const closeTag = placeholder.replace('{{HTML_', '{{/HTML_')
+      const regex = new RegExp(`${placeholder.replace(/[{}]/g, '\\$&')}(.*?)${closeTag.replace(/[{}]/g, '\\$&')}`, 'g')
+
+      finalHtml = finalHtml.replace(regex, (_match, translatedInnerText) => {
+        const tempDiv = document.createElement('div')
+        tempDiv.innerHTML = originalHtml
+        const element = tempDiv.firstElementChild
+        if (element) {
+          // 检查是否有重要的子元素（如 a, sup, sub 等）
+          const hasImportantChildren = element.querySelector('a, sup, sub, code, strong, em, b, i')
+          if (hasImportantChildren) {
+            // 保留原始 HTML 结构不变（包括子元素）
+            return originalHtml
+          }
+          // 只有纯文本内容时，才替换文本
+          element.textContent = translatedInnerText
+          return element.outerHTML
+        }
+        return translatedInnerText
+      })
+
+      // 如果占位符没有被正确匹配（翻译 API 可能破坏了占位符格式），直接移除
+      finalHtml = finalHtml.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), '')
+      finalHtml = finalHtml.replace(new RegExp(closeTag.replace(/[{}]/g, '\\$&'), 'g'), '')
+    })
+
     // Convert newlines to <br> for proper rendering in innerHTML
-    translatedWrapperNode.innerHTML = translatedText.replace(/\n/g, '<br>')
+    translatedWrapperNode.innerHTML = finalHtml.replace(/\n/g, '<br>')
 
     // Batch final DOM mutations to reduce layout thrashing
     batchDOMOperation(() => {
