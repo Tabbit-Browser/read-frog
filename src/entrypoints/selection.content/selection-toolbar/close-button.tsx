@@ -1,7 +1,7 @@
 import { i18n } from '#imports'
 import { Icon } from '@iconify/react'
 import { useAtom } from 'jotai'
-import { useState } from 'react'
+import { use, useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,11 +9,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/shadcn/dropdown-menu'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
-import { shadowWrapper } from '../'
+import { ShadowWrapperContext } from '@/utils/react-shadow-host/create-shadow-host'
 
 export const DropEvent = 'rf-dropdown-change'
 
 export function CloseButton() {
+  const shadowWrapper = use(ShadowWrapperContext)
   const [selectionToolbar, setSelectionToolbar] = useAtom(configFieldsAtomMap.selectionToolbar)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 

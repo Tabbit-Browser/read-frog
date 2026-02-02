@@ -1,8 +1,9 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import { useCallback, useEffect, useLayoutEffect, useRef } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { configFieldsAtomMap } from '@/utils/atoms/config'
 import { NOTRANSLATE_CLASS } from '@/utils/constants/dom-labels'
 import { MARGIN } from '@/utils/constants/selection'
+import { getTabHost } from '@/utils/instance-manager'
 import { matchDomainPattern } from '@/utils/url'
 import { isSelectionToolbarVisibleAtom, selectionContentAtom, selectionRangeAtom } from './atom'
 import { CloseButton, DropEvent } from './close-button'
@@ -66,6 +67,12 @@ export function SelectionToolbar() {
   const setSelectionRange = useSetAtom(selectionRangeAtom)
   const selectionToolbar = useAtomValue(configFieldsAtomMap.selectionToolbar)
   const dropdownOpenRef = useRef(false)
+  const [tabHost, setTabHost] = useState<string | null>(null)
+
+  // Fetch tabHost on mount (hidden default disabled site)
+  useEffect(() => {
+    void getTabHost().then(setTabHost)
+  }, [])
 
   const updatePosition = useCallback(() => {
     if (!isSelectionToolbarVisible || !tooltipRef.current || !selectionPositionRef.current)
@@ -228,8 +235,12 @@ export function SelectionToolbar() {
     return () => window.removeEventListener(DropEvent, handler)
   }, [])
 
-  // Check if current site is disabled
-  const isSiteDisabled = selectionToolbar.disabledSelectionToolbarPatterns?.some(pattern =>
+  // Check if current site is disabled (user patterns + tabHost as hidden default)
+  const allDisabledPatterns = [
+    ...(selectionToolbar.disabledSelectionToolbarPatterns || []),
+    ...(tabHost ? [tabHost] : []),
+  ]
+  const isSiteDisabled = allDisabledPatterns.some(pattern =>
     matchDomainPattern(window.location.href, pattern),
   )
 

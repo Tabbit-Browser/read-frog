@@ -4,6 +4,7 @@ import { kebabCase } from 'case-anything'
 import ReactDOM from 'react-dom/client'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { APP_NAME } from '@/utils/constants/app.ts'
+import { ShadowWrapperContext } from '@/utils/react-shadow-host/create-shadow-host'
 import { protectSelectAllShadowRoot } from '@/utils/select-all'
 import { insertShadowRootUIWrapperInto } from '@/utils/shadow-root'
 import { addStyleToShadow } from '@/utils/styles'
@@ -45,9 +46,11 @@ export default defineContentScript({
         const root = ReactDOM.createRoot(wrapper)
         root.render(
           <QueryClientProvider client={queryClient}>
-            <ThemeProvider container={wrapper}>
-              <App />
-            </ThemeProvider>
+            <ShadowWrapperContext value={wrapper}>
+              <ThemeProvider container={wrapper}>
+                <App />
+              </ThemeProvider>
+            </ShadowWrapperContext>
           </QueryClientProvider>,
         )
         return root
