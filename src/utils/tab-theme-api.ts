@@ -98,30 +98,57 @@ export function generatePrimaryCssVariables(skColor: number): Record<string, str
 const THEME_STYLE_ID = 'tab-translation-theme-override'
 
 /**
- * 注入主题样式到页面
- * 使用 <style> 标签确保覆盖 manifest 注入的 CSS
+ * 解析颜色并记录日志
  */
-function injectThemeStyle(cssVars: Record<string, string>): void {
-  let styleEl = document.getElementById(THEME_STYLE_ID) as HTMLStyleElement | null
+function parseAndLogColor(colors: ChromeThemeColors | null): number | null {
+  if (!colors?.user_color || typeof colors.user_color.value !== 'number') {
+    logger.info(TAG, 'No valid user_color value, skipping')
+    return null
+  }
 
+  const skColor = colors.user_color.value
+  const rgba = argbToRgba(skColor)
+
+  logger.info(TAG, 'Decoded SkColor:', {
+    raw: skColor,
+    hex: `0x${(skColor >>> 0).toString(16).padStart(8, '0').toUpperCase()}`,
+    rgba,
+    rgbString: skColorToRgbString(skColor),
+    hexString: skColorToHex(skColor),
+  })
+
+  return skColor
+}
+
+/**
+ * 注入全局主题主色到 :root（仅用于内容脚本）
+ * 只注入带命名空间的变量 --tab-translation-primary，避免污染宿主页面
+ * @param colors 主题颜色
+ */
+export function injectGlobalThemePrimary(colors: ChromeThemeColors | null): void {
+  const skColor = parseAndLogColor(colors)
+  if (skColor === null)
+    return
+
+  const { r, g, b } = argbToRgba(skColor)
+  const primaryColor = `rgb(${r}, ${g}, ${b})`
+
+  let styleEl = document.getElementById(THEME_STYLE_ID) as HTMLStyleElement | null
   if (!styleEl) {
     styleEl = document.createElement('style')
     styleEl.id = THEME_STYLE_ID
     document.head.appendChild(styleEl)
   }
 
-  const cssText = Object.entries(cssVars)
-    .map(([prop, value]) => `${prop}: ${value} !important;`)
-    .join('\n    ')
-
-  styleEl.textContent = `:root {\n    ${cssText}\n}`
-  logger.info(TAG, 'Injected theme style:', styleEl.textContent)
+  styleEl.textContent = `:root { --tab-translation-primary: ${primaryColor}; }`
+  logger.info(TAG, 'Injected global theme primary:', styleEl.textContent)
 }
 
 /**
  * 将主题颜色应用到指定的 HTML 元素
- * @param element 目标元素（通常是 document.documentElement）
- * @param colors 主题颜色（从 background 通过 sendMessage('getTabThemeColors') 获取）
+ * 用于 Shadow DOM 容器或扩展自身页面的 document.documentElement
+ * @param element 目标元素
+ * @param colors 主题颜色
  */
 export function applyThemeColorsToElement(
   element: HTMLElement,
@@ -129,38 +156,16 @@ export function applyThemeColorsToElement(
 ): void {
   logger.info(TAG, 'applyThemeColorsToElement called with:', {
     element: element.tagName,
-    colors,
     hasUserColor: !!colors?.user_color?.value,
   })
 
-  // 检查 user_color 存在且 value 是有效数字（包括 0 和负数）
-  if (!colors?.user_color || typeof colors.user_color.value !== 'number') {
-    logger.info(TAG, 'No valid user_color value, skipping')
+  const skColor = parseAndLogColor(colors)
+  if (skColor === null)
     return
-  }
-
-  const skColor = colors.user_color.value
-
-  // 详细的颜色解码日志
-  const rgba = argbToRgba(skColor)
-  const rgbString = skColorToRgbString(skColor)
-  const hexString = skColorToHex(skColor)
-
-  logger.info(TAG, 'Decoded SkColor:', {
-    raw: skColor,
-    hex: `0x${(skColor >>> 0).toString(16).padStart(8, '0').toUpperCase()}`,
-    rgba,
-    rgbString,
-    hexString,
-  })
 
   const cssVars = generatePrimaryCssVariables(skColor)
   logger.info(TAG, 'Generated CSS variables:', cssVars)
 
-  // 使用 <style> 标签注入
-  injectThemeStyle(cssVars)
-
-  // 同时设置 inline style（用于 shadow DOM 容器）
   Object.entries(cssVars).forEach(([prop, value]) => {
     element.style.setProperty(prop, value)
   })

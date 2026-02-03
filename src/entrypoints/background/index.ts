@@ -55,6 +55,10 @@ export default defineBackground({
           // @ts-expect-error - tabThemeColor is a custom Chrome API
           chrome.tabThemeColor.getUserColor((colors: ChromeThemeColors) => {
             logger.info('[Background] getUserColor result:', colors)
+            // 这是一个不得已的骚操作，如果是灰色主题，强制转换成橙色的
+            if (colors.user_color?.value === -6645094) {
+              colors.user_color.value = -810932
+            }
             resolve(colors)
           })
         }

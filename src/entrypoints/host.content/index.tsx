@@ -13,7 +13,7 @@ import { onMessage, sendMessage } from '@/utils/message'
 import { protectSelectAllShadowRoot } from '@/utils/select-all'
 import { insertShadowRootUIWrapperInto } from '@/utils/shadow-root'
 import { addStyleToShadow } from '@/utils/styles'
-import { applyThemeColorsToElement } from '@/utils/tab-theme-api'
+import { injectGlobalThemePrimary } from '@/utils/tab-theme-api'
 import App from './app'
 import { bindTranslationShortcutKey } from './translation-control/bind-translation-shortcut'
 import { handleTranslationModeChange } from './translation-control/handle-config-change'
@@ -66,12 +66,12 @@ export default defineContentScript({
     // 4. Mount the UI
     ui.mount()
 
-    // Apply browser theme colors to document.documentElement for translated content
+    // 注入全局主题主色（仅 --tab-translation-primary），供翻译内容使用
     // 通过 background 获取主题色（chrome.tabThemeColor API 只能在扩展上下文中调用）
     void sendMessage('getTabThemeColors', undefined).then((colors) => {
       logger.info('Got theme colors from background:', colors)
       if (colors) {
-        applyThemeColorsToElement(document.documentElement, colors)
+        injectGlobalThemePrimary(colors)
       }
     }).catch((error) => {
       logger.warn('Failed to get theme colors:', error)
