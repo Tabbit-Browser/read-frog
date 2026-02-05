@@ -91,7 +91,6 @@ export function generatePrimaryCssVariables(skColor: number): Record<string, str
     '--primary-fill': `rgba(${r}, ${g}, ${b}, 0.05)`,
     '--primary-weak': `rgba(${r}, ${g}, ${b}, 0.2)`,
     '--primary-strong': `rgba(${r}, ${g}, ${b}, 0.8)`,
-    '--tab-translation-primary': base,
   }
 }
 
@@ -122,7 +121,6 @@ function parseAndLogColor(colors: ChromeThemeColors | null): number | null {
 
 /**
  * 注入全局主题主色到 :root（仅用于内容脚本）
- * 只注入带命名空间的变量 --tab-translation-primary，避免污染宿主页面
  * @param colors 主题颜色
  */
 export function injectGlobalThemePrimary(colors: ChromeThemeColors | null): void {

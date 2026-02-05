@@ -1,12 +1,11 @@
 :root {
-  --tab-translation-primary: oklch(87.2% 0.176 86.8);
+  --tab-translation-primary: currentColor;
   --tab-translation-muted: oklch(0.97 0 0);
   --tab-translation-muted-foreground: oklch(0.556 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --tab-translation-primary: oklch(75% 0.15 86.8);
     --tab-translation-muted: oklch(0.269 0 0);
     --tab-translation-muted-foreground: oklch(0.708 0 0);
   }
