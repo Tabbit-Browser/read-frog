@@ -4,6 +4,7 @@ import { i18n } from '#imports'
 import { configSchema } from '@/types/config/config'
 import { CONFIG_SCHEMA_VERSION } from '../constants/config'
 import { ConfigVersionTooNewError } from './errors'
+import { migrate as migrateV1ToV2 } from './migration-scripts/v1-to-v2'
 
 export const LATEST_SCHEMA_VERSION = CONFIG_SCHEMA_VERSION
 
@@ -11,6 +12,7 @@ export const LATEST_SCHEMA_VERSION = CONFIG_SCHEMA_VERSION
 // we can't use dynamic import here, so we have to use static import
 // https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/basics
 export const migrationScripts: Record<number, MigrationFunction> = {
+  2: migrateV1ToV2,
 }
 
 export async function runMigration(version: number, config: any): Promise<any> {
