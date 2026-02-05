@@ -1,6 +1,6 @@
-name: Tab Translation
-extName: Tab Translation - Иммерсивный переводчик
-extDescription: Tab Translation — расширение браузера, которое поможет вам глубоко изучать языки на любом веб-сайте.
+name: Tabbit Translation
+extName: Tabbit Translation - Иммерсивный переводчик
+extDescription: Tabbit Translation — расширение браузера, которое поможет вам глубоко изучать языки на любом веб-сайте.
 contextMenu:
   translate: Перевести
   showOriginal: Показать оригинал
@@ -156,7 +156,7 @@ options:
     title: Синтез речи
   config:
     sync:
-      versionTooNew: Версия импортированной конфигурации новее, пожалуйста, обновите Tab Translation до последней версии
+      versionTooNew: Версия импортированной конфигурации новее, пожалуйста, обновите Tabbit Translation до последней версии
       validationError: Ошибка валидации конфигурации
   videoSubtitles:
     title: Видео субтитры

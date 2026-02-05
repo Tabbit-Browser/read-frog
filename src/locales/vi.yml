@@ -1,6 +1,6 @@
-name: Tab Translation
-extName: Tab Translation - Dịch Nhúng
-extDescription: Tab Translation là tiện ích mở rộng trình duyệt được thiết kế để giúp bạn học ngôn ngữ sâu từ bất kỳ trang web nào.
+name: Tabbit Translation
+extName: Tabbit Translation - Dịch Nhúng
+extDescription: Tabbit Translation là tiện ích mở rộng trình duyệt được thiết kế để giúp bạn học ngôn ngữ sâu từ bất kỳ trang web nào.
 contextMenu:
   translate: Dịch
   showOriginal: Hiển thị bản gốc
@@ -156,7 +156,7 @@ options:
     title: Chuyển văn bản thành giọng nói
   config:
     sync:
-      versionTooNew: Phiên bản cấu hình đã nhập mới hơn, vui lòng nâng cấp Tab Translation lên phiên bản mới nhất
+      versionTooNew: Phiên bản cấu hình đã nhập mới hơn, vui lòng nâng cấp Tabbit Translation lên phiên bản mới nhất
       validationError: Xác thực cấu hình thất bại
   videoSubtitles:
     title: Phụ đề video

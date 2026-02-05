@@ -1,6 +1,6 @@
-name: Tab翻译
-extName: Tab翻译 - 沉浸式翻译
-extDescription: Tab翻译是一款浏览器插件，旨在帮助您从任何网站深入学习语言。
+name: Tabbit翻译
+extName: Tabbit翻译 - 沉浸式翻译
+extDescription: Tabbit翻译是一款浏览器插件，旨在帮助您从任何网站深入学习语言。
 contextMenu:
   translate: 翻译
   showOriginal: 显示原文
@@ -156,7 +156,7 @@ options:
     title: 文本转语音
   config:
     sync:
-      versionTooNew: 导入的配置版本较新，请升级Tab翻译到最新版本
+      versionTooNew: 导入的配置版本较新，请升级Tabbit翻译到最新版本
       validationError: 配置验证失败
   videoSubtitles:
     title: 视频字幕

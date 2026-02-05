@@ -28,7 +28,7 @@ vi.mock('wxt/testing', async () => {
         ...actual.fakeBrowser.runtime,
         getManifest: () => ({
           manifest_version: 3,
-          name: 'Tab Translation',
+          name: 'Tabbit Translation',
           version: '1.0.0',
           description: 'Test manifest',
         }),

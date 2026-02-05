@@ -1,6 +1,6 @@
-name: Tab翻譯
-extName: Tab翻譯 - 沉浸式翻譯
-extDescription: Tab翻譯是一款瀏覽器插件，旨在幫助您從任何網站深入學習語言。
+name: Tabbit翻譯
+extName: Tabbit翻譯 - 沉浸式翻譯
+extDescription: Tabbit翻譯是一款瀏覽器插件，旨在幫助您從任何網站深入學習語言。
 contextMenu:
   translate: 翻譯
   showOriginal: 顯示原文
@@ -156,7 +156,7 @@ options:
     title: 文字轉語音
   config:
     sync:
-      versionTooNew: 匯入的設定版本較新，請升級Tab翻譯到最新版本
+      versionTooNew: 匯入的設定版本較新，請升級Tabbit翻譯到最新版本
       validationError: 設定驗證失敗
   videoSubtitles:
     title: 影片字幕

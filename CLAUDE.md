@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Tab Translation is an AI-powered browser extension for immersive translation and language learning.
+Tabbit Translation is an AI-powered browser extension for immersive translation and language learning.
 
 ## Design Principles
 

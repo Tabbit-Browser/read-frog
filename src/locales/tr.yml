@@ -1,6 +1,6 @@
-name: Tab Çevirisi
-extName: Tab Çevirisi - Sürükleyici Çeviri
-extDescription: Tab Çevirisi, herhangi bir web sitesinden dilleri derinlemesine öğrenmenize yardımcı olmak için tasarlanmış bir tarayıcı uzantısıdır.
+name: Tabbit Çevirisi
+extName: Tabbit Çevirisi - Sürükleyici Çeviri
+extDescription: Tabbit Çevirisi, herhangi bir web sitesinden dilleri derinlemesine öğrenmenize yardımcı olmak için tasarlanmış bir tarayıcı uzantısıdır.
 contextMenu:
   translate: Çevir
   showOriginal: Orijinali Göster
@@ -156,7 +156,7 @@ options:
     title: Metinden Konuşmaya
   config:
     sync:
-      versionTooNew: İçe aktarılan yapılandırma sürümü daha yeni, lütfen Tab Çevirisi'ni en son sürüme yükseltin
+      versionTooNew: İçe aktarılan yapılandırma sürümü daha yeni, lütfen Tabbit Çevirisi'ni en son sürüme yükseltin
       validationError: Yapılandırma doğrulaması başarısız
   videoSubtitles:
     title: Video Altyazıları

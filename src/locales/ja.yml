@@ -1,6 +1,6 @@
-name: Tab翻訳
-extName: Tab翻訳 - インビジブル翻訳
-extDescription: Tab翻訳は、あらゆるウェブサイトから言語を深く学ぶために設計されたブラウザ拡張機能です。
+name: Tabbit翻訳
+extName: Tabbit翻訳 - インビジブル翻訳
+extDescription: Tabbit翻訳は、あらゆるウェブサイトから言語を深く学ぶために設計されたブラウザ拡張機能です。
 contextMenu:
   translate: 翻訳
   showOriginal: 原文を表示
@@ -156,7 +156,7 @@ options:
     title: 音声読み上げ
   config:
     sync:
-      versionTooNew: インポートされた設定のバージョンが新しいため、Tab翻訳を最新バージョンにアップグレードしてください
+      versionTooNew: インポートされた設定のバージョンが新しいため、Tabbit翻訳を最新バージョンにアップグレードしてください
       validationError: 設定の検証に失敗しました
   videoSubtitles:
     title: 動画字幕

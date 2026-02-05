@@ -1,6 +1,6 @@
-name: Tab Translation
-extName: Tab Translation - Immersive Translate
-extDescription: Tab Translation is a browser extension designed to help you learn languages deeply from any website.
+name: Tabbit Translation
+extName: Tabbit Translation - Immersive Translate
+extDescription: Tabbit Translation is a browser extension designed to help you learn languages deeply from any website.
 contextMenu:
   translate: Translate
   showOriginal: Show Original
@@ -154,7 +154,7 @@ options:
       enableLLMDetectionDescription: Improves accuracy but adds latency and API costs. Requires LLM translate provider and configured auto-translate languages.
   config:
     sync:
-      versionTooNew: The imported config version is newer, please upgrade Tab Translation to the latest version
+      versionTooNew: The imported config version is newer, please upgrade Tabbit Translation to the latest version
       validationError: Config validation failed
   videoSubtitles:
     title: Video Subtitles
