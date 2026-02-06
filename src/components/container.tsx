@@ -5,7 +5,7 @@ function Container({ ref, className, children, ...props }: React.ComponentPropsW
     <div
       ref={ref}
       className={cn(
-        'max-w-7xl mx-auto w-full px-6 md:px-8 lg:px-14',
+        'max-w-7xl mx-auto w-full px-6 md:px-8 lg:px-14 overflow-auto',
         className,
       )}
       {...props}
