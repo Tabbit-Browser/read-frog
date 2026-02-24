@@ -15,8 +15,9 @@ export function translationMessage() {
 
   onMessage('getEnablePageTranslationFromContentScript', async (msg) => {
     const tabId = msg.sender?.tab?.id
+    const tabUrl = msg.sender?.tab?.url
     if (typeof tabId === 'number') {
-      return await getTranslationState(tabId)
+      return await getTranslationState(tabId, tabUrl)
     }
     logger.error('Invalid tabId in getEnablePageTranslationFromContentScript', msg)
     return false
@@ -70,11 +71,12 @@ export function translationMessage() {
 
   onMessage('setAndNotifyPageTranslationStateChangedByManager', async (msg) => {
     const tabId = msg.sender?.tab?.id
+    const tabUrl = msg.sender?.tab?.url
     const { enabled } = msg.data
     if (typeof tabId === 'number') {
       await storage.setItem<TranslationState>(
         getTranslationStateKey(tabId),
-        { enabled },
+        { enabled, url: tabUrl },
       )
       try {
         await sendMessage('notifyTranslationStateChanged', { enabled }, tabId)
@@ -89,11 +91,20 @@ export function translationMessage() {
   })
 
   // === Helper Functions ===
-  async function getTranslationState(tabId: number): Promise<boolean> {
+  async function getTranslationState(tabId: number, currentUrl?: string): Promise<boolean> {
     const state = await storage.getItem<TranslationState>(
       getTranslationStateKey(tabId),
     )
-    return state?.enabled ?? false
+    if (!state?.enabled) {
+      return false
+    }
+    // If we have both stored URL and current URL, verify they match
+    // This prevents stale state from previous page affecting new page
+    if (state.url && currentUrl && state.url !== currentUrl) {
+      logger.info('Translation state URL mismatch, ignoring stale state', { stored: state.url, current: currentUrl })
+      return false
+    }
+    return true
   }
 
   // === Cleanup ===

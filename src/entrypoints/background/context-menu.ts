@@ -159,8 +159,18 @@ async function handleTranslateClick(tabId: number) {
   const isCurrentlyTranslated = state?.enabled ?? false
   const newState = !isCurrentlyTranslated
 
+  // Get current tab URL for state validation
+  let tabUrl: string | undefined
+  try {
+    const tab = await browser.tabs.get(tabId)
+    tabUrl = tab.url
+  }
+  catch {
+    // Tab may not exist
+  }
+
   // Update storage directly (instead of sending message to self)
-  await storage.setItem(getTranslationStateKey(tabId), { enabled: newState })
+  await storage.setItem(getTranslationStateKey(tabId), { enabled: newState, url: tabUrl })
 
   // Notify content script in that specific tab
   try {

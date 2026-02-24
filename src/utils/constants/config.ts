@@ -26,7 +26,7 @@ export const DEFAULT_CONFIG: Config = {
     page: {
       // TODO: change this to "all" for users once our translation algorithm can handle most cases elegantly
       range: import.meta.env.DEV ? 'all' : 'main',
-      autoTranslatePatterns: ['news.ycombinator.com'],
+      autoTranslatePatterns: [],
       autoTranslateLanguages: [],
       shortcut: DEFAULT_AUTO_TRANSLATE_SHORTCUT_KEY,
       preload: {

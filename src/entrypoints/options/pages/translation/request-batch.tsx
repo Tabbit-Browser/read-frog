@@ -82,7 +82,8 @@ function BatchNumberSelector({ property }: { property: KeyOfBatchQueueConfig }) 
             })
           }
           else {
-            toast.error(configParseResult.error?.issues[0].message)
+            const errorMessage = configParseResult.error?.issues[0]?.message || 'Invalid input'
+            toast.error(errorMessage)
           }
         }}
       />

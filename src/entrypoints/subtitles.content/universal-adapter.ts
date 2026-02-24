@@ -182,7 +182,7 @@ export class UniversalVideoAdapter {
       const errorMessage = error instanceof Error ? error.message : String(error)
 
       if (error instanceof ToastSubtitlesError) {
-        toast.error(errorMessage)
+        toast.error(errorMessage || i18n.t('subtitles.state.error'))
       }
       else {
         this.subtitlesScheduler?.setState('error', { message: errorMessage })

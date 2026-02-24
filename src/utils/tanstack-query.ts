@@ -7,7 +7,7 @@ export const queryClient = new QueryClient({
       const errorDescription
         = query.meta?.errorDescription || 'Something went wrong'
       toast.error(`${errorDescription}`, {
-        description: error.message || undefined,
+        description: error.message ? error.message : undefined,
       })
     },
   }),
@@ -16,7 +16,7 @@ export const queryClient = new QueryClient({
       const errorDescription
         = mutation.meta?.errorDescription || 'Something went wrong'
       toast.error(`${errorDescription}`, {
-        description: error.message || undefined,
+        description: error.message ? error.message : undefined,
       })
     },
   }),
