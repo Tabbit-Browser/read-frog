@@ -5,6 +5,7 @@ import { configSchema } from '@/types/config/config'
 import { CONFIG_SCHEMA_VERSION } from '../constants/config'
 import { ConfigVersionTooNewError } from './errors'
 import { migrate as migrateV1ToV2 } from './migration-scripts/v1-to-v2'
+import { migrate as migrateV2ToV3 } from './migration-scripts/v2-to-v3'
 
 export const LATEST_SCHEMA_VERSION = CONFIG_SCHEMA_VERSION
 
@@ -13,6 +14,7 @@ export const LATEST_SCHEMA_VERSION = CONFIG_SCHEMA_VERSION
 // https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/basics
 export const migrationScripts: Record<number, MigrationFunction> = {
   2: migrateV1ToV2,
+  3: migrateV2ToV3,
 }
 
 export async function runMigration(version: number, config: any): Promise<any> {
